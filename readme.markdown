@@ -72,8 +72,8 @@ Zero dependency, no additional jars required.
 
 ## Snippet2: Running snippet servlet
 
-    git@github.com:seratch/taskun-servlet-extension-client.git
-    cd taskun-servlet-extension
+    git@github.com:seratch/taskun.git
+    cd taskun/taskun-servlet-extension
     mvn jetty:run
 
     # And you will see "Hello, World!" endlessly in the console.
