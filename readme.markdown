@@ -2,8 +2,9 @@
 
 ## Simple crond thread on JVM
 
-taskun is a Java implementation of UNIX crond on JVM. 
-And there're the extended specifications that crond doesn't have - invoking seconds intervals and invoking several threads at once.
+"taskun" is an implementation of UNIX crond on JVM, 
+and it has some extended functions which crond doesn't have:
+invoking seconds intervals, invoking several threads at once.
 
 ## Install
 
@@ -104,28 +105,31 @@ Zero dependency, no additional jars required.
 
 * src/main/webapp/WEB-INF/web.xml
 
-    <servlet>
+    &lt;servlet&gt;
       <servlet-name>schedulerServlet</servlet-name>
       <servlet-class>com.github.seratch.taskun.servlet.impl.DefaultSchedulerServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
-    </servlet>
+    &lt;/servlet&gt;
 
 * src/main/resources/crontab.txt
 
     */1 * * * * com.github.seratch.taskun.servlet.snippet.EchoWorker*3
+    
     interval:3sec initial:5sec com.github.seratch.taskun.servlet.snippet.EchoWorker
 
 * src/main/resources/taskun.properties
 
     enableInvokingScheduler=true
+    
     enableLoggingForEachCrondInvocation=true
+    
     namedServer1=.*server1
+    
     namedServer2=server2*.example.com
+    
     namedServer3=
 
 ### Deploy and run
-
-Deploy *.war and start your application server.
 
 ## Snippet4: Injecting scheduler, config and worker instances
 
@@ -173,4 +177,17 @@ Deploy *.war and start your application server.
       }
     }
 
-    
+## Snippet5: Using extended crontab notation
+
+### Invoking seconds intervals
+
+"initial" is the waiting time for the first invoking since scheduler started.
+
+    interval:3sec initial:5sec snippet.EchoWorker
+
+### Invoking several threads at once.
+
+Following crontab will invoke 3 threads to do same command at once:
+
+    */1 * * * * snippet.EchoWorker*3
+
