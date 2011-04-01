@@ -101,32 +101,25 @@ Zero dependency, no additional jars required.
 
 ## Snippet3: Running taskun in your webapp
 
-### Configulations
+### src/main/webapp/WEB-INF/web.xml
 
-* src/main/webapp/WEB-INF/web.xml
-
-    &lt;servlet&gt;
+    <servlet>
       <servlet-name>schedulerServlet</servlet-name>
       <servlet-class>com.github.seratch.taskun.servlet.impl.DefaultSchedulerServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
-    &lt;/servlet&gt;
+    </servlet>
 
-* src/main/resources/crontab.txt
+### src/main/resources/crontab.txt
 
     */1 * * * * com.github.seratch.taskun.servlet.snippet.EchoWorker*3
-    
     interval:3sec initial:5sec com.github.seratch.taskun.servlet.snippet.EchoWorker
 
-* src/main/resources/taskun.properties
+### src/main/resources/taskun.properties
 
     enableInvokingScheduler=true
-    
     enableLoggingForEachCrondInvocation=true
-    
     namedServer1=.*server1
-    
     namedServer2=server2*.example.com
-    
     namedServer3=
 
 ### Deploy and run
