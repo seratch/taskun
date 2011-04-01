@@ -1,0 +1,2 @@
+*/1 * * * * snippet.EchoWorker*3
+interval:3sec initial:5sec snippet.EchoWorker
