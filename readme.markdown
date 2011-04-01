@@ -1,10 +1,6 @@
-# taskun
+# taskun - A simple cron daemon thread on JVM
 
-## Simple crond thread on JVM
-
-"taskun" is an implementation of UNIX crond on JVM, 
-and it has some extended functions which crond doesn't have:
-invoking seconds intervals, invoking several threads at once.
+"taskun" is an implementation of UNIX crond on JVM, and it has some extended notations.
 
 ## Install
 
@@ -170,17 +166,17 @@ Zero dependency, no additional jars required.
       }
     }
 
-## Snippet5: Using extended crontab notation
+## Snippet5: Using extended notations
 
 ### Invoking seconds intervals
 
-"initial" is the waiting time for the first invoking since scheduler started.
+"initial" is waiting time for the first invoking since taskun scheduler started.
 
     interval:3sec initial:5sec snippet.EchoWorker
 
 ### Invoking several threads at once.
 
-Following crontab will invoke 3 threads to do same command at once:
+Following will invoke 3 threads to do same command(=EchoWorker) at once:
 
     */1 * * * * snippet.EchoWorker*3
 
