@@ -11,7 +11,9 @@ public class SnippetServletInjector implements ServletInjector {
 
     @Override
     public Scheduler getScheduler() {
-        return new TaskunScheduler();
+        Scheduler scheduler = new TaskunScheduler();
+        scheduler.replaceCrontabFile("snippet_crontab.txt");
+        return scheduler;
     }
 
     @Override

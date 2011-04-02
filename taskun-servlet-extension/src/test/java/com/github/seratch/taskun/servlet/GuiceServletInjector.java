@@ -1,6 +1,6 @@
 package com.github.seratch.taskun.servlet;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
+import com.github.seratch.taskun.inject.ServletInjector;
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
@@ -8,7 +8,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class GuiceServletInjector implements DIContainerAdaptor {
+public class GuiceServletInjector implements ServletInjector {
 
 	Injector injector = Guice.createInjector(new AbstractModule() {
 		@Override
@@ -21,7 +21,7 @@ public class GuiceServletInjector implements DIContainerAdaptor {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T getComponent(Class<?> clazz) {
+	public <T> T inject(Class<?> clazz) {
 		return (T) injector.getInstance(clazz);
 	}
 
