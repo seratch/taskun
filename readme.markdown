@@ -8,8 +8,8 @@
 
 Zero dependency, no additional jars required.
 
-    ./download/taskun-scheduler-1.1.jar
-    ./download/taskun-servlet-extension-1.1.jar
+    ./download/taskun-scheduler-1.2.jar
+    ./download/taskun-servlet-extension-1.2.jar
 
 ### via Maven2
 
@@ -31,12 +31,12 @@ Zero dependency, no additional jars required.
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-scheduler</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-servlet-extension</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
       </dependency>
       ...
     </dependencies>
