@@ -20,57 +20,56 @@ import java.util.List;
 
 class CrontabRepository {
 
-	private CrontabParser parser = new CrontabParser();
+    private List<Crontab> crontabLines = new ArrayList<Crontab>();
 
-	private List<Crontab> crontabLines = new ArrayList<Crontab>();
+    public CrontabRepository(List<Crontab> crontabLines) {
+        this.crontabLines = crontabLines;
+    }
 
-	public CrontabRepository(List<Crontab> crontabLines) {
-		this.crontabLines = crontabLines;
-	}
+    public List<Crontab> getCrontabLines() {
+        return crontabLines;
+    }
 
-	public List<Crontab> getCrontabLines() {
-		return crontabLines;
-	}
+    public Crontab find(Crontab crontab) {
+        for (Crontab each : crontabLines) {
+            if (each.rawLine.equals(crontab.rawLine)) {
+                return crontab;
+            }
+        }
+        return null;
+    }
 
-	public Crontab findByLine(RawCrontabLine line) {
-		for (Crontab crontab : crontabLines) {
-			if (crontab.rawLine.equals(line)) {
-				return crontab;
-			}
-		}
-		return null;
-	}
+    public void add(Crontab crontab) {
+        // excludes commented or empty line
+        RawCrontabLine line = crontab.rawLine;
+        if (!line.toString().startsWith("#") && !line.toString().equals("")
+                && !isAlreadyRegistered(crontab)) {
+            crontabLines.add(crontab);
+        }
+    }
 
-	public void add(RawCrontabLine line) {
-		// excludes commented or empty line
-		if (!line.toString().startsWith("#") && !line.toString().equals("")
-				&& !isAlreadyRegistered(line)) {
-			crontabLines.add(parser.parseLine(line));
-		}
-	}
+    public void remove(Crontab crontab) {
+        RawCrontabLine line = crontab.rawLine;
+        if (isAlreadyRegistered(crontab)) {
+            Crontab found = new CrontabRepository(crontabLines).find(crontab);
+            crontabLines.remove(found);
+        }
+    }
 
-	public void remove(RawCrontabLine line) {
-		if (isAlreadyRegistered(line)) {
-			Crontab crontab = new CrontabRepository(crontabLines)
-					.findByLine(line);
-			crontabLines.remove(crontab);
-		}
-	}
+    public void replace(Crontab before, Crontab after) {
+        if (isAlreadyRegistered(before)) {
+            remove(before);
+        }
+        add(after);
+    }
 
-	public void replace(RawCrontabLine before, RawCrontabLine after) {
-		if (isAlreadyRegistered(before)) {
-			remove(before);
-		}
-		add(after);
-	}
-
-	public boolean isAlreadyRegistered(RawCrontabLine line) {
-		for (Crontab crontab : crontabLines) {
-			if (crontab.rawLine.equals(line)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean isAlreadyRegistered(Crontab crontab) {
+        for (Crontab each : crontabLines) {
+            if (each.rawLine.equals(crontab.rawLine)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

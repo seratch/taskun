@@ -15,27 +15,41 @@
  */
 package com.github.seratch.taskun.scheduler.config;
 
+import com.github.seratch.taskun.logging.Log;
+import com.github.seratch.taskun.logging.UtilLoggerImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class SchedulerConfig {
 
-	public boolean enableInvokingScheduler = true;
+    public boolean enableInvokingScheduler = true;
 
-	public boolean enableLoggingForEachCrondInvocation = false;
+    public boolean enableLoggingForEachCrondInvocation = false;
 
-	public Map<String, String> namedServers = new HashMap<String, String>();
+    public Map<String, String> namedServers = new HashMap<String, String>();
 
-	public void putNamedServer(String name, String hostname) {
-		namedServers.put(name, hostname);
-	}
+    public Class<? extends Log> logImplClass = UtilLoggerImpl.class;
 
-	public void removeNamedServer(String name) {
-		namedServers.remove(name);
-	}
+    public void putNamedServer(String name, String hostname) {
+        namedServers.put(name, hostname);
+    }
 
-	public String getNamedServerHostname(String name) {
-		return namedServers.get(name);
-	}
+    public void removeNamedServer(String name) {
+        namedServers.remove(name);
+    }
+
+    public String getNamedServerHostname(String name) {
+        return namedServers.get(name);
+    }
+
+    public <T extends Log> void setLogImplClass(Class<T> logImplClass) {
+        this.logImplClass = logImplClass;
+    }
+
+    public Class<? extends Log> getLogImplClass() {
+        return this.logImplClass;
+    }
+
 
 }

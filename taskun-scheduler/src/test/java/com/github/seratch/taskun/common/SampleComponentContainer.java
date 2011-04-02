@@ -6,22 +6,22 @@ import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
 
 public class SampleComponentContainer implements DIContainerAdaptor {
 
-	public SchedulerConfig config = new SchedulerConfig();
+    public SchedulerConfig config = new SchedulerConfig();
 
-	@Override
-	public Scheduler getScheduler() {
-		return new TaskunScheduler();
-	}
+    @Override
+    public Scheduler getScheduler() {
+        return new TaskunScheduler();
+    }
 
-	@Override
-	public SchedulerConfig getSchedulerConfig() {
-		SchedulerConfig config = new SchedulerConfig();
-		return config;
-	}
+    @Override
+    public SchedulerConfig getSchedulerConfig() {
+        SchedulerConfig config = new SchedulerConfig();
+        return config;
+    }
 
-	@Override
-	public <T> T getComponent(Class<?> clazz) {
-		return null;
-	}
+    @Override
+    public <T> T getComponent(Class<?> clazz) {
+        return null;
+    }
 
 }

@@ -17,40 +17,40 @@ package com.github.seratch.taskun.scheduler.crond;
 
 class CrontabElement {
 
-	private String element;
+    private String element;
 
-	public CrontabElement(String element) {
-		this.element = element;
-	}
+    public CrontabElement(String element) {
+        this.element = element;
+    }
 
-	@Override
-	public String toString() {
-		return element == null ? "" : this.element.trim();
-	}
+    @Override
+    public String toString() {
+        return element == null ? "" : this.element.trim();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return this.toString().equals(obj.toString());
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
+    }
 
-	public int toInt() {
-		return Integer.valueOf(this.toString());
-	}
+    public int toInt() {
+        return Integer.valueOf(this.toString());
+    }
 
-	public long toLong() {
-		return Long.valueOf(this.toString());
-	}
+    public long toLong() {
+        return Long.valueOf(this.toString());
+    }
 
-	public boolean isFixedValue() {
-		return this.toString().matches("\\d+");
-	}
+    public boolean isFixedValue() {
+        return this.toString().matches("\\d+");
+    }
 
-	public boolean isWildcard() {
-		return this.toString().equals("*");
-	}
+    public boolean isWildcard() {
+        return this.toString().equals("*");
+    }
 
-	public boolean isNotWildcard() {
-		return !this.toString().equals("*");
-	}
+    public boolean isNotWildcard() {
+        return !this.toString().equals("*");
+    }
 
 }

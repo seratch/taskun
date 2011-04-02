@@ -24,32 +24,34 @@ import java.util.Set;
 
 public final class CurrentServer {
 
-	public static boolean isWorkingOnNamedServerHost(SchedulerConfig config,
-													 String name) {
-		String expected = config.getNamedServerHostname(name);
-		if (StringUtil.isEmpty(expected)) {
-			return false;
-		}
-		return getHostname().matches(expected);
-	}
+    public static boolean isWorkingOnNamedServerHost(SchedulerConfig config,
+                                                     String name) {
+        String expected = config.getNamedServerHostname(name);
+        if (StringUtil.isEmpty(expected)) {
+            return false;
+        }
+        return getHostname().matches(expected);
+    }
 
-	public static String getServerName(SchedulerConfig config) {
-		Map<String, String> servers = config.namedServers;
-		Set<String> names = servers.keySet();
-		for (String name : names) {
-			if (getHostname().matches(servers.get(name))) {
-				return name;
-			}
-		}
-		return getHostname();
-	}
+    public static String getServerName(SchedulerConfig config) {
+        if (config != null ) {
+            Map<String, String> servers = config.namedServers;
+            Set<String> names = servers.keySet();
+            for (String name : names) {
+                if (getHostname().matches(servers.get(name))) {
+                    return name;
+                }
+            }
+        }
+        return getHostname();
+    }
 
-	public static String getHostname() {
-		try {
-			return InetAddress.getLocalHost().getCanonicalHostName();
-		} catch (Exception e) {
-			return "localhost";
-		}
-	}
+    public static String getHostname() {
+        try {
+            return InetAddress.getLocalHost().getCanonicalHostName();
+        } catch (Exception e) {
+            return "localhost";
+        }
+    }
 
 }

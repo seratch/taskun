@@ -17,20 +17,20 @@ package com.github.seratch.taskun.scheduler.crond;
 
 public class RawCrontabLine {
 
-	private String line;
+    private String line;
 
-	public RawCrontabLine(String line) {
-		this.line = line;
-	}
+    public RawCrontabLine(String line) {
+        this.line = line;
+    }
 
-	@Override
-	public String toString() {
-		return line == null ? "" : this.line.trim();
-	}
+    @Override
+    public String toString() {
+        return line == null ? "" : this.line.trim();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return this.toString().equals(obj.toString());
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
+    }
 
 }

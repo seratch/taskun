@@ -4,9 +4,9 @@ import junit.framework.TestCase;
 
 public class CrontabTest extends TestCase {
 
-	public void test_instantiation() throws Exception {
-		Crontab crontab = new Crontab();
-		assertNotNull(crontab);
-	}
+    public void test_instantiation() throws Exception {
+        Crontab crontab = new Crontab();
+        assertNotNull(crontab);
+    }
 
 }

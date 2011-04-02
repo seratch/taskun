@@ -16,6 +16,7 @@
 package com.github.seratch.taskun.scheduler;
 
 import com.github.seratch.taskun.common.DIContainerAdaptor;
+import com.github.seratch.taskun.logging.Log;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 
@@ -25,25 +26,26 @@ import java.util.concurrent.TimeUnit;
 
 public interface Scheduler {
 
-	void initialize(SchedulerConfig config);
+    void initialize(SchedulerConfig config);
 
-	void initialize(DIContainerAdaptor containerAdaptor);
+    void initialize(DIContainerAdaptor containerAdaptor);
 
-	void start();
+    void replaceCrontabFile(String crontabFilepath);
 
-	boolean isRunning();
+    void start();
 
-	void scheduleOnetime(Runnable runnable, Calendar scheduledDate);
+    boolean isRunning();
 
-	void scheduleIntervalExecute(Runnable runnable,
-			Calendar initialScheduledDate, long interval, TimeUnit timeUnit);
+    void shutdown();
 
-	void scheduleCronExecute(Runnable runnable, RawCrontabLine crontabLine);
+    List<RawCrontabLine> getCurrentRawCrontabLines();
 
-	void replaceCrontabFile(String crontabFilepath);
+    void scheduleOnetime(Runnable runnable, Calendar scheduledDate);
 
-	void shutdown();
+    void scheduleCronExecute(Runnable runnable, RawCrontabLine crontabLine);
 
-	List<RawCrontabLine> getCurrentRawCrontabLines();
+    void scheduleIntervalExecute(
+            Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit);
+
 
 }

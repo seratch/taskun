@@ -20,10 +20,10 @@ import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 
 public interface DIContainerAdaptor {
 
-	Scheduler getScheduler();
+    Scheduler getScheduler();
 
-	SchedulerConfig getSchedulerConfig();
+    SchedulerConfig getSchedulerConfig();
 
-	<T> T getComponent(Class<?> clazz);
+    <T> T getComponent(Class<?> clazz);
 
 }

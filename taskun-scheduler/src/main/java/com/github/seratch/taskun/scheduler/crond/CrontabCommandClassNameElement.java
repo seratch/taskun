@@ -17,20 +17,20 @@ package com.github.seratch.taskun.scheduler.crond;
 
 class CrontabCommandClassNameElement {
 
-	private String commandClassName;
+    private String commandClassName;
 
-	public CrontabCommandClassNameElement(String commandClassName) {
-		this.commandClassName = commandClassName;
-	}
+    public CrontabCommandClassNameElement(String commandClassName) {
+        this.commandClassName = commandClassName;
+    }
 
-	@Override
-	public String toString() {
-		return commandClassName == null ? "" : this.commandClassName.trim();
-	}
+    @Override
+    public String toString() {
+        return commandClassName == null ? "" : this.commandClassName.trim();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return this.toString().equals(obj.toString());
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
+    }
 
 }

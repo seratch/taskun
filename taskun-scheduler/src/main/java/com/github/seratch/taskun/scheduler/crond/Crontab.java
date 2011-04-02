@@ -19,52 +19,52 @@ import java.util.List;
 
 public class Crontab {
 
-	public RawCrontabLine rawLine;
+    public RawCrontabLine rawLine;
 
-	public CrontabElement minuteElement;
+    public CrontabElement minuteElement;
 
-	public List<Integer> minuteFixedInvocations;
+    public List<Integer> minuteFixedInvocations;
 
-	public CrontabElement hourElement;
+    public CrontabElement hourElement;
 
-	public List<Integer> hourFixedInvocations;
+    public List<Integer> hourFixedInvocations;
 
-	public CrontabElement dayElement;
+    public CrontabElement dayElement;
 
-	public List<Integer> dayFixedInvocations;
+    public List<Integer> dayFixedInvocations;
 
-	public CrontabElement monthElement;
+    public CrontabElement monthElement;
 
-	public List<Integer> monthFixedInvocations;
+    public List<Integer> monthFixedInvocations;
 
-	public CrontabElement dayOfWeekElement;
+    public CrontabElement dayOfWeekElement;
 
-	public List<Integer> dayOfWeekFixedInvocations;
+    public List<Integer> dayOfWeekFixedInvocations;
 
-	public CrontabCommandClassNameElement commandClassName;
+    public CrontabCommandClassNameElement commandClassName;
 
-	public List<String> namedServers;
+    public List<String> namedServers;
 
-	public boolean isIntervalInvocation;
+    public boolean isIntervalInvocation;
 
-	public long intervalSeconds;
+    public long intervalSeconds;
 
-	public long initialIntervalSeconds;
+    public long initialIntervalSeconds;
 
-	public long multiplicity;
+    public long multiplicity;
 
-	public long nextInvocationTime;
+    public long nextInvocationTime;
 
-	public boolean isServerToInvoke(String serverName) {
-		if (namedServers == null || namedServers.size() == 0) {
-			return true;
-		}
-		for (String nameServer : namedServers) {
-			if (serverName.equals(nameServer)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean isServerToInvoke(String serverName) {
+        if (namedServers == null || namedServers.size() == 0) {
+            return true;
+        }
+        for (String nameServer : namedServers) {
+            if (serverName.equals(nameServer)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

@@ -17,8 +17,8 @@ package com.github.seratch.taskun.util;
 
 public final class StringUtil {
 
-	public static boolean isEmpty(final String text) {
-		return text == null || text.length() == 0;
-	}
+    public static boolean isEmpty(final String text) {
+        return text == null || text.length() == 0;
+    }
 
 }
