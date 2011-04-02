@@ -8,8 +8,8 @@
 
 Zero dependency, no additional jars required.
 
-    ./download/taskun-scheduler-1.2.jar
-    ./download/taskun-servlet-extension-1.2.jar
+    ./download/taskun-scheduler-1.3.jar
+    ./download/taskun-servlet-extension-1.3.jar
 
 ### via Maven2
 
@@ -31,12 +31,12 @@ Zero dependency, no additional jars required.
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-scheduler</artifactId>
-        <version>1.2</version>
+        <version>1.3</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-servlet-extension</artifactId>
-        <version>1.2</version>
+        <version>1.3</version>
       </dependency>
       ...
     </dependencies>
@@ -128,7 +128,7 @@ Zero dependency, no additional jars required.
     import com.google.inject.Guice;
     import com.google.inject.Injector;
     
-    public class GuiceAdaptor implements DIContainerAdaptor {
+    public class GuiceInjector implements ServletInjector {
     
       Injector injector = Guice.createInjector(new AbstractModule() {
         @Override
@@ -162,7 +162,7 @@ Zero dependency, no additional jars required.
     public class SnippetSchedulerServlet extends DefaultSchedulerServlet {
       @Override
       protected void prepareToInit() {
-        setContainerAdaptor(new GuiceAdaptor());
+        setInjector(new GuiceInjector());
       }
     }
 
