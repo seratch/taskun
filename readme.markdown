@@ -69,7 +69,7 @@ Zero dependency, no additional jars required.
 
 ## Snippet2: Running snippet servlet
 
-    git@github.com:seratch/taskun.git
+    git clone git@github.com:seratch/taskun.git
     cd taskun/taskun-servlet-extension
     mvn jetty:run
 
