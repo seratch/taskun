@@ -13,17 +13,15 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package com.github.seratch.taskun.common;
+package com.github.seratch.taskun.inject;
 
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 
-public interface DIContainerAdaptor {
-
-    Scheduler getScheduler();
+public interface Injector {
 
     SchedulerConfig getSchedulerConfig();
 
-    <T> T getComponent(Class<?> clazz);
+    <T> T inject(Class<?> clazz);
 
 }

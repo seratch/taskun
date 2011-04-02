@@ -15,7 +15,7 @@
  */
 package com.github.seratch.taskun.scheduler.impl;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
+import com.github.seratch.taskun.inject.Injector;
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import com.github.seratch.taskun.scheduler.crond.CronDaemon;
@@ -33,7 +33,7 @@ public class TaskunScheduler implements Scheduler {
 
     private ScheduledExecutorService executorService;
 
-    private DIContainerAdaptor containerAdaptor;
+    private Injector injector;
 
     private CronDaemon crond = new CronDaemon();
 
@@ -41,21 +41,15 @@ public class TaskunScheduler implements Scheduler {
 
     public void initialize(SchedulerConfig config) {
         final SchedulerConfig config_ = config;
-        final Scheduler scheduler_ = this;
-        initialize(new DIContainerAdaptor() {
+        initialize(new Injector() {
             @Override
             public SchedulerConfig getSchedulerConfig() {
                 return config_;
             }
 
-            @Override
-            public Scheduler getScheduler() {
-                return scheduler_;
-            }
-
             @SuppressWarnings("unchecked")
             @Override
-            public <T> T getComponent(Class<?> clazz) {
+            public <T> T inject(Class<?> clazz) {
                 try {
                     return (T) clazz.newInstance();
                 } catch (Exception e) {
@@ -65,8 +59,8 @@ public class TaskunScheduler implements Scheduler {
         });
     }
 
-    public void initialize(DIContainerAdaptor containerAdaptor) {
-        this.containerAdaptor = containerAdaptor;
+    public void initialize(Injector containerAdaptor) {
+        this.injector = containerAdaptor;
         executorService = Executors.newScheduledThreadPool(3,
                 new ThreadFactory() {
                     private ThreadGroup threadGroup = new ThreadGroup(
@@ -85,7 +79,7 @@ public class TaskunScheduler implements Scheduler {
 
     @Override
     public void start() {
-        invokeCronDaemon(containerAdaptor, executorService);
+        invokeCronDaemon(injector, executorService);
     }
 
     @Override
@@ -129,11 +123,11 @@ public class TaskunScheduler implements Scheduler {
         return crond.getCurrentRawCrontabLines();
     }
 
-    void invokeCronDaemon(DIContainerAdaptor containerAdaptor,
+    void invokeCronDaemon(Injector containerAdaptor,
                           ScheduledExecutorService executorService) {
         if (containerAdaptor == null) {
             throw new IllegalStateException(
-                    "Not initialized scheduler - the containerAdaptor is null");
+                    "Not initialized scheduler - the injector is null");
         }
         if (crontabFilepath != null) {
             crond.initialize(containerAdaptor, executorService, crontabFilepath);

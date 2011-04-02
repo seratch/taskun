@@ -15,7 +15,7 @@
  */
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
+import com.github.seratch.taskun.inject.Injector;
 import com.github.seratch.taskun.logging.Log;
 import com.github.seratch.taskun.logging.UtilLoggerImpl;
 import com.github.seratch.taskun.scheduler.CurrentServer;
@@ -46,7 +46,7 @@ public class CronDaemon implements Runnable {
 
     private ScheduledExecutorService executorService;
 
-    private DIContainerAdaptor containerAdaptor;
+    private Injector injector;
 
     private CrontabRepository crontabRepos = new CrontabRepository(
             new ArrayList<Crontab>());
@@ -145,7 +145,7 @@ public class CronDaemon implements Runnable {
         Class<?> clazz = Class.forName(crontabLine.commandClassName.toString());
         Runnable instance = null;
         try {
-            instance = containerAdaptor.getComponent(clazz);
+            instance = injector.inject(clazz);
         } catch (Exception e) {
             log.debug("Command class load failed! class name : "
                     + clazz.getCanonicalName());
@@ -156,15 +156,15 @@ public class CronDaemon implements Runnable {
         return instance;
     }
 
-    public void initialize(DIContainerAdaptor container,
+    public void initialize(Injector container,
                            ScheduledExecutorService executorService) {
         initialize(container, executorService, DEFAULT_CRONTAB_FILENAME);
     }
 
-    public void initialize(DIContainerAdaptor containerAdaptor,
+    public void initialize(Injector containerAdaptor,
                            ScheduledExecutorService executorService, String crontabFilepath) {
 
-        this.containerAdaptor = containerAdaptor;
+        this.injector = containerAdaptor;
 
         SchedulerConfig config = containerAdaptor.getSchedulerConfig();
         if (config != null) {
@@ -271,7 +271,7 @@ public class CronDaemon implements Runnable {
     }
 
     void loggingAtEachInvocation(String message) {
-        boolean isEnabled = containerAdaptor.getSchedulerConfig().enableLoggingForEachCrondInvocation;
+        boolean isEnabled = injector.getSchedulerConfig().enableLoggingForEachCrondInvocation;
         if (isEnabled) {
             log.info(message);
         }
@@ -280,7 +280,7 @@ public class CronDaemon implements Runnable {
     public List<RawCrontabLine> getCurrentRawCrontabLines() {
         String serverName = null;
         try {
-            serverName = CurrentServer.getServerName(containerAdaptor
+            serverName = CurrentServer.getServerName(injector
                     .getSchedulerConfig());
         } catch (Exception e) {
             log.error("Cannot get working server", e);

@@ -15,8 +15,7 @@
  */
 package com.github.seratch.taskun.scheduler;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
-import com.github.seratch.taskun.logging.Log;
+import com.github.seratch.taskun.inject.Injector;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 
@@ -28,7 +27,7 @@ public interface Scheduler {
 
     void initialize(SchedulerConfig config);
 
-    void initialize(DIContainerAdaptor containerAdaptor);
+    void initialize(Injector injector);
 
     void replaceCrontabFile(String crontabFilepath);
 

@@ -1,10 +1,11 @@
-package com.github.seratch.taskun.common;
+package com.github.seratch.taskun.servlet.snippet;
 
+import com.github.seratch.taskun.inject.ServletInjector;
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
 
-public class SampleComponentContainer implements DIContainerAdaptor {
+public class SnippetServletInjector implements ServletInjector {
 
     public SchedulerConfig config = new SchedulerConfig();
 
@@ -20,8 +21,13 @@ public class SampleComponentContainer implements DIContainerAdaptor {
     }
 
     @Override
-    public <T> T getComponent(Class<?> clazz) {
-        return null;
+    @SuppressWarnings("unchecked")
+    public <T> T inject(Class<?> clazz) {
+        try {
+            return (T) clazz.newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

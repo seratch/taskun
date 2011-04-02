@@ -8,7 +8,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class GuiceContainerAdaptor implements DIContainerAdaptor {
+public class GuiceServletInjector implements DIContainerAdaptor {
 
 	Injector injector = Guice.createInjector(new AbstractModule() {
 		@Override

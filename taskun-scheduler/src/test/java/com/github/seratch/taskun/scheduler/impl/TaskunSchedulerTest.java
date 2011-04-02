@@ -1,7 +1,7 @@
 package com.github.seratch.taskun.scheduler.impl;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
-import com.github.seratch.taskun.common.SampleComponentContainer;
+import com.github.seratch.taskun.inject.Injector;
+import com.github.seratch.taskun.inject.SampleInjector;
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 import com.github.seratch.taskun.util.CalendarUtil;
@@ -17,23 +17,23 @@ import static org.mockito.Mockito.mock;
 public class TaskunSchedulerTest extends TestCase {
 
     private Scheduler scheduler;
-    private DIContainerAdaptor container;
+    private Injector injector;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         scheduler = new TaskunScheduler();
-        container = new SampleComponentContainer();
-        scheduler.initialize(container);
+        injector = new SampleInjector();
+        scheduler.initialize(injector);
     }
 
     public void test_initialize_A$() throws Exception {
-        scheduler.initialize(container);
+        scheduler.initialize(injector);
     }
 
     public void test_start_A$() throws Exception {
         Scheduler target = new TaskunScheduler();
-        target.initialize(container);
+        target.initialize(injector);
     }
 
     public void test_scheduleCronExecute_A$Runnable$String() throws Exception {
@@ -71,7 +71,7 @@ public class TaskunSchedulerTest extends TestCase {
     }
 
     public void test_initialize_A$DIContainerAdaptor() throws Exception {
-        scheduler.initialize(container);
+        scheduler.initialize(injector);
     }
 
     public void test_replaceCrontabFile_A$String() throws Exception {
@@ -91,7 +91,7 @@ public class TaskunSchedulerTest extends TestCase {
             throws Exception {
         TaskunScheduler target = new TaskunScheduler();
         // given
-        DIContainerAdaptor containerAdaptor = mock(DIContainerAdaptor.class);
+        Injector containerAdaptor = mock(Injector.class);
         ScheduledExecutorService executorService = mock(ScheduledExecutorService.class);
         target.initialize(containerAdaptor);
         // when

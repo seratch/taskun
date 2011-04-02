@@ -1,6 +1,6 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.common.DIContainerAdaptor;
+import com.github.seratch.taskun.inject.Injector;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
@@ -13,7 +13,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class CronDaemonTest extends TestCase {
 
     private CronDaemon cronDaemon;
-    private DIContainerAdaptor containerAdaptor;
+    private Injector injector;
     private ScheduledExecutorService executorService;
     private SchedulerConfig schedulerConfig;
 
@@ -24,7 +24,7 @@ public class CronDaemonTest extends TestCase {
     }
 
     protected void initialize(Mockery context) {
-        containerAdaptor = context.mock(DIContainerAdaptor.class);
+        injector = context.mock(Injector.class);
         executorService = context.mock(ScheduledExecutorService.class);
         schedulerConfig = new SchedulerConfig();
         context.checking(new Expectations() {
@@ -42,11 +42,11 @@ public class CronDaemonTest extends TestCase {
         initialize(context);
         context.checking(new Expectations() {
             {
-                exactly(4).of(containerAdaptor).getSchedulerConfig();
+                exactly(4).of(injector).getSchedulerConfig();
                 will(returnValue(schedulerConfig));
             }
         });
-        cronDaemon.initialize(containerAdaptor, executorService);
+        cronDaemon.initialize(injector, executorService);
         cronDaemon.run();
     }
 
@@ -60,11 +60,11 @@ public class CronDaemonTest extends TestCase {
         initialize(context);
         context.checking(new Expectations() {
             {
-                exactly(1).of(containerAdaptor).getSchedulerConfig();
+                exactly(1).of(injector).getSchedulerConfig();
                 will(returnValue(schedulerConfig));
             }
         });
-        cronDaemon.initialize(containerAdaptor, executorService);
+        cronDaemon.initialize(injector, executorService);
     }
 
     public void test_initialize_A$DIContainerAdaptor$ScheduledExecutorService$String()
@@ -77,11 +77,11 @@ public class CronDaemonTest extends TestCase {
         initialize(context);
         context.checking(new Expectations() {
             {
-                exactly(1).of(containerAdaptor).getSchedulerConfig();
+                exactly(1).of(injector).getSchedulerConfig();
                 will(returnValue(schedulerConfig));
             }
         });
-        cronDaemon.initialize(containerAdaptor, executorService, "filename");
+        cronDaemon.initialize(injector, executorService, "filename");
     }
 
     public void test_addCrontab_A$String() throws Exception {
@@ -93,12 +93,12 @@ public class CronDaemonTest extends TestCase {
         initialize(context);
         context.checking(new Expectations() {
             {
-                exactly(1).of(containerAdaptor).getSchedulerConfig();
+                exactly(1).of(injector).getSchedulerConfig();
                 will(returnValue(schedulerConfig));
             }
         });
         try {
-            cronDaemon.initialize(containerAdaptor, executorService);
+            cronDaemon.initialize(injector, executorService);
             cronDaemon.addCrontabLine(new RawCrontabLine("aaa"));
             fail("Expected : IllegalArgumentException");
         } catch (IllegalArgumentException e) {
@@ -116,12 +116,12 @@ public class CronDaemonTest extends TestCase {
         initialize(context);
         context.checking(new Expectations() {
             {
-                exactly(2).of(containerAdaptor).getSchedulerConfig();
+                exactly(2).of(injector).getSchedulerConfig();
                 will(returnValue(schedulerConfig));
             }
         });
         String arg0 = "aaa";
-        cronDaemon.initialize(containerAdaptor, executorService);
+        cronDaemon.initialize(injector, executorService);
         cronDaemon.loggingAtEachInvocation(arg0);
     }
 
