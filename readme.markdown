@@ -141,7 +141,7 @@ Zero dependency, no additional jars required.
     
       @Override
       @SuppressWarnings("unchecked")
-      public <T> T getComponent(Class<?> clazz) {
+      public <T> T inject(Class<?> clazz) {
         return (T) injector.getInstance(clazz);
       }
     
