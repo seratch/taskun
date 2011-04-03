@@ -156,17 +156,15 @@ public class CronDaemon implements Runnable {
         return instance;
     }
 
-    public void initialize(Injector container,
-                           ScheduledExecutorService executorService) {
-        initialize(container, executorService, DEFAULT_CRONTAB_FILENAME);
+    public void initialize(Injector injector, ScheduledExecutorService executorService) {
+        initialize(injector, executorService, DEFAULT_CRONTAB_FILENAME);
     }
 
-    public void initialize(Injector containerAdaptor,
-                           ScheduledExecutorService executorService, String crontabFilepath) {
+    public void initialize(Injector injector, ScheduledExecutorService executorService, String crontabFilepath) {
 
-        this.injector = containerAdaptor;
+        this.injector = injector;
 
-        SchedulerConfig config = containerAdaptor.getSchedulerConfig();
+        SchedulerConfig config = injector.getSchedulerConfig();
         if (config != null) {
             this.logImplClass = config.getLogImplClass();
             this.log = getLog();
@@ -182,8 +180,7 @@ public class CronDaemon implements Runnable {
             is = this.getClass().getClassLoader()
                     .getResourceAsStream(crontabFilepath);
             if (is == null) {
-                log.info("Skipped the crontab scheduing" + " because "
-                        + crontabFilepath + " did not found.");
+                log.info("Skipped the crontab scheduing" + " because " + crontabFilepath + " did not found.");
                 return;
             }
             br = new BufferedReader(new InputStreamReader(is));
@@ -193,16 +190,15 @@ public class CronDaemon implements Runnable {
             }
             // working server config
             thisServerHostname = CurrentServer.getHostname();
-            thisServerNameIfGiven = CurrentServer
-                    .getServerName(containerAdaptor.getSchedulerConfig());
+            thisServerNameIfGiven = CurrentServer.getServerName(injector.getSchedulerConfig());
             if (StringUtil.isEmpty(thisServerNameIfGiven)) {
                 thisServerNameIfGiven = thisServerHostname;
             }
             // start interval invocations
             List<Crontab> newList = new ArrayList<Crontab>();
             log.info("----- Taskun-scheduler initialized -----");
-            log.info("Working at " + thisServerNameIfGiven + "("
-                    + thisServerHostname + ")");
+            log.info("Working at " + thisServerNameIfGiven
+                    + "(" + thisServerHostname + ")");
             for (Crontab crontab : crontabRepos.getCrontabLines()) {
                 if (crontab.isIntervalInvocation) {
                     try {
@@ -226,8 +222,8 @@ public class CronDaemon implements Runnable {
                         long delay = crontab.intervalSeconds * 1000;
                         for (int i = 0; i < multiplicity; i++) {
                             initialDelay += 100L; // distribute threads
-                            executorService.scheduleAtFixedRate(command,
-                                    initialDelay, delay, TimeUnit.MILLISECONDS);
+                            executorService.scheduleAtFixedRate(
+                                    command, initialDelay, delay, TimeUnit.MILLISECONDS);
                         }
                         log.info("Interval invocation : "
                                 + crontab.intervalSeconds + "sec,"
@@ -235,8 +231,7 @@ public class CronDaemon implements Runnable {
                                 + crontab.multiplicity);
                     } catch (Exception e) {
                         log.error(this.getClass().getCanonicalName()
-                                + " failed to execute scheduled task : "
-                                + crontab.commandClassName);
+                                + " failed to execute scheduled task : " + crontab.commandClassName);
                         e.printStackTrace();
                     }
                 } else {
@@ -255,8 +250,7 @@ public class CronDaemon implements Runnable {
                 log.info("Crontab invocation : " + crontab.rawLine);
             }
         } catch (IOException e) {
-            log.error("Cannot read crontab.txt because of "
-                    + e.getLocalizedMessage());
+            log.error("Cannot read crontab.txt because of " + e.getLocalizedMessage());
             e.printStackTrace();
         } finally {
             IOCloser.close(is);
@@ -280,8 +274,7 @@ public class CronDaemon implements Runnable {
     public List<RawCrontabLine> getCurrentRawCrontabLines() {
         String serverName = null;
         try {
-            serverName = CurrentServer.getServerName(injector
-                    .getSchedulerConfig());
+            serverName = CurrentServer.getServerName(injector.getSchedulerConfig());
         } catch (Exception e) {
             log.error("Cannot get working server", e);
         }
@@ -297,8 +290,8 @@ public class CronDaemon implements Runnable {
                     sb.append("sec");
                 } else {
                     sb.append("next:");
-                    sb.append(CalendarUtil.toYYYYMMDDHHMISS(CalendarUtil
-                            .getCalendar(crontab.nextInvocationTime)));
+                    sb.append(CalendarUtil.toYYYYMMDDHHMISS(
+                            CalendarUtil.getCalendar(crontab.nextInvocationTime)));
                 }
                 currentRawContabLines.add(new RawCrontabLine(sb.toString()));
             }

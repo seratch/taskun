@@ -59,8 +59,8 @@ public class TaskunScheduler implements Scheduler {
         });
     }
 
-    public void initialize(Injector containerAdaptor) {
-        this.injector = containerAdaptor;
+    public void initialize(Injector injector) {
+        this.injector = injector;
         executorService = Executors.newScheduledThreadPool(3,
                 new ThreadFactory() {
                     private ThreadGroup threadGroup = new ThreadGroup(
@@ -83,14 +83,13 @@ public class TaskunScheduler implements Scheduler {
     }
 
     @Override
-    public void scheduleCronExecute(Runnable runnable,
-                                    RawCrontabLine crontabLine) {
+    public void scheduleCronExecute(Runnable runnable, RawCrontabLine crontabLine) {
         crond.addCrontabLine(crontabLine);
     }
 
     @Override
-    public void scheduleIntervalExecute(Runnable runnable,
-                                        Calendar initialScheduledDate, long interval, TimeUnit timeUnit) {
+    public void scheduleIntervalExecute(
+            Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit) {
         long initialDelay = getDelayValue(initialScheduledDate, timeUnit);
         executorService.scheduleAtFixedRate(
                 runnable, initialDelay, interval, timeUnit);
@@ -123,16 +122,15 @@ public class TaskunScheduler implements Scheduler {
         return crond.getCurrentRawCrontabLines();
     }
 
-    void invokeCronDaemon(Injector containerAdaptor,
-                          ScheduledExecutorService executorService) {
-        if (containerAdaptor == null) {
+    void invokeCronDaemon(Injector injector, ScheduledExecutorService executorService) {
+        if (injector == null) {
             throw new IllegalStateException(
                     "Not initialized scheduler - the injector is null");
         }
         if (crontabFilepath != null) {
-            crond.initialize(containerAdaptor, executorService, crontabFilepath);
+            crond.initialize(injector, executorService, crontabFilepath);
         } else {
-            crond.initialize(containerAdaptor, executorService);
+            crond.initialize(injector, executorService);
         }
         Calendar cal = CalendarUtil.getCurrentTime();
         long currentTime = cal.getTimeInMillis();

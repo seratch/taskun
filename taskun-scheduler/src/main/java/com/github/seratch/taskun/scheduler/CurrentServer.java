@@ -24,8 +24,7 @@ import java.util.Set;
 
 public final class CurrentServer {
 
-    public static boolean isWorkingOnNamedServerHost(SchedulerConfig config,
-                                                     String name) {
+    public static boolean isWorkingOnNamedServerHost(SchedulerConfig config, String name) {
         String expected = config.getNamedServerHostname(name);
         if (StringUtil.isEmpty(expected)) {
             return false;
@@ -34,7 +33,7 @@ public final class CurrentServer {
     }
 
     public static String getServerName(SchedulerConfig config) {
-        if (config != null ) {
+        if (config != null) {
             Map<String, String> servers = config.namedServers;
             Set<String> names = servers.keySet();
             for (String name : names) {

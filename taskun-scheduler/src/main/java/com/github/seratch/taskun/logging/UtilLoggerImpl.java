@@ -39,7 +39,7 @@ public class UtilLoggerImpl implements Log {
         return new ClassNameAndMethodName("", "");
     }
 
-    UtilLoggerImpl() {
+    public UtilLoggerImpl() {
         _log = Logger.getAnonymousLogger();
     }
 
