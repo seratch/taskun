@@ -9,10 +9,13 @@
 Zero dependency, no additional jars required.
 
     ./download/taskun-scheduler-1.*.jar
-
+    
     ./download/taskun-servlet-extension-1.*.jar
+    
     ./download/taskun-log4j-extension-1.*.jar
+    
     ./download/taskun-guice-extension-1.*.jar
+    ./download/taskun-spring-extension-1.*.jar
     ./download/taskun-s2-extension-1.*.jar
 
 ### Maven
@@ -53,6 +56,11 @@ Zero dependency, no additional jars required.
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-guice-extension</artifactId>
+        <version>[1,)</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.seratch.taskun</groupId>
+        <artifactId>taskun-spring-extension</artifactId>
         <version>[1,)</version>
       </dependency>
       <dependency>
@@ -145,7 +153,7 @@ Zero dependency, no additional jars required.
 
 ## Snippet4: Injecting scheduler, config and worker instances
 
-NOTICE: taskun-guice-extension or taskun-s2-extension is required.
+NOTICE: taskun-guice-extension, taskun-spring-extension or taskun-s2-extension is required.
 
 Please read readme.md of extensions.
 
