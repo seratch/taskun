@@ -15,7 +15,7 @@ Zero dependency, no additional jars required.
     ./download/taskun-guice-extension-1.*.jar
     ./download/taskun-s2-extension-1.*.jar
 
-### via Maven2
+### Maven
 
     <repositories>
       ...
