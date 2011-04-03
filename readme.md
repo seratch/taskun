@@ -10,6 +10,7 @@ Zero dependency, no additional jars required.
 
     ./download/taskun-scheduler-1.3.jar
     ./download/taskun-servlet-extension-1.3.jar
+    ./download/taskun-log4j-extension-1.0.jar
 
 ### via Maven2
 
