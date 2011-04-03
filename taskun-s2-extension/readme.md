@@ -11,7 +11,7 @@ http://s2container.seasar.org/2.4/ja/DIContainer.html
 
 ### Maven
 
-   <repositories>
+    <repositories>
       ...
       <repository>
         <id>taskun-releases</id>

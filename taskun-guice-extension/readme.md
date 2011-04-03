@@ -11,7 +11,7 @@ http://code.google.com/p/google-guice/
 
 ### Maven
 
-   <repositories>
+    <repositories>
       ...
       <repository>
         <id>taskun-releases</id>

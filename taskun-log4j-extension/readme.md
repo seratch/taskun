@@ -11,7 +11,7 @@ http://logging.apache.org/log4j/
 
 ### Maven
 
-   <repositories>
+    <repositories>
       ...
       <repository>
         <id>taskun-releases</id>
