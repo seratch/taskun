@@ -70,7 +70,7 @@ public class CronDaemon implements Runnable {
 
     Log getLog(String name) {
         try {
-            return logImplClass.getConstructor(StringUtil.class).newInstance();
+            return logImplClass.getConstructor(String.class).newInstance(name);
         } catch (Throwable t) {
             return new UtilLoggerImpl(name);
         }
