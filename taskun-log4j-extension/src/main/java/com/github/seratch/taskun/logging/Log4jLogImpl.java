@@ -14,7 +14,6 @@ public class Log4jLogImpl implements Log {
         _log = LogFactory.getLog(name);
     }
 
-
     @Override
     public void debug(String message) {
         _log.debug(message);
