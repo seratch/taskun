@@ -38,6 +38,13 @@ Zero dependency, no additional jars required.
         <artifactId>taskun-servlet-extension</artifactId>
         <version>1.3</version>
       </dependency>
+      <!-- optional
+      <dependency>
+        <groupId>com.github.seratch.taskun</groupId>
+        <artifactId>taskun-log4j-extension</artifactId>
+        <version>1.0</version>
+      </dependency>
+      -->
       ...
     </dependencies>
 
@@ -179,4 +186,23 @@ Zero dependency, no additional jars required.
 Following will invoke 3 threads to do same command(=EchoWorker) at once:
 
     */1 * * * * snippet.EchoWorker*3
+
+
+## Snippet6: Using log4j for taskun logging
+
+NOTICE: taskun-log4j-extension is required.
+
+    package snippet;
+    
+    import com.github.seratch.taskun.logging.Log4jLogImpl;
+    
+    public static void main(String[] args) throws Exception {
+      Scheduler scheduler = new TaskunScheduler();
+      SchedulerConfig config = new SchedulerConfig();
+      config.setLogImplClass(Log4jLogImpl.class); 
+      scheduler.initialize(config);
+      scheduler.start();
+      Thread.sleep(20000L);
+    }
+
 
