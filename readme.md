@@ -8,9 +8,12 @@
 
 Zero dependency, no additional jars required.
 
-    ./download/taskun-scheduler-1.3.jar
-    ./download/taskun-servlet-extension-1.3.jar
-    ./download/taskun-log4j-extension-1.0.jar
+    ./download/taskun-scheduler-1.*.jar
+
+    ./download/taskun-servlet-extension-1.*.jar
+    ./download/taskun-log4j-extension-1.*.jar
+    ./download/taskun-guice-extension-1.*.jar
+    ./download/taskun-s2-extension-1.*.jar
 
 ### via Maven2
 
@@ -32,18 +35,30 @@ Zero dependency, no additional jars required.
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-scheduler</artifactId>
-        <version>1.3</version>
+        <version>[1,)</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-servlet-extension</artifactId>
-        <version>1.3</version>
+        <version>[1,)</version>
       </dependency>
-      <!-- optional
+      
+      <!-- OPTIONAL EXTENSIONS -->
+      <!--
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-log4j-extension</artifactId>
-        <version>1.0</version>
+        <version>[1,)</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.seratch.taskun</groupId>
+        <artifactId>taskun-guice-extension</artifactId>
+        <version>[1,)</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.seratch.taskun</groupId>
+        <artifactId>taskun-s2-extension</artifactId>
+        <version>[1,)</version>
       </dependency>
       -->
       ...
@@ -130,49 +145,9 @@ Zero dependency, no additional jars required.
 
 ## Snippet4: Injecting scheduler, config and worker instances
 
-### Adaptor for Google Guice
+NOTICE: taskun-guice-extension or taskun-s2-extension is required.
 
-    import com.google.inject.AbstractModule;
-    import com.google.inject.Guice;
-    import com.google.inject.Injector;
-    
-    public class GuiceInjector implements ServletInjector {
-    
-      Injector injector = Guice.createInjector(new AbstractModule() {
-        @Override
-        protected void configure() {
-          Scheduler scheduler = new TaskunScheduler();
-          scheduler.replaceCrontabFile("snippet_crontab.txt");
-          bind(Scheduler.class).toInstance(scheduler);
-        }
-      });
-    
-      @Override
-      @SuppressWarnings("unchecked")
-      public <T> T inject(Class<?> clazz) {
-        return (T) injector.getInstance(clazz);
-      }
-    
-      @Override
-      public Scheduler getScheduler() {
-        return injector.getInstance(Scheduler.class);
-      }
-    
-      @Override
-      public SchedulerConfig getSchedulerConfig() {
-        return injector.getInstance(SchedulerConfig.class);
-      }
-    
-    }
-
-### Using adaptor
-
-    public class SnippetSchedulerServlet extends DefaultSchedulerServlet {
-      @Override
-      protected void prepareToInit() {
-        setInjector(new GuiceInjector());
-      }
-    }
+Please read readme.md of extensions.
 
 ## Snippet5: Using extended notations
 
