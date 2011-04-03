@@ -21,29 +21,27 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
             @Override
             public SchedulerConfig getSchedulerConfig() {
+
                 Properties props = new Properties();
                 try {
                     props.load(DefaultSchedulerServlet.class.getClassLoader()
                             .getResourceAsStream("taskun.properties"));
                 } catch (IOException e) {
-                    throw new IllegalStateException(
-                            "taskun.properties not found!");
+                    throw new IllegalStateException("taskun.properties not found!");
                 }
+
                 SchedulerConfig config = new SchedulerConfig();
-                config.enableInvokingScheduler = Boolean.valueOf((String) props
-                        .get("enableInvokingScheduler"));
-                config.enableLoggingForEachCrondInvocation = Boolean
-                        .valueOf((String) props
-                                .get("enableLoggingForEachCrondInvocation"));
-                String namedServer1 = (String) props.get("namedServer1");
-                if (!StringUtil.isEmpty(namedServer1))
-                    config.namedServers.put("namedServer1", namedServer1);
-                String namedServer2 = (String) props.get("namedServer2");
-                if (!StringUtil.isEmpty(namedServer2))
-                    config.namedServers.put("namedServer2", namedServer2);
-                String namedServer3 = (String) props.get("namedServer3");
-                if (!StringUtil.isEmpty(namedServer3))
-                    config.namedServers.put("namedServer3", namedServer3);
+                config.enableInvokingScheduler
+                        = Boolean.valueOf((String) props.get("enableInvokingScheduler"));
+                config.enableLoggingForEachCrondInvocation
+                        = Boolean.valueOf((String) props.get("enableLoggingForEachCrondInvocation"));
+
+                for (int i = 0; i < 10; i++) {
+                    String namedServerN = (String) props.get("namedServer" + i);
+                    if (!StringUtil.isEmpty(namedServerN))
+                        config.namedServers.put("namedServer" + i, namedServerN);
+                }
+
                 return config;
             }
 
@@ -52,8 +50,8 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
                 return new TaskunScheduler();
             }
 
-            @SuppressWarnings("unchecked")
             @Override
+            @SuppressWarnings("unchecked")
             public <T> T inject(Class<?> clazz) {
                 try {
                     return (T) clazz.newInstance();
@@ -64,9 +62,8 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
         };
 
-        Scheduler scheduler = injector.getScheduler();
-        scheduler.replaceCrontabFile("crontab.txt");
-        setInjector(injector);
+        super.setInjector(injector);
+
     }
 
 }

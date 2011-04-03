@@ -10,29 +10,29 @@ import com.google.inject.Injector;
 
 public class GuiceServletInjector implements ServletInjector {
 
-	Injector injector = Guice.createInjector(new AbstractModule() {
-		@Override
-		protected void configure() {
-			Scheduler scheduler = new TaskunScheduler();
-			scheduler.replaceCrontabFile("snippet_crontab.txt");
-			bind(Scheduler.class).toInstance(scheduler);
-		}
-	});
+    Injector injector = Guice.createInjector(new AbstractModule() {
+        @Override
+        protected void configure() {
+            Scheduler scheduler = new TaskunScheduler();
+            scheduler.replaceCrontabFile("snippet_crontab.txt");
+            bind(Scheduler.class).toInstance(scheduler);
+        }
+    });
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T inject(Class<?> clazz) {
-		return (T) injector.getInstance(clazz);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T inject(Class<?> clazz) {
+        return (T) injector.getInstance(clazz);
+    }
 
-	@Override
-	public Scheduler getScheduler() {
-		return injector.getInstance(Scheduler.class);
-	}
+    @Override
+    public Scheduler getScheduler() {
+        return injector.getInstance(Scheduler.class);
+    }
 
-	@Override
-	public SchedulerConfig getSchedulerConfig() {
-		return injector.getInstance(SchedulerConfig.class);
-	}
+    @Override
+    public SchedulerConfig getSchedulerConfig() {
+        return injector.getInstance(SchedulerConfig.class);
+    }
 
 }
