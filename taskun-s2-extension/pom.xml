@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.seratch.taskun</groupId>
-    <artifactId>taskun-guice-extension</artifactId>
+    <artifactId>taskun-s2-extension</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>taskun-guice-extension</name>
+    <name>taskun-s2-extension</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -15,6 +15,11 @@
     </properties>
 
     <repositories>
+        <repository>
+            <id>maven.seasar.org</id>
+            <name>The Seasar Foundation Maven2 Repository</name>
+            <url>http://maven.seasar.org/maven2</url>
+        </repository>
         <repository>
             <id>taskun-releases</id>
             <url>https://github.com/seratch/taskun/raw/master/mvn-repo/releases</url>
@@ -133,9 +138,19 @@
             <version>[1,)</version>
         </dependency>
         <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>2.0</version>
+            <groupId>org.seasar.container</groupId>
+            <artifactId>s2-framework</artifactId>
+            <version>[2.4,)</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seasar.container</groupId>
+            <artifactId>s2-extension</artifactId>
+            <version>[2.4,)</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seasar.container</groupId>
+            <artifactId>s2-tiger</artifactId>
+            <version>[2.4,)</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
