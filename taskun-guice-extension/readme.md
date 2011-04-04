@@ -40,15 +40,15 @@ http://code.google.com/p/google-guice/
 
     public class SnippetGuiceSchedulerServlet extends AbstractGuiceSchedulerServlet {
       @Override
-      public Module getPreparedModule() {
-        return new AbstractModule() {
+      public Module getPreparedModules() {
+        return new Module[] {new AbstractModule() {
           @Override
           protected void configure() {
             Scheduler scheduler = new TaskunScheduler();
             scheduler.replaceCrontabFile("snippet_crontab.txt");
             bind(Scheduler.class).toInstance(scheduler);
           }
-        };
+        }};
       }
     }
 
