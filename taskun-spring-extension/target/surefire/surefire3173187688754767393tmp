@@ -1,6 +1,0 @@
-#surefire
-#Mon Apr 04 08:05:54 JST 2011
-altDeploymentRepository=release-repo\:\:default\:\:file\:../mvn-repo/releases
-user.dir=/Users/seratch/work/taskun/taskun-spring-extension
-localRepository=/Users/seratch/.m2/repository
-basedir=/Users/seratch/work/taskun/taskun-spring-extension
