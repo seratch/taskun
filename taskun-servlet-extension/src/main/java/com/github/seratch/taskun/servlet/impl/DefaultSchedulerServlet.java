@@ -12,58 +12,58 @@ import java.util.Properties;
 
 public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void prepareToInit() {
+	@Override
+	protected void prepareToInit() {
 
-        ServletInjector injector = new ServletInjector() {
+		ServletInjector injector = new ServletInjector() {
 
-            @Override
-            public SchedulerConfig getSchedulerConfig() {
+			@Override
+			public SchedulerConfig getSchedulerConfig() {
 
-                Properties props = new Properties();
-                try {
-                    props.load(DefaultSchedulerServlet.class.getClassLoader()
-                            .getResourceAsStream("taskun.properties"));
-                } catch (IOException e) {
-                    throw new IllegalStateException("taskun.properties not found!");
-                }
+				Properties props = new Properties();
+				try {
+					ClassLoader classLoader = DefaultSchedulerServlet.class.getClassLoader();
+					props.load(classLoader.getResourceAsStream("taskun.properties"));
+				} catch (IOException e) {
+					throw new IllegalStateException("taskun.properties not found!");
+				}
 
-                SchedulerConfig config = new SchedulerConfig();
-                config.enableInvokingScheduler
-                        = Boolean.valueOf((String) props.get("enableInvokingScheduler"));
-                config.enableLoggingForEachCrondInvocation
-                        = Boolean.valueOf((String) props.get("enableLoggingForEachCrondInvocation"));
+				SchedulerConfig config = new SchedulerConfig();
+				config.enableInvokingScheduler
+						= Boolean.valueOf((String) props.get("enableInvokingScheduler"));
+				config.enableLoggingForEachCrondInvocation
+						= Boolean.valueOf((String) props.get("enableLoggingForEachCrondInvocation"));
 
-                for (int i = 0; i < 10; i++) {
-                    String namedServerN = (String) props.get("namedServer" + i);
-                    if (!StringUtil.isEmpty(namedServerN))
-                        config.namedServers.put("namedServer" + i, namedServerN);
-                }
+				for (int i = 0; i < 10; i++) {
+					String namedServerN = (String) props.get("namedServer" + i);
+					if (!StringUtil.isEmpty(namedServerN))
+						config.namedServers.put("namedServer" + i, namedServerN);
+				}
 
-                return config;
-            }
+				return config;
+			}
 
-            @Override
-            public Scheduler getScheduler() {
-                return new TaskunScheduler();
-            }
+			@Override
+			public Scheduler getScheduler() {
+				return new TaskunScheduler();
+			}
 
-            @Override
-            @SuppressWarnings("unchecked")
-            public <T> T inject(Class<?> clazz) {
-                try {
-                    return (T) clazz.newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
+			@Override
+			@SuppressWarnings("unchecked")
+			public <T> T inject(Class<?> clazz) {
+				try {
+					return (T) clazz.newInstance();
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
 
-        };
+		};
 
-        super.setInjector(injector);
+		super.setInjector(injector);
 
-    }
+	}
 
 }

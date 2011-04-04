@@ -1,13 +1,13 @@
 package com.github.seratch.taskun.servlet;
 
 import com.github.seratch.taskun.inject.ServletInjector;
+import com.github.seratch.taskun.logging.Log;
+import com.github.seratch.taskun.logging.UtilLoggerImpl;
 import com.github.seratch.taskun.scheduler.Scheduler;
 import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Abstract Http servlet class that invokes taskun-scheduler.<br>
@@ -18,77 +18,88 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractSchedulerServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    protected Logger log = Logger.getLogger(AbstractSchedulerServlet.class.getCanonicalName());
+	private Log log = getLog(AbstractSchedulerServlet.class.getCanonicalName());
 
-    /**
-     * Prepare to init<br>
-     * Need to set injector adaptor
-     */
-    protected abstract void prepareToInit();
+	Log getLog() {
+		return getLog(AbstractSchedulerServlet.class.getCanonicalName());
+	}
 
-    protected Scheduler scheduler;
+	Log getLog(String name) {
+		try {
+			return schedulerConfig.getLogImplClass().getConstructor(String.class).newInstance(name);
+		} catch (Throwable t) {
+			return new UtilLoggerImpl(name);
+		}
+	}
 
-    protected SchedulerConfig schedulerConfig;
+	/**
+	 * Prepare to init<br>
+	 * Need to set injector adaptor
+	 */
+	protected abstract void prepareToInit();
 
-    protected ServletInjector injector;
+	protected Scheduler scheduler;
 
-    public AbstractSchedulerServlet() {
-    }
+	protected SchedulerConfig schedulerConfig;
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        prepareToInit();
-        if (injector == null) {
-            throw new IllegalStateException(
-                    "injector required before init!");
-        }
-        schedulerConfig = injector.getSchedulerConfig();
-        StringBuilder sb = new StringBuilder();
-        if (schedulerConfig.enableInvokingScheduler) {
-            scheduler = injector.getScheduler();
-            scheduler.initialize(injector);
-            scheduler.start();
-            sb.append("Taskun-scheduler has started!\n");
-            if (schedulerConfig.namedServers != null) {
-                sb.append("[NamedServers:");
-                for (String key : schedulerConfig.namedServers.keySet()) {
-                    sb.append(key);
-                    sb.append("->");
-                    sb.append(schedulerConfig.namedServers.get(key));
-                    sb.append(",");
-                }
-                sb.append("]");
-            }
-        } else {
-            sb.append("Taskun-scheduler is not running... ");
-        }
-        log.logp(Level.INFO, this.getClass().getCanonicalName(), "init",
-                sb.toString());
-    }
+	protected ServletInjector injector;
 
-    @Override
-    public void destroy() {
-        try {
-            if (schedulerConfig != null
-                    && schedulerConfig.enableInvokingScheduler) {
-                this.scheduler.shutdown();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            super.destroy();
-        }
-    }
+	public AbstractSchedulerServlet() {
+	}
 
-    public ServletInjector getInjector() {
-        return injector;
-    }
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		prepareToInit();
+		if (injector == null) {
+			throw new IllegalStateException(
+					"injector required before init!");
+		}
+		schedulerConfig = injector.getSchedulerConfig();
+		StringBuilder sb = new StringBuilder();
+		if (schedulerConfig.enableInvokingScheduler) {
+			scheduler = injector.getScheduler();
+			scheduler.initialize(injector);
+			scheduler.start();
+			sb.append("Taskun-scheduler has started!\n");
+			if (schedulerConfig.namedServers != null) {
+				sb.append("[NamedServers:");
+				for (String key : schedulerConfig.namedServers.keySet()) {
+					sb.append(key);
+					sb.append("->");
+					sb.append(schedulerConfig.namedServers.get(key));
+					sb.append(",");
+				}
+				sb.append("]");
+			}
+		} else {
+			sb.append("Taskun-scheduler is not running... ");
+		}
+		log.info(sb.toString());
+	}
 
-    public void setInjector(ServletInjector injector) {
-        this.injector = injector;
-    }
+	@Override
+	public void destroy() {
+		try {
+			if (schedulerConfig != null
+					&& schedulerConfig.enableInvokingScheduler) {
+				this.scheduler.shutdown();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			super.destroy();
+		}
+	}
+
+	public ServletInjector getInjector() {
+		return injector;
+	}
+
+	public void setInjector(ServletInjector injector) {
+		this.injector = injector;
+	}
 
 }
