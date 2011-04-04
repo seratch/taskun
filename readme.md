@@ -8,12 +8,13 @@
 
 Zero dependency, no additional jars required.
 
+#### Scheduler only
     ./download/taskun-scheduler-1.*.jar
-    
+#### Runs on Servlet
     ./download/taskun-servlet-extension-1.*.jar
-    
+#### Not java.util.Logger but other logging
     ./download/taskun-log4j-extension-1.*.jar
-    
+#### With Dependency injection
     ./download/taskun-guice-extension-1.*.jar
     ./download/taskun-spring-extension-1.*.jar
     ./download/taskun-s2-extension-1.*.jar
@@ -155,7 +156,9 @@ Zero dependency, no additional jars required.
 
 NOTICE: taskun-guice-extension, taskun-spring-extension or taskun-s2-extension is required.
 
-Please read readme.md of extensions.
++ [taskun-guice-extension](https://github.com/seratch/taskun/blob/master/taskun-guice-extension/readme.md)
++ [taskun-spring-extension](https://github.com/seratch/taskun/blob/master/taskun-spring-extension/readme.md)
++ [taskun-s2-extension](https://github.com/seratch/taskun/blob/master/taskun-s2-extension/readme.md)
 
 ## Snippet5: Using extended notations
 
@@ -175,6 +178,8 @@ Following will invoke 3 threads to do same command(=EchoWorker) at once:
 ## Snippet6: Using log4j for taskun logging
 
 NOTICE: taskun-log4j-extension is required.
+
++ [taskun-log4j-extension](https://github.com/seratch/taskun/blob/master/taskun-log4j-extension/readme.md)
 
     package snippet;
     
