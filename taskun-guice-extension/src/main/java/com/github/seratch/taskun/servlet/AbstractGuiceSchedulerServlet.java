@@ -6,11 +6,11 @@ import com.google.inject.Module;
 public abstract class AbstractGuiceSchedulerServlet extends AbstractSchedulerServlet {
 
 
-    public abstract Module getPreparedModule();
+    public abstract Module[] getPreparedModules();
 
     @Override
     protected void prepareToInit() {
-        setInjector(new GuiceServletInjector(getPreparedModule()));
+        setInjector(new GuiceServletInjector(getPreparedModules()));
     }
 
 

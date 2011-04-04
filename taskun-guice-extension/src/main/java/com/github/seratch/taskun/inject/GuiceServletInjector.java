@@ -5,8 +5,8 @@ import com.google.inject.Module;
 
 public class GuiceServletInjector extends GuiceInjector implements ServletInjector {
 
-    public GuiceServletInjector(Module module) {
-        super(module);
+    public GuiceServletInjector(Module... modules) {
+        super(modules);
     }
 
     @Override

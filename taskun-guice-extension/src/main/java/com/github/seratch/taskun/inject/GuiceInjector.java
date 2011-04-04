@@ -6,21 +6,21 @@ import com.google.inject.Module;
 
 public class GuiceInjector implements Injector {
 
-    protected com.google.inject.Injector injector;
+	protected com.google.inject.Injector injector;
 
-    public GuiceInjector(Module module) {
-        this.injector = Guice.createInjector(module);
-    }
+	public GuiceInjector(Module... modules) {
+		this.injector = Guice.createInjector(modules);
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T inject(Class<?> clazz) {
-        return (T) injector.getInstance(clazz);
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T inject(Class<?> clazz) {
+		return (T) injector.getInstance(clazz);
+	}
 
-    @Override
-    public SchedulerConfig getSchedulerConfig() {
-        return injector.getInstance(SchedulerConfig.class);
-    }
+	@Override
+	public SchedulerConfig getSchedulerConfig() {
+		return injector.getInstance(SchedulerConfig.class);
+	}
 
 }
