@@ -40,7 +40,7 @@ http://code.google.com/p/google-guice/
 
     public class SnippetGuiceSchedulerServlet extends AbstractGuiceSchedulerServlet {
       @Override
-      public Module getPreparedModules() {
+      public Module[] getPreparedModules() {
         return new Module[] {new AbstractModule() {
           @Override
           protected void configure() {
