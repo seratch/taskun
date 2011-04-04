@@ -52,7 +52,7 @@ http://code.google.com/p/google-guice/
       }
     }
 
-### src/main/resources/crontab.txt
+### src/main/resources/snippet_crontab.txt
 
     */1 * * * * com.github.seratch.taskun.servlet.snippet.EchoWorker*3
     interval:3sec initial:5sec com.github.seratch.taskun.servlet.snippet.EchoWorker
