@@ -6,7 +6,7 @@
          version="2.4">
 
     <servlet>
-        <servlet-name>snippetSchedulerServlet</servlet-name>
+        <servlet-name>snippetTaskunServlet</servlet-name>
         <servlet-class>com.github.seratch.taskun.servlet.snippet.SnippetTaskunServlet</servlet-class>
         <load-on-startup>3</load-on-startup>
     </servlet>
