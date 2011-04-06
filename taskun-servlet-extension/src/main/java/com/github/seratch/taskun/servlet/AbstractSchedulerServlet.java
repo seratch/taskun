@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServlet;
 public abstract class AbstractSchedulerServlet extends HttpServlet {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final long serialVersionUID = 1L;
 
     protected Logger log = Logger.getLogger(AbstractSchedulerServlet.class.getCanonicalName());
@@ -98,6 +99,8 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
         this.taskunInjector = taskunInjector;
     }
 =======
+=======
+>>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
 	private static final long serialVersionUID = 1L;
 
 	private Log log = getLog(AbstractSchedulerServlet.class.getCanonicalName());
@@ -181,6 +184,9 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
 	public void setInjector(ServletInjector injector) {
 		this.injector = injector;
 	}
+<<<<<<< HEAD
+>>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
+=======
 >>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
 
 }

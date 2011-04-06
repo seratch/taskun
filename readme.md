@@ -8,6 +8,7 @@
 
 Zero dependency, no additional jars required.
 
+<<<<<<< HEAD
 #### Taskun only
     ./download/taskun-taskun-1.4.*.jar
 #### Runs on Servlet
@@ -18,6 +19,18 @@ Zero dependency, no additional jars required.
     ./download/taskun-guice-extension-1.4.*.jar
     ./download/taskun-spring-extension-1.4.*.jar
     ./download/taskun-s2-extension-1.4.*.jar
+=======
+#### Scheduler only
+    ./download/taskun-scheduler-1.*.jar
+#### Runs on Servlet
+    ./download/taskun-servlet-extension-1.*.jar
+#### Not java.util.Logger but other logging
+    ./download/taskun-log4j-extension-1.*.jar
+#### With Dependency injection
+    ./download/taskun-guice-extension-1.*.jar
+    ./download/taskun-spring-extension-1.*.jar
+    ./download/taskun-s2-extension-1.*.jar
+>>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
 
 ### Maven
 

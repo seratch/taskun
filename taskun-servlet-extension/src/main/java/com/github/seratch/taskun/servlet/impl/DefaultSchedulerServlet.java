@@ -13,6 +13,7 @@ import java.util.Properties;
 public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -67,6 +68,8 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
     }
 =======
+=======
+>>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -120,6 +123,9 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 		super.setInjector(injector);
 
 	}
+<<<<<<< HEAD
+>>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
+=======
 >>>>>>> 14d61b2d295382cf742762a76387be4ac184d977
 
 }
