@@ -10,7 +10,7 @@ public abstract class AbstractGuiceSchedulerServlet extends AbstractSchedulerSer
 
     @Override
     protected void prepareToInit() {
-        setInjector(new GuiceServletInjector(getPreparedModule()));
+        setTaskunInjector(new GuiceServletInjector(getPreparedModule()));
     }
 
 

@@ -1,6 +1,6 @@
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.google.inject.AbstractModule;
 import org.junit.Test;
 
@@ -36,13 +36,13 @@ public class GuiceInjectorTest {
     }
 
     @Test
-    public void getSchedulerConfig_A$() throws Exception {
+    public void getTaskunConfig_A$() throws Exception {
         GuiceInjector target = new GuiceInjector(new AbstractModule() {
             @Override
             protected void configure() {
             }
         });
-        SchedulerConfig actual = target.getSchedulerConfig();
+        TaskunConfig actual = target.getTaskunConfig();
         assertNotNull(actual);
     }
 

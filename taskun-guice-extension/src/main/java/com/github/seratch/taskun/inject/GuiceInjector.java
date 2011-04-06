@@ -1,10 +1,9 @@
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.google.inject.Guice;
-import com.google.inject.Module;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
+import com.google.inject.*;
 
-public class GuiceInjector implements Injector {
+public class GuiceInjector implements TaskunInjector {
 
     protected com.google.inject.Injector injector;
 
@@ -19,8 +18,8 @@ public class GuiceInjector implements Injector {
     }
 
     @Override
-    public SchedulerConfig getSchedulerConfig() {
-        return injector.getInstance(SchedulerConfig.class);
+    public TaskunConfig getTaskunConfig() {
+        return injector.getInstance(TaskunConfig.class);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.impl.TaskunImpl;
 import com.google.inject.AbstractModule;
 import org.junit.Test;
 
@@ -29,10 +29,10 @@ public class GuiceServletInjectorTest {
         GuiceServletInjector target = new GuiceServletInjector(new AbstractModule() {
             @Override
             protected void configure() {
-                bind(Scheduler.class).to(TaskunScheduler.class);
+                bind(Taskun.class).to(TaskunImpl.class);
             }
         });
-        Scheduler actual = target.getScheduler();
+        Taskun actual = target.getTaskun();
         assertNotNull(actual);
     }
 
