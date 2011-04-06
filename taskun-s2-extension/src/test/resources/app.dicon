@@ -2,10 +2,10 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
         "http://www.seasar.org/dtd/components24.dtd">
 <components>
-    <component name="scheduler"
-               class="com.github.seratch.taskun.scheduler.impl.TaskunScheduler">
+    <component name="taskun"
+               class="com.github.seratch.taskun.scheduler.impl.TaskunImpl">
     </component>
-    <component name="schedulerConfig"
-               class="com.github.seratch.taskun.scheduler.config.SchedulerConfig">
+    <component name="config"
+               class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
     </component>
 </components>
