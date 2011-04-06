@@ -5,8 +5,8 @@ import com.google.inject.Module;
 
 public class GuiceTaskunServletInjector extends GuiceTaskunInjector implements TaskunServletInjector {
 
-    public GuiceTaskunServletInjector(Module module) {
-        super(module);
+    public GuiceTaskunServletInjector(Module... modules) {
+        super(modules);
     }
 
     @Override
