@@ -64,7 +64,7 @@ public class CronDaemon implements Runnable {
 
     private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
 
-    TaskunLog getTaskunLog() {
+    TaskunLog getLog() {
         return getLog(CronDaemon.class.getCanonicalName());
     }
 
@@ -167,7 +167,7 @@ public class CronDaemon implements Runnable {
         TaskunConfig config = taskunInjector.getTaskunConfig();
         if (config != null) {
             this.logImplClass = config.getLogImplClass();
-            this.taskunLog = getTaskunLog();
+            this.taskunLog = getLog();
         }
 
         this.parser = new CrontabParser(this.logImplClass);

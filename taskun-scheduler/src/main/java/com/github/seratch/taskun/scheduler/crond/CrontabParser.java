@@ -34,7 +34,7 @@ public class CrontabParser {
 
     private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
 
-    TaskunLog getTaskunLog() {
+    TaskunLog getLog() {
         return getLog(CronDaemon.class.getCanonicalName());
     }
 
