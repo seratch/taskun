@@ -15,9 +15,9 @@
  */
 package com.github.seratch.taskun.scheduler.impl;
 
-import com.github.seratch.taskun.inject.Injector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.inject.TaskunInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.github.seratch.taskun.scheduler.crond.CronDaemon;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 import com.github.seratch.taskun.util.CalendarUtil;
@@ -29,21 +29,21 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-public class TaskunScheduler implements Scheduler {
+public class TaskunImpl implements Taskun {
 
     private ScheduledExecutorService executorService;
 
-    private Injector injector;
+    private TaskunInjector taskunInjector;
 
     private CronDaemon crond = new CronDaemon();
 
     private String crontabFilepath;
 
-    public void initialize(SchedulerConfig config) {
-        final SchedulerConfig config_ = config;
-        initialize(new Injector() {
+    public void initialize(TaskunConfig config) {
+        final TaskunConfig config_ = config;
+        initialize(new TaskunInjector() {
             @Override
-            public SchedulerConfig getSchedulerConfig() {
+            public TaskunConfig getSchedulerConfig() {
                 return config_;
             }
 
@@ -59,8 +59,8 @@ public class TaskunScheduler implements Scheduler {
         });
     }
 
-    public void initialize(Injector injector) {
-        this.injector = injector;
+    public void initialize(TaskunInjector taskunInjector) {
+        this.taskunInjector = taskunInjector;
         executorService = Executors.newScheduledThreadPool(3,
                 new ThreadFactory() {
                     private ThreadGroup threadGroup = new ThreadGroup(
@@ -79,7 +79,7 @@ public class TaskunScheduler implements Scheduler {
 
     @Override
     public void start() {
-        invokeCronDaemon(injector, executorService);
+        invokeCronDaemon(taskunInjector, executorService);
     }
 
     @Override
@@ -122,15 +122,15 @@ public class TaskunScheduler implements Scheduler {
         return crond.getCurrentRawCrontabLines();
     }
 
-    void invokeCronDaemon(Injector injector, ScheduledExecutorService executorService) {
-        if (injector == null) {
+    void invokeCronDaemon(TaskunInjector taskunInjector, ScheduledExecutorService executorService) {
+        if (taskunInjector == null) {
             throw new IllegalStateException(
-                    "Not initialized scheduler - the injector is null");
+                    "Not initialized scheduler - the taskunInjector is null");
         }
         if (crontabFilepath != null) {
-            crond.initialize(injector, executorService, crontabFilepath);
+            crond.initialize(taskunInjector, executorService, crontabFilepath);
         } else {
-            crond.initialize(injector, executorService);
+            crond.initialize(taskunInjector, executorService);
         }
         Calendar cal = CalendarUtil.getCurrentTime();
         long currentTime = cal.getTimeInMillis();

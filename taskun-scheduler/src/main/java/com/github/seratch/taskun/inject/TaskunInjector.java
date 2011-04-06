@@ -15,12 +15,11 @@
  */
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 
-public interface Injector {
+public interface TaskunInjector {
 
-    SchedulerConfig getSchedulerConfig();
+    TaskunConfig getSchedulerConfig();
 
     <T> T inject(Class<?> clazz);
 

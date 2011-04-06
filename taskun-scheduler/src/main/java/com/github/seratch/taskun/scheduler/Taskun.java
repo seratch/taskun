@@ -15,19 +15,19 @@
  */
 package com.github.seratch.taskun.scheduler;
 
-import com.github.seratch.taskun.inject.Injector;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.inject.TaskunInjector;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public interface Scheduler {
+public interface Taskun {
 
-    void initialize(SchedulerConfig config);
+    void initialize(TaskunConfig config);
 
-    void initialize(Injector injector);
+    void initialize(TaskunInjector taskunInjector);
 
     void replaceCrontabFile(String crontabFilepath);
 

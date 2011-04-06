@@ -15,7 +15,7 @@
  */
 package com.github.seratch.taskun.scheduler;
 
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.github.seratch.taskun.util.StringUtil;
 
 import java.net.InetAddress;
@@ -24,7 +24,7 @@ import java.util.Set;
 
 public final class CurrentServer {
 
-    public static boolean isWorkingOnNamedServerHost(SchedulerConfig config, String name) {
+    public static boolean isWorkingOnNamedServerHost(TaskunConfig config, String name) {
         String expected = config.getNamedServerHostname(name);
         if (StringUtil.isEmpty(expected)) {
             return false;
@@ -32,7 +32,7 @@ public final class CurrentServer {
         return getHostname().matches(expected);
     }
 
-    public static String getServerName(SchedulerConfig config) {
+    public static String getServerName(TaskunConfig config) {
         if (config != null) {
             Map<String, String> servers = config.namedServers;
             Set<String> names = servers.keySet();

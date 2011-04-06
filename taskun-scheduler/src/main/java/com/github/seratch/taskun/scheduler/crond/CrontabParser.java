@@ -15,8 +15,8 @@
  */
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.logging.Log;
-import com.github.seratch.taskun.logging.UtilLoggerImpl;
+import com.github.seratch.taskun.logging.TaskunLog;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 import com.github.seratch.taskun.util.CalendarUtil;
 import com.github.seratch.taskun.util.StringUtil;
 
@@ -26,23 +26,23 @@ import java.util.List;
 
 public class CrontabParser {
 
-    public CrontabParser(Class<? extends Log> logImplClass) {
+    public CrontabParser(Class<? extends TaskunLog> logImplClass) {
         this.logImplClass = logImplClass;
     }
 
-    private Class<? extends Log> logImplClass = UtilLoggerImpl.class;
+    private Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
-    private Log log = getLog(CronDaemon.class.getCanonicalName());
+    private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
 
-    Log getLog() {
+    TaskunLog getTaskunLog() {
         return getLog(CronDaemon.class.getCanonicalName());
     }
 
-    Log getLog(String name) {
+    TaskunLog getLog(String name) {
         try {
             return logImplClass.getConstructor(String.class).newInstance(name);
         } catch (Throwable t) {
-            return new UtilLoggerImpl(name);
+            return new TaskunLogUtilLoggerImpl(name);
         }
     }
 
@@ -61,7 +61,7 @@ public class CrontabParser {
                 return getBasicCrontab(crontab, elements);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            log.error("Invalid crontab expression...");
+            taskunLog.error("Invalid crontab expression...");
             throw new IllegalArgumentException("Invalid crontab expression...");
         }
     }

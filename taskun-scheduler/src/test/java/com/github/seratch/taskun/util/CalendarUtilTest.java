@@ -1,12 +1,18 @@
 package com.github.seratch.taskun.util;
 
+import java.util.logging.Logger;
+import com.github.seratch.taskun.util.CalendarUtil.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 import java.util.Calendar;
 
-public class CalendarUtilTest extends TestCase {
+public class CalendarUtilTest {
 
-    public void test_getYear_A$Calendar() throws Exception {
+    @Test 
+	public void getYear_A$Calendar() throws Exception {
         Integer expected = 2009;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.YEAR, expected);
@@ -14,7 +20,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getYear_A$Calendar_1899() throws Exception {
+    @Test 
+	public void getYear_A$Calendar_1899() throws Exception {
         Integer expected = 1899;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.YEAR, expected);
@@ -22,7 +29,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getYear_A$Calendar_1900() throws Exception {
+    @Test 
+	public void getYear_A$Calendar_1900() throws Exception {
         Integer expected = 1900;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.YEAR, expected);
@@ -30,7 +38,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getYear_A$Calendar_2037() throws Exception {
+    @Test 
+	public void getYear_A$Calendar_2037() throws Exception {
         Integer expected = 2037;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.YEAR, expected);
@@ -38,7 +47,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getYear_A$Calendar_2038() throws Exception {
+    @Test 
+	public void getYear_A$Calendar_2038() throws Exception {
         Integer expected = 2038;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.YEAR, expected);
@@ -46,7 +56,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMonth_A$Calendar() throws Exception {
+    @Test 
+	public void getMonth_A$Calendar() throws Exception {
         Integer expected = 10;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MONTH, expected - 1);
@@ -54,7 +65,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMonth_A$Calendar_jun0() throws Exception {
+    @Test 
+	public void getMonth_A$Calendar_jun0() throws Exception {
         Integer expected = 1;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MONTH, 0);
@@ -62,7 +74,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMonth_A$Calendar_jun12() throws Exception {
+    @Test 
+	public void getMonth_A$Calendar_jun12() throws Exception {
         Integer expected = 1;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MONTH, 12);
@@ -70,7 +83,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMonth_A$Calendar_dec() throws Exception {
+    @Test 
+	public void getMonth_A$Calendar_dec() throws Exception {
         Integer expected = 12;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MONTH, 11);
@@ -78,7 +92,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getDay_A$Calendar() throws Exception {
+    @Test 
+	public void getDay_A$Calendar() throws Exception {
         Integer expected = 10;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.DATE, expected);
@@ -86,7 +101,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_get24Hour_A$Calendar() throws Exception {
+    @Test 
+	public void get24Hour_A$Calendar() throws Exception {
         Integer expected = 23;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.HOUR_OF_DAY, expected);
@@ -94,7 +110,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_get24Hour_A$Calendar_0() throws Exception {
+    @Test 
+	public void get24Hour_A$Calendar_0() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.HOUR_OF_DAY, expected);
@@ -102,7 +119,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_get24Hour_A$Calendar_24() throws Exception {
+    @Test 
+	public void get24Hour_A$Calendar_24() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.HOUR_OF_DAY, 24);
@@ -110,7 +128,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMinute_A$Calendar() throws Exception {
+    @Test 
+	public void getMinute_A$Calendar() throws Exception {
         Integer expected = 59;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MINUTE, expected);
@@ -118,7 +137,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMinute_A$Calendar_60() throws Exception {
+    @Test 
+	public void getMinute_A$Calendar_60() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MINUTE, 60);
@@ -126,7 +146,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMinute_A$Calendar_0() throws Exception {
+    @Test 
+	public void getMinute_A$Calendar_0() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MINUTE, expected);
@@ -134,7 +155,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getSecond_A$Calendar() throws Exception {
+    @Test 
+	public void getSecond_A$Calendar() throws Exception {
         Integer expected = 33;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.SECOND, expected);
@@ -142,7 +164,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getSecond_A$Calendar_60() throws Exception {
+    @Test 
+	public void getSecond_A$Calendar_60() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.SECOND, 60);
@@ -150,7 +173,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getSecond_A$Calendar_0() throws Exception {
+    @Test 
+	public void getSecond_A$Calendar_0() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.SECOND, expected);
@@ -158,7 +182,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getCalendar_A$String$String$String() throws Exception {
+    @Test 
+	public void getCalendar_A$String$String$String() throws Exception {
         long expected = 1262185200000L;
         String arg0 = "2009";
         String arg1 = "12";
@@ -167,7 +192,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual.getTimeInMillis());
     }
 
-    public void test_getCalendar_A$String$String$String$String$String$String()
+    @Test 
+	public void getCalendar_A$String$String$String$String$String$String()
             throws Exception {
         long expected = 1262271599000L;
         String arg0 = "2009";
@@ -181,7 +207,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual.getTimeInMillis());
     }
 
-    public void test_dateTrunc_A$Calendar() throws Exception {
+    @Test 
+	public void dateTrunc_A$Calendar() throws Exception {
         Calendar today = CalendarUtil.dateTrunc(Calendar.getInstance());
         assertEquals(0, today.get(Calendar.HOUR_OF_DAY));
         assertEquals(0, today.get(Calendar.MINUTE));
@@ -189,19 +216,22 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(0, today.get(Calendar.MILLISECOND));
     }
 
-    public void test_getCurrentTime_A$() throws Exception {
+    @Test 
+	public void getCurrentTime_A$() throws Exception {
         Calendar actual = CalendarUtil.getCurrentTime();
         assertNotNull(actual);
     }
 
-    public void test_getCurrentTime_A$_testData() throws Exception {
+    @Test 
+	public void getCurrentTime_A$_testData() throws Exception {
         CalendarUtil.testData = Calendar.getInstance();
         Calendar actual = CalendarUtil.getCurrentTime();
         assertNotNull(actual);
         assertNull(CalendarUtil.testData);
     }
 
-    public void test_getCurrentTruncDate_A$() throws Exception {
+    @Test 
+	public void getCurrentTruncDate_A$() throws Exception {
         Calendar actual = CalendarUtil.getCurrentTruncDate();
         assertEquals(0, actual.get(Calendar.HOUR));
         assertEquals(0, actual.get(Calendar.MINUTE));
@@ -209,7 +239,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(0, actual.get(Calendar.MILLISECOND));
     }
 
-    public void test_isFirstAfterSecond_A$Calendar$Calendar_true()
+    @Test 
+	public void isFirstAfterSecond_A$Calendar$Calendar_true()
             throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
@@ -221,7 +252,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_isFirstAfterSecond_A$Calendar$Calendar_false()
+    @Test 
+	public void isFirstAfterSecond_A$Calendar$Calendar_false()
             throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
@@ -233,7 +265,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected2, actual2);
     }
 
-    public void test_isFirstAfterSecond_A$Calendar$Calendar_same()
+    @Test 
+	public void isFirstAfterSecond_A$Calendar$Calendar_same()
             throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
@@ -244,7 +277,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected3, actual3);
     }
 
-    public void test_deepCopy_A$Calendar() throws Exception {
+    @Test 
+	public void deepCopy_A$Calendar() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
         // when
@@ -255,7 +289,8 @@ public class CalendarUtilTest extends TestCase {
         assertTrue(CalendarUtil.isFirstAfterSecond(actual, arg0));
     }
 
-    public void test_addYears_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addYears_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
         // when
@@ -265,7 +300,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 2011, (int) CalendarUtil.getYear(actual));
     }
 
-    public void test_addYears_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addYears_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "3", "1");
         // when
@@ -275,7 +311,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 2009, (int) CalendarUtil.getYear(actual));
     }
 
-    public void test_addMonths_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addMonths_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1");
         // when
@@ -285,7 +322,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 3, (int) CalendarUtil.getMonth(actual));
     }
 
-    public void test_addMonths_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addMonths_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1");
         // when
@@ -295,7 +333,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 1, (int) CalendarUtil.getMonth(actual));
     }
 
-    public void test_addDays_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addDays_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "28");
         // when
@@ -305,7 +344,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 1, (int) CalendarUtil.getDay(actual));
     }
 
-    public void test_addDays_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addDays_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "28");
         // when
@@ -315,7 +355,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 27, (int) CalendarUtil.getDay(actual));
     }
 
-    public void test_addHours_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addHours_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -326,7 +367,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 23, (int) CalendarUtil.get24Hour(actual));
     }
 
-    public void test_addHours_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addHours_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -337,7 +379,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 21, (int) CalendarUtil.get24Hour(actual));
     }
 
-    public void test_addMinutes_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addMinutes_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -348,7 +391,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 24, (int) CalendarUtil.getMinute(actual));
     }
 
-    public void test_addMinutes_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addMinutes_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -359,7 +403,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 22, (int) CalendarUtil.getMinute(actual));
     }
 
-    public void test_addSeconds_A$Calendar$int_plus() throws Exception {
+    @Test 
+	public void addSeconds_A$Calendar$int_plus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -370,7 +415,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 35, (int) CalendarUtil.getSecond(actual));
     }
 
-    public void test_addSeconds_A$Calendar$int_minus() throws Exception {
+    @Test 
+	public void addSeconds_A$Calendar$int_minus() throws Exception {
         // given
         Calendar arg0 = CalendarUtil.getCalendar("2010", "2", "1", "22", "23",
                 "34");
@@ -381,7 +427,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals((int) 33, (int) CalendarUtil.getSecond(actual));
     }
 
-    public void test_getMillisecond_A$Calendar() throws Exception {
+    @Test 
+	public void getMillisecond_A$Calendar() throws Exception {
         Integer expected = 234;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MILLISECOND, expected);
@@ -389,7 +436,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMillisecond_A$Calendar_999() throws Exception {
+    @Test 
+	public void getMillisecond_A$Calendar_999() throws Exception {
         Integer expected = 999;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MILLISECOND, expected);
@@ -397,7 +445,8 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getMillisecond_A$Calendar_1000() throws Exception {
+    @Test 
+	public void getMillisecond_A$Calendar_1000() throws Exception {
         Integer expected = 0;
         Calendar arg0 = Calendar.getInstance();
         arg0.set(Calendar.MILLISECOND, 1000);
@@ -405,14 +454,16 @@ public class CalendarUtilTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getCalendar_A$int$int$int() throws Exception {
+    @Test 
+	public void getCalendar_A$int$int$int() throws Exception {
         Calendar actual = CalendarUtil.getCalendar(2000, 2, 3);
         assertTrue(2000 == actual.get(Calendar.YEAR));
         assertTrue(1 == actual.get(Calendar.MONTH));
         assertTrue(3 == actual.get(Calendar.DATE));
     }
 
-    public void test_getCalendar_A$int$int$int$int$int$int() throws Exception {
+    @Test 
+	public void getCalendar_A$int$int$int$int$int$int() throws Exception {
         Calendar actual = CalendarUtil.getCalendar(2000, 2, 3, 4, 5, 6);
         assertTrue(2000 == actual.get(Calendar.YEAR));
         assertTrue(1 == actual.get(Calendar.MONTH));
@@ -422,7 +473,8 @@ public class CalendarUtilTest extends TestCase {
         assertTrue(6 == actual.get(Calendar.SECOND));
     }
 
-    public void test_getDayOfWeekNumber_A$Calendar() throws Exception {
+    @Test 
+	public void getDayOfWeekNumber_A$Calendar() throws Exception {
         assertEquals((int) 1,
                 (int) CalendarUtil.getDayOfWeekNumber(CalendarUtil.getCalendar(
                         "2010", "4", "18")));
@@ -446,18 +498,31 @@ public class CalendarUtilTest extends TestCase {
                         "2010", "4", "24")));
     }
 
-    public void test_getCalendar_A$long() throws Exception {
+    @Test 
+	public void getCalendar_A$long() throws Exception {
         long arg0 = 12345L;
         Calendar actual = CalendarUtil.getCalendar(arg0);
         assertEquals(arg0, actual.getTimeInMillis());
     }
 
-    public void test_toYYYYMMDDHHMISS_A$Calendar() throws Exception {
+    @Test 
+	public void toYYYYMMDDHHMISS_A$Calendar() throws Exception {
         Calendar arg0 = CalendarUtil.getCalendar("2010", "02", "3", "1", "2",
                 "3");
         String actual = CalendarUtil.toYYYYMMDDHHMISS(arg0);
         String expected = "20100203010203";
         assertEquals(expected, actual);
     }
+
+	@Test
+	public void type() throws Exception {
+		assertNotNull(CalendarUtil.class);
+	}
+
+	@Test
+	public void instantiation() throws Exception {
+		CalendarUtil target = new CalendarUtil();
+		assertNotNull(target);
+	}
 
 }

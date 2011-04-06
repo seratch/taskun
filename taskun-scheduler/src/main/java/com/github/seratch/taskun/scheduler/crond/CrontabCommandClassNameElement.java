@@ -30,7 +30,7 @@ class CrontabCommandClassNameElement {
 
     @Override
     public boolean equals(Object obj) {
-        return this.toString().equals(obj.toString());
+        return obj != null && this.toString().equals(obj.toString());
     }
 
 }

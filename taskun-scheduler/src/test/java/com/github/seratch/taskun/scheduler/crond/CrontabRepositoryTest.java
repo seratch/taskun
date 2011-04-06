@@ -1,34 +1,41 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.logging.UtilLoggerImpl;
-import junit.framework.TestCase;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
+import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CrontabRepositoryTest extends TestCase {
+import static junit.framework.Assert.*;
 
-    CrontabParser parser = new CrontabParser(UtilLoggerImpl.class);
+public class CrontabRepositoryTest {
+
+    CrontabParser parser = new CrontabParser(TaskunLogUtilLoggerImpl.class);
     CrontabRepository repos = new CrontabRepository(new ArrayList<Crontab>());
 
-    public void test_remove_A$RawCrontabLine() throws Exception {
+    @Test
+    public void remove_A$RawCrontabLine() throws Exception {
         String arg0 = "0 1 * * * hoge.foo.Var server1";
         repos.remove(parser.parseLine(new RawCrontabLine(arg0)));
     }
 
-    public void test_edit_A$RawCrontabLine$RawCrontabLine() throws Exception {
+    @Test
+    public void edit_A$RawCrontabLine$RawCrontabLine() throws Exception {
         String arg0 = "0 1 * * * hoge.foo.Var server1";
         String arg1 = "interval:5sec  initial:16sec hoge.foo.Var server1";
         repos.replace(parser.parseLine(new RawCrontabLine(arg0)), parser.parseLine(new RawCrontabLine(arg1)));
     }
 
-    public void test_isAlreadyRegistered_A$String() throws Exception {
+    @Test
+    public void isAlreadyRegistered_A$String() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine("0 1 * * * hoge.foo.Var server1");
         assertFalse(repos.isAlreadyRegistered(parser.parseLine(arg0)));
         repos.add(parser.parseLine(arg0));
         assertTrue(repos.isAlreadyRegistered(parser.parseLine(arg0)));
     }
 
-    public void test_find_A$String() throws Exception {
+    @Test
+    public void find_A$String() throws Exception {
         Crontab arg0 = parser.parseLine(new RawCrontabLine(
                 "0 1 * * * hoge.foo.Var server1"));
         Object actual1 = repos.find(arg0);
@@ -39,6 +46,18 @@ public class CrontabRepositoryTest extends TestCase {
         expected2.rawLine = arg0.rawLine;
         Crontab actual2 = repos.find(arg0);
         assertEquals(expected2.rawLine, actual2.rawLine);
+    }
+
+    @Test
+    public void type() throws Exception {
+        assertNotNull(CrontabRepository.class);
+    }
+
+    @Test
+    public void instantiation() throws Exception {
+        List<Crontab> crontabLines = null;
+        CrontabRepository target = new CrontabRepository(crontabLines);
+        assertNotNull(target);
     }
 
 }

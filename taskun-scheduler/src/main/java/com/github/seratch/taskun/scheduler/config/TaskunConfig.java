@@ -15,13 +15,13 @@
  */
 package com.github.seratch.taskun.scheduler.config;
 
-import com.github.seratch.taskun.logging.Log;
-import com.github.seratch.taskun.logging.UtilLoggerImpl;
+import com.github.seratch.taskun.logging.TaskunLog;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SchedulerConfig {
+public class TaskunConfig {
 
     public boolean enableInvokingScheduler = true;
 
@@ -29,7 +29,7 @@ public class SchedulerConfig {
 
     public Map<String, String> namedServers = new HashMap<String, String>();
 
-    public Class<? extends Log> logImplClass = UtilLoggerImpl.class;
+    public Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
     public void putNamedServer(String name, String hostname) {
         namedServers.put(name, hostname);
@@ -43,11 +43,11 @@ public class SchedulerConfig {
         return namedServers.get(name);
     }
 
-    public <T extends Log> void setLogImplClass(Class<T> logImplClass) {
+    public <T extends TaskunLog> void setLogImplClass(Class<T> logImplClass) {
         this.logImplClass = logImplClass;
     }
 
-    public Class<? extends Log> getLogImplClass() {
+    public Class<? extends TaskunLog> getLogImplClass() {
         return this.logImplClass;
     }
 

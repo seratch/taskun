@@ -15,11 +15,11 @@
  */
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.inject.Injector;
-import com.github.seratch.taskun.logging.Log;
-import com.github.seratch.taskun.logging.UtilLoggerImpl;
+import com.github.seratch.taskun.inject.TaskunInjector;
+import com.github.seratch.taskun.logging.TaskunLog;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 import com.github.seratch.taskun.scheduler.CurrentServer;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.github.seratch.taskun.util.CalendarUtil;
 import com.github.seratch.taskun.util.IOCloser;
 import com.github.seratch.taskun.util.StringUtil;
@@ -46,7 +46,7 @@ public class CronDaemon implements Runnable {
 
     private ScheduledExecutorService executorService;
 
-    private Injector injector;
+    private TaskunInjector taskunInjector;
 
     private CrontabRepository crontabRepos = new CrontabRepository(
             new ArrayList<Crontab>());
@@ -60,19 +60,19 @@ public class CronDaemon implements Runnable {
 
     private CrontabParser parser;
 
-    private Class<? extends Log> logImplClass = UtilLoggerImpl.class;
+    private Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
-    private Log log = getLog(CronDaemon.class.getCanonicalName());
+    private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
 
-    Log getLog() {
+    TaskunLog getTaskunLog() {
         return getLog(CronDaemon.class.getCanonicalName());
     }
 
-    Log getLog(String name) {
+    TaskunLog getLog(String name) {
         try {
             return logImplClass.getConstructor(String.class).newInstance(name);
         } catch (Throwable t) {
-            return new UtilLoggerImpl(name);
+            return new TaskunLogUtilLoggerImpl(name);
         }
     }
 
@@ -131,7 +131,7 @@ public class CronDaemon implements Runnable {
                             + new Date(crontab.nextInvocationTime).toString()
                             + ")");
                 } catch (Exception e) {
-                    log.error(this.getClass().getCanonicalName()
+                    taskunLog.error(this.getClass().getCanonicalName()
                             + " failed to execute scheduled task : "
                             + crontab.commandClassName);
                     e.printStackTrace();
@@ -145,9 +145,9 @@ public class CronDaemon implements Runnable {
         Class<?> clazz = Class.forName(crontabLine.commandClassName.toString());
         Runnable instance = null;
         try {
-            instance = injector.inject(clazz);
+            instance = taskunInjector.inject(clazz);
         } catch (Exception e) {
-            log.debug("Command class load failed! class name : "
+            taskunLog.debug("Command class load failed! class name : "
                     + clazz.getCanonicalName());
         }
         if (instance == null) {
@@ -156,18 +156,18 @@ public class CronDaemon implements Runnable {
         return instance;
     }
 
-    public void initialize(Injector injector, ScheduledExecutorService executorService) {
-        initialize(injector, executorService, DEFAULT_CRONTAB_FILENAME);
+    public void initialize(TaskunInjector taskunInjector, ScheduledExecutorService executorService) {
+        initialize(taskunInjector, executorService, DEFAULT_CRONTAB_FILENAME);
     }
 
-    public void initialize(Injector injector, ScheduledExecutorService executorService, String crontabFilepath) {
+    public void initialize(TaskunInjector taskunInjector, ScheduledExecutorService executorService, String crontabFilepath) {
 
-        this.injector = injector;
+        this.taskunInjector = taskunInjector;
 
-        SchedulerConfig config = injector.getSchedulerConfig();
+        TaskunConfig config = taskunInjector.getSchedulerConfig();
         if (config != null) {
             this.logImplClass = config.getLogImplClass();
-            this.log = getLog();
+            this.taskunLog = getTaskunLog();
         }
 
         this.parser = new CrontabParser(this.logImplClass);
@@ -180,7 +180,7 @@ public class CronDaemon implements Runnable {
             is = this.getClass().getClassLoader()
                     .getResourceAsStream(crontabFilepath);
             if (is == null) {
-                log.info("Skipped the crontab scheduing" + " because " + crontabFilepath + " did not found.");
+                taskunLog.info("Skipped the crontab scheduing" + " because " + crontabFilepath + " did not found.");
                 return;
             }
             br = new BufferedReader(new InputStreamReader(is));
@@ -190,14 +190,14 @@ public class CronDaemon implements Runnable {
             }
             // working server config
             thisServerHostname = CurrentServer.getHostname();
-            thisServerNameIfGiven = CurrentServer.getServerName(injector.getSchedulerConfig());
+            thisServerNameIfGiven = CurrentServer.getServerName(taskunInjector.getSchedulerConfig());
             if (StringUtil.isEmpty(thisServerNameIfGiven)) {
                 thisServerNameIfGiven = thisServerHostname;
             }
             // start interval invocations
             List<Crontab> newList = new ArrayList<Crontab>();
-            log.info("----- Taskun-scheduler initialized -----");
-            log.info("Working at " + thisServerNameIfGiven
+            taskunLog.info("----- Taskun-scheduler initialized -----");
+            taskunLog.info("Working at " + thisServerNameIfGiven
                     + "(" + thisServerHostname + ")");
             for (Crontab crontab : crontabRepos.getCrontabLines()) {
                 if (crontab.isIntervalInvocation) {
@@ -225,12 +225,12 @@ public class CronDaemon implements Runnable {
                             executorService.scheduleAtFixedRate(
                                     command, initialDelay, delay, TimeUnit.MILLISECONDS);
                         }
-                        log.info("Interval invocation : "
+                        taskunLog.info("Interval invocation : "
                                 + crontab.intervalSeconds + "sec,"
                                 + crontab.commandClassName + ","
                                 + crontab.multiplicity);
                     } catch (Exception e) {
-                        log.error(this.getClass().getCanonicalName()
+                        taskunLog.error(this.getClass().getCanonicalName()
                                 + " failed to execute scheduled task : " + crontab.commandClassName);
                         e.printStackTrace();
                     }
@@ -247,16 +247,16 @@ public class CronDaemon implements Runnable {
                             "Crontab file load error! (cannot load command class : "
                                     + crontab.commandClassName + ")");
                 }
-                log.info("Crontab invocation : " + crontab.rawLine);
+                taskunLog.info("Crontab invocation : " + crontab.rawLine);
             }
         } catch (IOException e) {
-            log.error("Cannot read crontab.txt because of " + e.getLocalizedMessage());
+            taskunLog.error("Cannot read crontab.txt because of " + e.getLocalizedMessage());
             e.printStackTrace();
         } finally {
             IOCloser.close(is);
             IOCloser.close(br);
             isInitialized = true;
-            log.info("----------------------------------------");
+            taskunLog.info("----------------------------------------");
         }
     }
 
@@ -265,18 +265,18 @@ public class CronDaemon implements Runnable {
     }
 
     void loggingAtEachInvocation(String message) {
-        boolean isEnabled = injector.getSchedulerConfig().enableLoggingForEachCrondInvocation;
+        boolean isEnabled = taskunInjector.getSchedulerConfig().enableLoggingForEachCrondInvocation;
         if (isEnabled) {
-            log.info(message);
+            taskunLog.info(message);
         }
     }
 
     public List<RawCrontabLine> getCurrentRawCrontabLines() {
         String serverName = null;
         try {
-            serverName = CurrentServer.getServerName(injector.getSchedulerConfig());
+            serverName = CurrentServer.getServerName(taskunInjector.getSchedulerConfig());
         } catch (Exception e) {
-            log.error("Cannot get working server", e);
+            taskunLog.error("Cannot get working server", e);
         }
         List<RawCrontabLine> currentRawContabLines = new ArrayList<RawCrontabLine>();
         for (Crontab crontab : crontabRepos.getCrontabLines()) {

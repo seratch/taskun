@@ -5,6 +5,9 @@ import java.io.InputStream;
 
 public final class IOCloser {
 
+    private IOCloser() {
+    }
+
     public static void close(InputStream is) {
         if (is != null) {
             try {

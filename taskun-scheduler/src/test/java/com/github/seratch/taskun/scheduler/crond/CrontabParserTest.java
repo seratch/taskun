@@ -1,19 +1,22 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.logging.UtilLoggerImpl;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 import com.github.seratch.taskun.util.CalendarUtil;
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class CrontabParserTest extends TestCase {
+import static junit.framework.Assert.*;
 
-    CrontabParser parser = new CrontabParser(UtilLoggerImpl.class);
+public class CrontabParserTest {
 
-    public void test_parseLine_A$Crontab_noClassName() throws Exception {
+    CrontabParser parser = new CrontabParser(TaskunLogUtilLoggerImpl.class);
+
+    @Test
+    public void parseLine_A$Crontab_noClassName() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine("*/3 * * * * ");
         try {
             parser.parseLine(arg0);
@@ -22,7 +25,8 @@ public class CrontabParserTest extends TestCase {
         }
     }
 
-    public void test_parseLine_A$Crontab_readable() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_readable() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine(
                 "*/3 */2 * * * hoge.foo.SampleTask host1,host2");
         long current = CalendarUtil.getCurrentTime().getTimeInMillis();
@@ -40,7 +44,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(current < actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_space() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_space() throws Exception {
         String[] arg = new String[]{"*/3 * * * * hoge.foo.SampleTask",
                 "*/3 * * * * hoge.foo.SampleTask",
                 "*/3	*	 *	*	 	*			hoge.foo.SampleTask",
@@ -62,7 +67,8 @@ public class CrontabParserTest extends TestCase {
         }
     }
 
-    public void test_parseLine_A$Crontab_beginEnd() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_beginEnd() throws Exception {
         String arg0 = "1-20/3 * * * * hoge.foo.SampleTask";
         long current = CalendarUtil.getCurrentTime().getTimeInMillis();
         Crontab actual = parser.parseLine(new RawCrontabLine(arg0));
@@ -86,7 +92,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(current < actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_fixedTime() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_fixedTime() throws Exception {
         String arg0 = "0 5 * * * hoge.foo.SampleTask host1,host2";
         long current = CalendarUtil.getCurrentTime().getTimeInMillis();
         Crontab actual = parser.parseLine(new RawCrontabLine(arg0));
@@ -101,7 +108,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(current < actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_minuteInterval1() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_minuteInterval1() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "*/1 * * * * hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -123,7 +131,8 @@ public class CrontabParserTest extends TestCase {
                 expected == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_minuteInterval1_59() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_minuteInterval1_59() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "*/1 * * * * hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -145,7 +154,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_minuteInterval3() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_minuteInterval3() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "*/3 * * * * hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -167,7 +177,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_minuteInterval3_59() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_minuteInterval3_59() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "*/3 * * * * hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -189,7 +200,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_minuteInterval3_59_start2() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_minuteInterval3_59_start2() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "2/3 * * * * hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -211,7 +223,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_hourInterval3() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_hourInterval3() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "25 */3 * * *  hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -231,7 +244,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_severalDays() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_severalDays() throws Exception {
         RawCrontabLine crontab = new RawCrontabLine(
                 "0 2 20,22 * *  hoge.foo.SampleTask server1");
         CalendarUtil.testData = CalendarUtil.getCalendar("2010", "4", "21",
@@ -251,7 +265,8 @@ public class CrontabParserTest extends TestCase {
                 expceted == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_fixedTimeNextInvocation() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_fixedTimeNextInvocation() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine(
                 "0 5 2 4 * hoge.foo.SampleTask host1,host2");
         Calendar current = CalendarUtil.getCalendar("2010", "4", "1", "0", "0",
@@ -273,7 +288,8 @@ public class CrontabParserTest extends TestCase {
                 expectedNextInvocationTime == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_fixedTimeNextInvocation2() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_fixedTimeNextInvocation2() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine(
                 "0 5 25 * * hoge.foo.SampleTask host1,host2");
         Calendar current = CalendarUtil.getCalendar("2010", "4", "1", "0", "0",
@@ -295,7 +311,8 @@ public class CrontabParserTest extends TestCase {
                 expectedNextInvocationTime == actual.nextInvocationTime);
     }
 
-    public void test_parseLine_A$Crontab_commaSeperated() throws Exception {
+    @Test
+    public void parseLine_A$Crontab_commaSeperated() throws Exception {
         RawCrontabLine arg0 = new RawCrontabLine(
                 "1,2,3 * * * * hoge.foo.SampleTask");
         long current = CalendarUtil.getCurrentTime().getTimeInMillis();
@@ -316,7 +333,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(current < actual.nextInvocationTime);
     }
 
-    public void test_getFixedInvocations_A$int$RawCrontabLine() throws Exception {
+    @Test
+    public void getFixedInvocations_A$int$RawCrontabLine() throws Exception {
         int arg0 = 59;
         CrontabElement arg1 = new CrontabElement("0/5");
         List<Integer> actual = parser.getFixedInvocations(arg0, arg1);
@@ -335,7 +353,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(55 == actual.get(11));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab()
             throws Exception {
         Calendar arg0 = CalendarUtil.getCurrentTime();
         Crontab crontab = new Crontab();
@@ -350,7 +369,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(arg0.getTimeInMillis() < actual);
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_fixedInvocationAndRenew()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_fixedInvocationAndRenew()
             throws Exception {
         Calendar arg0 = CalendarUtil.getCalendar("2010", "4", "21", "22", "00",
                 "01");
@@ -370,7 +390,8 @@ public class CrontabParserTest extends TestCase {
         assertTrue(expected.getTimeInMillis() == actual);
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_dayOfWeek()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_dayOfWeek()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0");
@@ -409,7 +430,8 @@ public class CrontabParserTest extends TestCase {
                 crontab));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0");
@@ -427,7 +449,8 @@ public class CrontabParserTest extends TestCase {
                 crontab));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_day()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_day()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0");
@@ -457,7 +480,8 @@ public class CrontabParserTest extends TestCase {
                 .getTimeInMillis() == actual);
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_hour()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_hour()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0");
@@ -491,7 +515,8 @@ public class CrontabParserTest extends TestCase {
                                 "01"), crontab));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_minute()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_dayOfWeek_several_with_minute()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0,30");
@@ -532,7 +557,8 @@ public class CrontabParserTest extends TestCase {
                         == actual);
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_monthly1()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_monthly1()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("0");
@@ -550,7 +576,8 @@ public class CrontabParserTest extends TestCase {
                 crontab));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_monthly2()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_monthly2()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("25");
@@ -576,7 +603,8 @@ public class CrontabParserTest extends TestCase {
                                 "34"), crontab));
     }
 
-    public void test_getNextInvocationTime_A$Calendar$Crontab_monthly3()
+    @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_monthly3()
             throws Exception {
         Crontab crontab = new Crontab();
         crontab.minuteElement = new CrontabElement("25");
@@ -602,7 +630,8 @@ public class CrontabParserTest extends TestCase {
                                 "34"), crontab));
     }
 
-    public void test_getFixedNextInvocationValue_A$int$List() throws Exception {
+    @Test
+    public void getFixedNextInvocationValue_A$int$List() throws Exception {
         int arg0 = 0;
         final List<Integer> arg1 = new ArrayList<Integer>();
         arg1.add(1);
@@ -611,7 +640,8 @@ public class CrontabParserTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getFixedNextInvocationValue_A$int$int$RawCrontabLine()
+    @Test
+    public void getFixedNextInvocationValue_A$int$int$RawCrontabLine()
             throws Exception {
         int arg0 = 0;
         int arg1 = 60;
@@ -621,7 +651,8 @@ public class CrontabParserTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getIntervalInvocationCrontab_A$Crontab$RawCrontabLineArray()
+    @Test
+    public void getIntervalInvocationCrontab_A$Crontab$RawCrontabLineArray()
             throws Exception {
         Crontab arg0 = new Crontab();
         String[] arg1 = new String[]{"interval:6sec", "initial:12sec",
@@ -646,21 +677,24 @@ public class CrontabParserTest extends TestCase {
         assertTrue(1 == actual.namedServers.size());
     }
 
-    public void test_getLongValue_A$Crontab() throws Exception {
+    @Test
+    public void getLongValue_A$Crontab() throws Exception {
         String arg0 = "123sec";
         long actual = parser.getLongValue(arg0);
         long expected = 123L;
         assertEquals(expected, actual);
     }
 
-    public void test_getMultiplicity_A$Crontab() throws Exception {
+    @Test
+    public void getMultiplicity_A$Crontab() throws Exception {
         String arg0 = "com.m3.RunnableImpl*23";
         long actual = parser.getMultiplicityOfCommandWorkers(arg0);
         long expected = 23L;
         assertEquals(expected, actual);
     }
 
-    public void test_getCommandClassName_A$Crontab() throws Exception {
+    @Test
+    public void getCommandClassName_A$Crontab() throws Exception {
         String arg0 = "com.m3.RunnableImpl*23";
         CrontabCommandClassNameElement actual = parser.getCommandClassNameElement(arg0);
         CrontabCommandClassNameElement expected = new CrontabCommandClassNameElement(
@@ -668,7 +702,8 @@ public class CrontabParserTest extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void test_getNormalCrontab_A$Crontab$RawCrontabLineArray() throws Exception {
+    @Test
+    public void getNormalCrontab_A$Crontab$RawCrontabLineArray() throws Exception {
         Crontab arg0 = new Crontab();
         arg0.rawLine = new RawCrontabLine(
                 "*/3 * * * * hoge.foo.SampleTask host1,host2");
@@ -700,14 +735,16 @@ public class CrontabParserTest extends TestCase {
         assertTrue(2 == actual.namedServers.size());
     }
 
-    public void test_getCrontabDayOfWeekNumber_A$Calendar() throws Exception {
+    @Test
+    public void getCrontabDayOfWeekNumber_A$Calendar() throws Exception {
         Calendar cal = CalendarUtil.getCalendar("2010", "07", "01");
         int actual = parser.getCrontabDayOfWeekNumber(cal);
         int expected = 4;
         assertEquals(expected, actual);
     }
 
-    public void test_isInvocationValueContainedInCrontabValue_A$int$int$RawCrontabLine()
+    @Test
+    public void isInvocationValueContainedInCrontabValue_A$int$int$RawCrontabLine()
             throws Exception {
         int invocationValue = 1;
         int maxValue = 3;
@@ -716,6 +753,18 @@ public class CrontabParserTest extends TestCase {
                 invocationValue, maxValue, crontabValue);
         boolean expected = true;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void type() throws Exception {
+        assertNotNull(CrontabParser.class);
+    }
+
+    @Test
+    public void instantiation() throws Exception {
+        Class logImplClass = null;
+        CrontabParser target = new CrontabParser(logImplClass);
+        assertNotNull(target);
     }
 
 }

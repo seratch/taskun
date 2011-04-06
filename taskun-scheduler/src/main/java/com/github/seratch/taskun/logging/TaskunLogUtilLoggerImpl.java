@@ -3,7 +3,7 @@ package com.github.seratch.taskun.logging;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UtilLoggerImpl implements Log {
+public class TaskunLogUtilLoggerImpl implements TaskunLog {
 
     private String name;
 
@@ -39,16 +39,16 @@ public class UtilLoggerImpl implements Log {
         return new ClassNameAndMethodName("", "");
     }
 
-    public UtilLoggerImpl() {
+    public TaskunLogUtilLoggerImpl() {
         _log = Logger.getAnonymousLogger();
     }
 
-    public UtilLoggerImpl(Class<?> clazz) {
+    public TaskunLogUtilLoggerImpl(Class<?> clazz) {
         name = clazz.getCanonicalName();
         _log = Logger.getLogger(name);
     }
 
-    public UtilLoggerImpl(String name) {
+    public TaskunLogUtilLoggerImpl(String name) {
         this.name = name;
         _log = Logger.getLogger(name);
     }
@@ -56,6 +56,12 @@ public class UtilLoggerImpl implements Log {
     @Override
     public void debug(String message) {
         _log.fine(message);
+    }
+
+    @Override
+    public void debug(String message, Throwable t) {
+        ClassNameAndMethodName names = getClassNameAndMethodName();
+        this._log.logp(Level.FINE, names.className, names.methodName, message, t);
     }
 
     @Override

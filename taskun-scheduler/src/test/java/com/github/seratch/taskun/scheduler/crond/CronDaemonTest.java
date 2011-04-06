@@ -1,132 +1,107 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.inject.Injector;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import junit.framework.TestCase;
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.jmock.lib.legacy.ClassImposteriser;
+import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
+import com.github.seratch.taskun.scheduler.CurrentServer;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
+import com.github.seratch.taskun.util.CalendarUtil;
+import com.github.seratch.taskun.util.IOCloser;
+import com.github.seratch.taskun.util.StringUtil;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import com.github.seratch.taskun.scheduler.crond.CronDaemon.*;
+import static org.junit.Assert.*;
+
+import com.github.seratch.taskun.inject.SampleTaskunInjector;
+import com.github.seratch.taskun.inject.TaskunInjector;
+import com.github.seratch.taskun.logging.TaskunLog;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class CronDaemonTest extends TestCase {
+import static junit.framework.Assert.assertNotNull;
 
-    private CronDaemon cronDaemon;
-    private Injector injector;
-    private ScheduledExecutorService executorService;
-    private SchedulerConfig schedulerConfig;
+public class CronDaemonTest {
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        cronDaemon = new CronDaemon();
+
+    @Test
+    public void type() throws Exception {
+        assertNotNull(CronDaemon.class);
     }
 
-    protected void initialize(Mockery context) {
-        injector = context.mock(Injector.class);
-        executorService = context.mock(ScheduledExecutorService.class);
-        schedulerConfig = new SchedulerConfig();
-        context.checking(new Expectations() {
-            {
-            }
-        });
+    @Test
+    public void instantiation() throws Exception {
+        CronDaemon target = new CronDaemon();
+        assertNotNull(target);
     }
 
-    public void test_run_A$() throws Exception {
-        Mockery context = new Mockery() {
-            {
-                setImposteriser(ClassImposteriser.INSTANCE);
-            }
-        };
-        initialize(context);
-        context.checking(new Expectations() {
-            {
-                exactly(4).of(injector).getSchedulerConfig();
-                will(returnValue(schedulerConfig));
-            }
-        });
-        cronDaemon.initialize(injector, executorService);
-        cronDaemon.run();
+    CronDaemon crond = new CronDaemon();
+
+    @Before
+    public void setup() {
+        ScheduledExecutorService service = Mockito.mock(ScheduledExecutorService.class);
+        crond.initialize(new SampleTaskunInjector(), service);
     }
 
-    public void test_initialize_A$DIContainerAdaptor$ScheduledExecutorService()
-            throws Exception {
-        Mockery context = new Mockery() {
-            {
-                setImposteriser(ClassImposteriser.INSTANCE);
-            }
-        };
-        initialize(context);
-        context.checking(new Expectations() {
-            {
-                exactly(1).of(injector).getSchedulerConfig();
-                will(returnValue(schedulerConfig));
-            }
-        });
-        cronDaemon.initialize(injector, executorService);
+    @Test
+    public void getLog_A$String() throws Exception {
+        String name = "aaa";
+        TaskunLog actual = crond.getLog(name);
+        assertNotNull(actual);
     }
 
-    public void test_initialize_A$DIContainerAdaptor$ScheduledExecutorService$String()
-            throws Exception {
-        Mockery context = new Mockery() {
-            {
-                setImposteriser(ClassImposteriser.INSTANCE);
-            }
-        };
-        initialize(context);
-        context.checking(new Expectations() {
-            {
-                exactly(1).of(injector).getSchedulerConfig();
-                will(returnValue(schedulerConfig));
-            }
-        });
-        cronDaemon.initialize(injector, executorService, "filename");
+    @Test
+    public void run_A$() throws Exception {
+        crond.run();
     }
 
-    public void test_addCrontab_A$String() throws Exception {
-        Mockery context = new Mockery() {
-            {
-                setImposteriser(ClassImposteriser.INSTANCE);
-            }
-        };
-        initialize(context);
-        context.checking(new Expectations() {
-            {
-                exactly(1).of(injector).getSchedulerConfig();
-                will(returnValue(schedulerConfig));
-            }
-        });
-        try {
-            cronDaemon.initialize(injector, executorService);
-            cronDaemon.addCrontabLine(new RawCrontabLine("aaa"));
-            fail("Expected : IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-        }
-        cronDaemon.addCrontabLine(new RawCrontabLine(
-                "0 1 * * * hoge.foo.Var server1"));
+    @Test
+    public void getCommandWorker_A$Crontab() throws Exception {
+        Crontab crontabLine = new Crontab();
+        crontabLine.commandClassName = new CrontabCommandClassNameElement(
+                "com.github.seratch.taskun.scheduler.impl.SampleWorker");
+        Runnable actual = crond.getCommandWorker(crontabLine);
+        assertNotNull(actual);
     }
 
-    public void test_loggingAtEachInvocation_A$String() throws Exception {
-        Mockery context = new Mockery() {
-            {
-                setImposteriser(ClassImposteriser.INSTANCE);
-            }
-        };
-        initialize(context);
-        context.checking(new Expectations() {
-            {
-                exactly(2).of(injector).getSchedulerConfig();
-                will(returnValue(schedulerConfig));
-            }
-        });
-        String arg0 = "aaa";
-        cronDaemon.initialize(injector, executorService);
-        cronDaemon.loggingAtEachInvocation(arg0);
+    @Test
+    public void initialize_A$TaskunInjector$ScheduledExecutorService() throws Exception {
+        TaskunInjector taskunInjector = new SampleTaskunInjector();
+        ScheduledExecutorService executorService = null;
+        crond.initialize(taskunInjector, executorService);
     }
 
-    public void test_getSchedulingStringList_A$() throws Exception {
-        List<RawCrontabLine> actual = cronDaemon.getCurrentRawCrontabLines();
+    @Test
+    public void initialize_A$TaskunInjector$ScheduledExecutorService$String() throws Exception {
+        TaskunInjector taskunInjector = new SampleTaskunInjector();
+        ScheduledExecutorService executorService = Mockito.mock(ScheduledExecutorService.class);
+        String crontabFilepath = "sdfsafa";
+        crond.initialize(taskunInjector, executorService, crontabFilepath);
+    }
+
+    @Test
+    public void addCrontabLine_A$RawCrontabLine() throws Exception {
+        RawCrontabLine line = new RawCrontabLine("*/1 * * * * tmp");
+        crond.addCrontabLine(line);
+    }
+
+    @Test
+    public void loggingAtEachInvocation_A$String() throws Exception {
+        String message = "sdfsdfsa";
+        crond.loggingAtEachInvocation(message);
+    }
+
+    @Test
+    public void getCurrentRawCrontabLines_A$() throws Exception {
+        List<RawCrontabLine> actual = crond.getCurrentRawCrontabLines();
         assertNotNull(actual);
     }
 

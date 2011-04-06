@@ -1,8 +1,10 @@
 package com.github.seratch.taskun.logging;
 
-public interface Log {
+public interface TaskunLog {
 
     void debug(String message);
+
+    void debug(String message, Throwable t);
 
     void info(String message);
 
