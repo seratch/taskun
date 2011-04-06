@@ -181,6 +181,7 @@ NOTICE: taskun-log4j-extension is required.
 
 + [taskun-log4j-extension](https://github.com/seratch/taskun/blob/master/taskun-log4j-extension/readme.md)
 
+
     package snippet;
      
     import com.github.seratch.taskun.logging.Log4jLogImpl;
