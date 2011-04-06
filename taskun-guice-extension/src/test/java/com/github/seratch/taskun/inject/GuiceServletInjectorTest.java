@@ -11,12 +11,12 @@ public class GuiceServletInjectorTest {
 
     @Test
     public void type() throws Exception {
-        assertNotNull(GuiceServletInjector.class);
+        assertNotNull(GuiceTaskunServletInjector.class);
     }
 
     @Test
     public void instantiation() throws Exception {
-        GuiceServletInjector target = new GuiceServletInjector(new AbstractModule() {
+        GuiceTaskunServletInjector target = new GuiceTaskunServletInjector(new AbstractModule() {
             @Override
             protected void configure() {
             }
@@ -26,7 +26,7 @@ public class GuiceServletInjectorTest {
 
     @Test
     public void getScheduler_A$() throws Exception {
-        GuiceServletInjector target = new GuiceServletInjector(new AbstractModule() {
+        GuiceTaskunServletInjector target = new GuiceTaskunServletInjector(new AbstractModule() {
             @Override
             protected void configure() {
                 bind(Taskun.class).to(TaskunImpl.class);

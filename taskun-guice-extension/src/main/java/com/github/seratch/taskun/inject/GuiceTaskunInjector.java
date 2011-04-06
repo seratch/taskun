@@ -3,11 +3,11 @@ package com.github.seratch.taskun.inject;
 import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.google.inject.*;
 
-public class GuiceInjector implements TaskunInjector {
+public class GuiceTaskunInjector implements TaskunInjector {
 
     protected com.google.inject.Injector injector;
 
-    public GuiceInjector(Module module) {
+    public GuiceTaskunInjector(Module module) {
         this.injector = Guice.createInjector(module);
     }
 

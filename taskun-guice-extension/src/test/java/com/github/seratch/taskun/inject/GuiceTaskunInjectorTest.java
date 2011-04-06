@@ -6,16 +6,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class GuiceInjectorTest {
+public class GuiceTaskunInjectorTest {
 
     @Test
     public void type() throws Exception {
-        assertNotNull(GuiceInjector.class);
+        assertNotNull(GuiceTaskunInjector.class);
     }
 
     @Test
     public void instantiation() throws Exception {
-        GuiceInjector target = new GuiceInjector(new AbstractModule() {
+        GuiceTaskunInjector target = new GuiceTaskunInjector(new AbstractModule() {
             @Override
             protected void configure() {
             }
@@ -25,19 +25,19 @@ public class GuiceInjectorTest {
 
     @Test
     public void inject_A$Class() throws Exception {
-        GuiceInjector target = new GuiceInjector(new AbstractModule() {
+        GuiceTaskunInjector target = new GuiceTaskunInjector(new AbstractModule() {
             @Override
             protected void configure() {
             }
         });
-        Class<?> clazz = GuiceInjectorTest.class;
+        Class<?> clazz = GuiceTaskunInjectorTest.class;
         Object actual = target.inject(clazz);
         assertNotNull(actual);
     }
 
     @Test
     public void getTaskunConfig_A$() throws Exception {
-        GuiceInjector target = new GuiceInjector(new AbstractModule() {
+        GuiceTaskunInjector target = new GuiceTaskunInjector(new AbstractModule() {
             @Override
             protected void configure() {
             }
