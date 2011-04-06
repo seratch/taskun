@@ -8,15 +8,16 @@
 
 Zero dependency, no additional jars required.
 
-    ./download/taskun-scheduler-1.*.jar
-    
-    ./download/taskun-servlet-extension-1.*.jar
-    
-    ./download/taskun-log4j-extension-1.*.jar
-    
-    ./download/taskun-guice-extension-1.*.jar
-    ./download/taskun-spring-extension-1.*.jar
-    ./download/taskun-s2-extension-1.*.jar
+#### Taskun only
+    ./download/taskun-taskun-1.4.*.jar
+#### Runs on Servlet
+    ./download/taskun-servlet-extension-1.4.*.jar
+#### Not java.util.Logger but other logging
+    ./download/taskun-log4j-extension-1.4.*.jar
+#### With Dependency injection
+    ./download/taskun-guice-extension-1.4.*.jar
+    ./download/taskun-spring-extension-1.4.*.jar
+    ./download/taskun-s2-extension-1.4.*.jar
 
 ### Maven
 
@@ -37,13 +38,13 @@ Zero dependency, no additional jars required.
       ...
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
-        <artifactId>taskun-scheduler</artifactId>
-        <version>[1,)</version>
+        <artifactId>taskun-taskun</artifactId>
+        <version>[1.4,)</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-servlet-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       
       <!-- OPTIONAL EXTENSIONS -->
@@ -51,22 +52,22 @@ Zero dependency, no additional jars required.
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-log4j-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-guice-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-spring-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-s2-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       -->
       ...
@@ -92,9 +93,9 @@ Zero dependency, no additional jars required.
 
     package snippet;
     public static void main(String[] args) throws Exception {
-      Scheduler scheduler = new TaskunScheduler();
-      scheduler.initialize(new SchedulerConfig());
-      scheduler.start();
+      Taskun taskun = TaskunFactory.getInstance();
+      taskun.initialize(new TaskunConfig());
+      taskun.start();
       Thread.sleep(20000L);
     }
 
@@ -108,18 +109,18 @@ Zero dependency, no additional jars required.
 
     [INFO] Started Jetty Server
     [INFO] Starting scanner at interval of 3 seconds.
-    2011/04/02 0:00:53 com.github.seratch.taskun.scheduler.crond.CronDaemon initialize
-    INFO: ----- Taskun-scheduler initialized -----
-    2011/04/02 0:00:53 com.github.seratch.taskun.scheduler.crond.CronDaemon initialize
+    2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
+    INFO: ----- Taskun-taskun initialized -----
+    2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: Working at seratch-imac(seratch-imac)
-    2011/04/02 0:00:53 com.github.seratch.taskun.scheduler.crond.CronDaemon initialize
+    2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: Interval invocation : 3sec,com.github.seratch.taskun.servlet.snippet.EchoWorker,1
-    2011/04/02 0:00:53 com.github.seratch.taskun.scheduler.crond.CronDaemon initialize
+    2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: Crontab invocation : */1 * * * * com.github.seratch.taskun.servlet.snippet.EchoWorker*3
-    2011/04/02 0:00:53 com.github.seratch.taskun.scheduler.crond.CronDaemon initialize
+    2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: ----------------------------------------
-    2011/04/02 0:00:53 com.github.seratch.taskun.servlet.snippet.SnippetSchedulerServlet init
-    INFO: Taskun-scheduler has started!
+    2011/04/02 0:00:53 com.github.seratch.taskun.servlet.snippet.SnippetTaskunServlet init
+    INFO: Taskun-taskun has started!
     [NamedServers:]
     Hello, World! (Thread:20,Sat Apr 02 00:00:58 JST 2011)
     Hello, World! (Thread:21,Sat Apr 02 00:01:00 JST 2011)
@@ -131,8 +132,8 @@ Zero dependency, no additional jars required.
 ### src/main/webapp/WEB-INF/web.xml
 
     <servlet>
-      <servlet-name>schedulerServlet</servlet-name>
-      <servlet-class>com.github.seratch.taskun.servlet.impl.DefaultSchedulerServlet</servlet-class>
+      <servlet-name>taskunServlet</servlet-name>
+      <servlet-class>com.github.seratch.taskun.servlet.impl.DefaultTaskunServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
     </servlet>
 
@@ -143,7 +144,7 @@ Zero dependency, no additional jars required.
 
 ### src/main/resources/taskun.properties
 
-    enableInvokingScheduler=true
+    enableInvokingTaskun=true
     enableLoggingForEachCrondInvocation=true
     namedServer1=.*server1
     namedServer2=server2*.example.com
@@ -151,17 +152,19 @@ Zero dependency, no additional jars required.
 
 ### Deploy and run
 
-## Snippet4: Injecting scheduler, config and worker instances
+## Snippet4: Injecting taskun, config and worker instances
 
 NOTICE: taskun-guice-extension, taskun-spring-extension or taskun-s2-extension is required.
 
-Please read readme.md of extensions.
++ [taskun-guice-extension](https://github.com/seratch/taskun/blob/master/taskun-guice-extension/readme.md)
++ [taskun-spring-extension](https://github.com/seratch/taskun/blob/master/taskun-spring-extension/readme.md)
++ [taskun-s2-extension](https://github.com/seratch/taskun/blob/master/taskun-s2-extension/readme.md)
 
 ## Snippet5: Using extended notations
 
 ### Invoking seconds intervals
 
-"initial" is waiting time for the first invoking since taskun scheduler started.
+"initial" is waiting time for the first invoking since taskun taskun started.
 
     interval:3sec initial:5sec snippet.EchoWorker
 
@@ -176,16 +179,18 @@ Following will invoke 3 threads to do same command(=EchoWorker) at once:
 
 NOTICE: taskun-log4j-extension is required.
 
++ [taskun-log4j-extension](https://github.com/seratch/taskun/blob/master/taskun-log4j-extension/readme.md)
+
     package snippet;
     
     import com.github.seratch.taskun.logging.Log4jLogImpl;
     
     public static void main(String[] args) throws Exception {
-      Scheduler scheduler = new TaskunScheduler();
-      SchedulerConfig config = new SchedulerConfig();
+      Taskun taskun = TaskunFactory.getInstance();
+      TaskunConfig config = new TaskunConfig();
       config.setLogImplClass(Log4jLogImpl.class); 
-      scheduler.initialize(config);
-      scheduler.start();
+      taskun.initialize(config);
+      taskun.start();
       Thread.sleep(20000L);
     }
 

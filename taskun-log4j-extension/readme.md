@@ -7,7 +7,7 @@ http://logging.apache.org/log4j/
 
 ### Download jar file
 
-    /download/taskun-log4j-extension-1.*.jar
+    /download/taskun-log4j-extension-1.4.*.jar
 
 ### Maven
 
@@ -29,22 +29,22 @@ http://logging.apache.org/log4j/
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-log4j-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       ...
     </dependencies>
 
 ## Snippet
 
-It is required to set Log4JLogImpl.class to SchedulerConfig.
+It is required to set Log4JLogImpl.class to TaskunConfig.
 
     @Test
     public void using() throws Exception {
-        Scheduler scheduler = new TaskunScheduler();
-        SchedulerConfig config = new SchedulerConfig();
+        Taskun taskun = TaskunFactory.getInstance();
+        TaskunConfig config = new TaskunConfig();
         config.setLogImplClass(Log4jLogImpl.class);
-        scheduler.initialize(config);
-        scheduler.start();
+        taskun.initialize(config);
+        taskun.start();
         Thread.sleep(2000L);
     }
 
