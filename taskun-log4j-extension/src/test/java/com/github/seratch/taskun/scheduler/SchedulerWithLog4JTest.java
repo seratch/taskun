@@ -1,19 +1,18 @@
 package com.github.seratch.taskun.scheduler;
 
-import com.github.seratch.taskun.logging.Log4jLogImpl;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.logging.TaskunLogLog4jImpl;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import org.junit.Test;
 
 public class SchedulerWithLog4JTest {
 
     @Test
     public void using() throws Exception {
-        Scheduler scheduler = new TaskunScheduler();
-        SchedulerConfig config = new SchedulerConfig();
-        config.setLogImplClass(Log4jLogImpl.class);
-        scheduler.initialize(config);
-        scheduler.start();
+        Taskun taskun = TaskunFactory.getInstance();
+        TaskunConfig config = new TaskunConfig();
+        config.setLogImplClass(TaskunLogLog4jImpl.class);
+        taskun.initialize(config);
+        taskun.start();
         Thread.sleep(2000L);
     }
 

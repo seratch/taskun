@@ -2,21 +2,26 @@ package com.github.seratch.taskun.logging;
 
 import org.apache.commons.logging.LogFactory;
 
-public class Log4jLogImpl implements Log {
+public class TaskunLogLog4jImpl implements TaskunLog {
 
     private org.apache.commons.logging.Log _log;
 
-    public Log4jLogImpl(Class<?> clazz) {
+    public TaskunLogLog4jImpl(Class<?> clazz) {
         this(clazz.getCanonicalName());
     }
 
-    public Log4jLogImpl(String name) {
+    public TaskunLogLog4jImpl(String name) {
         _log = LogFactory.getLog(name);
     }
 
     @Override
     public void debug(String message) {
         _log.debug(message);
+    }
+
+    @Override
+    public void debug(String message, Throwable t) {
+        _log.debug(message, t);
     }
 
     @Override
