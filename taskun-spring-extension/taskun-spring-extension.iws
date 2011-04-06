@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fad2b780-f0de-4d82-a89f-3a89297686bc" name="Default" comment="" />
+    <list default="true" id="86e9ea16-69dc-4945-ac81-e239edfc3323" name="Default" comment="" />
     <ignored path="taskun-spring-extension.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,9 +11,85 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel view="Project" />
+    <rightPanel view="Project" />
+    <splitter proportion="0.5" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="COMPILE_IN_BACKGROUND" value="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
     <option name="REVERSE_PATCH" value="false" />
+  </component>
+  <component name="Cvs2Configuration">
+    <option name="ON_FILE_ADDING" value="0" />
+    <option name="ON_FILE_REMOVING" value="0" />
+    <option name="PRUNE_EMPTY_DIRECTORIES" value="true" />
+    <option name="SHOW_UPDATE_OPTIONS" value="true" />
+    <option name="SHOW_ADD_OPTIONS" value="true" />
+    <option name="SHOW_REMOVE_OPTIONS" value="true" />
+    <option name="MERGING_MODE" value="0" />
+    <option name="MERGE_WITH_BRANCH1_NAME" value="HEAD" />
+    <option name="MERGE_WITH_BRANCH2_NAME" value="HEAD" />
+    <option name="RESET_STICKY" value="false" />
+    <option name="CREATE_NEW_DIRECTORIES" value="true" />
+    <option name="DEFAULT_TEXT_FILE_SUBSTITUTION" value="kv" />
+    <option name="PROCESS_UNKNOWN_FILES" value="false" />
+    <option name="PROCESS_DELETED_FILES" value="false" />
+    <option name="SHOW_EDIT_DIALOG" value="true" />
+    <option name="RESERVED_EDIT" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <option name="SHOW_CHECKOUT_OPTIONS" value="true" />
+    <option name="CHECKOUT_DATE_OR_REVISION_SETTINGS">
+      <value>
+        <option name="BRANCH" value="" />
+        <option name="DATE" value="" />
+        <option name="USE_BRANCH" value="false" />
+        <option name="USE_DATE" value="false" />
+      </value>
+    </option>
+    <option name="UPDATE_DATE_OR_REVISION_SETTINGS">
+      <value>
+        <option name="BRANCH" value="" />
+        <option name="DATE" value="" />
+        <option name="USE_BRANCH" value="false" />
+        <option name="USE_DATE" value="false" />
+      </value>
+    </option>
+    <option name="SHOW_CHANGES_REVISION_SETTINGS">
+      <value>
+        <option name="BRANCH" value="" />
+        <option name="DATE" value="" />
+        <option name="USE_BRANCH" value="false" />
+        <option name="USE_DATE" value="false" />
+      </value>
+    </option>
+    <option name="SHOW_OUTPUT" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="ADD_WATCH_INDEX" value="0" />
+    <option name="REMOVE_WATCH_INDEX" value="0" />
+    <option name="UPDATE_KEYWORD_SUBSTITUTION" />
+    <option name="MAKE_NEW_FILES_READONLY" value="false" />
+    <option name="SHOW_CORRUPTED_PROJECT_FILES" value="0" />
+    <option name="TAG_AFTER_FILE_COMMIT" value="false" />
+    <option name="TAG_AFTER_FILE_COMMIT_NAME" value="" />
+    <option name="TAG_AFTER_PROJECT_COMMIT" value="false" />
+    <option name="TAG_AFTER_PROJECT_COMMIT_NAME" value="" />
+    <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
+    <option name="SHOW_CHECKIN_OPTIONS" value="true" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="SAVE_LAST_COMMIT_MESSAGE" value="true" />
+    <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_FILE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -54,91 +130,141 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="DebuggerSettings">
+    <option name="TRACING_FILTERS_ENABLED" value="true" />
+    <option name="TOSTRING_CLASSES_ENABLED" value="false" />
+    <option name="VALUE_LOOKUP_DELAY" value="700" />
+    <option name="DEBUGGER_TRANSPORT" value="0" />
+    <option name="FORCE_CLASSIC_VM" value="true" />
+    <option name="HIDE_DEBUGGER_ON_PROCESS_TERMINATION" value="false" />
+    <option name="SKIP_SYNTHETIC_METHODS" value="true" />
+    <option name="SKIP_CONSTRUCTORS" value="false" />
+    <option name="STEP_THREAD_SUSPEND_POLICY" value="SuspendThread" />
+    <default_breakpoint_settings>
+      <option name="NOTIFY_CAUGHT" value="true" />
+      <option name="NOTIFY_UNCAUGHT" value="true" />
+      <option name="WATCH_MODIFICATION" value="true" />
+      <option name="WATCH_ACCESS" value="true" />
+      <option name="WATCH_ENTRY" value="true" />
+      <option name="WATCH_EXIT" value="true" />
+      <option name="ENABLED" value="true" />
+      <option name="SUSPEND_VM" value="true" />
+      <option name="COUNT_FILTER_ENABLED" value="false" />
+      <option name="COUNT_FILTER" value="0" />
+      <option name="CONDITION_ENABLED" value="false" />
+      <option name="CONDITION" />
+      <option name="LOG_ENABLED" value="false" />
+      <option name="LOG_EXPRESSION_ENABLED" value="false" />
+      <option name="LOG_MESSAGE" />
+      <option name="CLASS_FILTERS_ENABLED" value="false" />
+      <option name="INVERSE_CLASS_FILLTERS" value="false" />
+      <option name="SUSPEND_POLICY" value="SuspendAll" />
+    </default_breakpoint_settings>
+    <filter>
+      <option name="PATTERN" value="com.sun.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+    <filter>
+      <option name="PATTERN" value="java.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+    <filter>
+      <option name="PATTERN" value="javax.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+    <filter>
+      <option name="PATTERN" value="org.omg.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+    <filter>
+      <option name="PATTERN" value="sun.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+    <filter>
+      <option name="PATTERN" value="junit.*" />
+      <option name="ENABLED" value="true" />
+    </filter>
+  </component>
+  <component name="EjbViewSettings">
+    <EjbView showMembers="false" autoscrollToSource="false" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="taskun-spring-extension" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="SpringInjectorTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringInjectorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpringSchedulerServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="35" selection-start="193" selection-end="215" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="snippet_applicationContext.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/snippet_applicationContext.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="34" selection-start="0" selection-end="382" vertical-scroll-proportion="0.19712526">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpringSchedulerServletTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServletTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SnippetSpringSchedulerServletTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServletTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="754" selection-end="754" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="HierarchyBrowserManager">
+    <option name="SHOW_PACKAGES" value="false" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="SORT_ALPHABETICALLY" value="false" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/snippet_applicationContext.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringServletInjector.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringInjector.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringServletInjector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringContextTaskunInjector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringServletContextTaskunInjector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringContextTaskunServletInjector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServlet.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringServletInjectorTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServletTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringContextTaskunInjectorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServletTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringInjectorTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringServletInjectorTest.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/snippet_applicationContext.xml" />
       </list>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="InspectionManager">
+    <option name="AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="SPLITTER_PROPORTION" value="0.5" />
+    <profile name="Default" />
+  </component>
+  <component name="LvcsProjectConfiguration">
+    <option name="ADD_LABEL_ON_PROJECT_OPEN" value="true" />
+    <option name="ADD_LABEL_ON_PROJECT_COMPILATION" value="true" />
+    <option name="ADD_LABEL_ON_FILE_PACKAGE_COMPILATION" value="true" />
+    <option name="ADD_LABEL_ON_PROJECT_MAKE" value="true" />
+    <option name="ADD_LABEL_ON_RUNNING" value="true" />
+    <option name="ADD_LABEL_ON_DEBUGGING" value="true" />
+    <option name="ADD_LABEL_ON_UNIT_TEST_PASSED" value="true" />
+    <option name="ADD_LABEL_ON_UNIT_TEST_FAILED" value="true" />
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="PerforceConfiguration">
+    <option name="PORT" value="magic:1666" />
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="CLIENT" value="" />
+    <option name="TRACE" value="false" />
+    <option name="PERFORCE_STATUS" value="true" />
+    <option name="CHANGELIST_OPTION" value="false" />
+    <option name="SYSTEMROOT" value="" />
+    <option name="P4_EXECUTABLE" value="p4" />
+    <option name="SHOW_BRANCH_HISTORY" value="false" />
+    <option name="GENERATE_COMMENT" value="false" />
+    <option name="SYNC_OPTION" value="Sync" />
+    <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
+    <option name="SHOW_CHECKIN_OPTIONS" value="true" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="SAVE_LAST_COMMIT_MESSAGE" value="true" />
+    <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_FILE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -151,7 +277,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -166,7 +292,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -200,6 +327,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -449,41 +580,38 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Favorites" />
     </panes>
+  </component>
+  <component name="ProjectViewSettings">
+    <navigator currentView="ProjectPane" flattenPackages="false" showMembers="false" showStructure="false" autoscrollToSource="false" splitterProportion="0.5" />
+    <view id="ProjectPane">
+      <expanded_node type="directory" url="file://$PROJECT_DIR$" />
+    </view>
+    <view id="SourcepathPane" />
+    <view id="ClasspathPane" />
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Project" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="IntelliLang.Configuration" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="dynamic.classpath" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test/resources" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.SpringInjectorTest">
-    <configuration default="false" name="SpringServletInjectorTest" type="JUnit" factoryName="JUnit" temporary="true">
+  <component name="RunManager" selected="JUnit.SnippetSpringSchedulerServletTest">
+    <configuration default="false" name="SpringSchedulerServletTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="taskun-spring-extension" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.github.seratch.taskun.inject" />
-      <option name="MAIN_CLASS_NAME" value="com.github.seratch.taskun.inject.SpringServletInjectorTest" />
+      <option name="PACKAGE_NAME" value="com.github.seratch.taskun.servlet.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.github.seratch.taskun.servlet.impl.SpringSchedulerServletTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -492,7 +620,7 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
+        <value defaultName="wholeProject" />
       </option>
       <envs />
       <patterns />
@@ -514,51 +642,7 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SpringSchedulerServletTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="taskun-spring-extension" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.github.seratch.taskun.servlet.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.github.seratch.taskun.servlet.impl.SpringSchedulerServletTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SpringInjectorTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="taskun-spring-extension" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.github.seratch.taskun.inject" />
-      <option name="MAIN_CLASS_NAME" value="com.github.seratch.taskun.inject.SpringInjectorTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
+        <value defaultName="wholeProject" />
       </option>
       <envs />
       <patterns />
@@ -575,23 +659,6 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="SBT.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="SpecsRunConfiguration" factoryName="Specs">
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="packagepath" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="sysFilter" value=".*" />
-      <setting name="exampleFilter" value=".*" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
         <option name="SBT.BeforeRunTask" enabled="false" />
       </method>
@@ -649,7 +716,7 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
+        <value defaultName="wholeProject" />
       </option>
       <envs />
       <patterns />
@@ -661,34 +728,35 @@
         <option name="SBT.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="version" value="false" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="SBT.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.SpringServletInjectorTest" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SpringSchedulerServletTest" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.SnippetSpringSchedulerServletTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SpringSchedulerServletTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SpringInjectorTest" />
     </list>
-    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
-      <Host>localhost</Host>
-      <Port>5050</Port>
-    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StarteamConfiguration">
+    <option name="SERVER" value="" />
+    <option name="PORT" value="49201" />
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="PROJECT" value="" />
+    <option name="VIEW" value="" />
+    <option name="ALTERNATIVE_WORKING_PATH" value="" />
+    <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
+    <option name="SHOW_CHECKIN_OPTIONS" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="SORT_MODE" value="0" />
+    <option name="GROUP_INHERITED" value="true" />
+    <option name="AUTOSCROLL_MODE" value="true" />
+    <option name="SHOW_FIELDS" value="true" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="false" />
+    <option name="GROUP_GETTERS_AND_SETTERS" value="true" />
+    <option name="SHOW_INHERITED" value="false" />
+    <option name="HIDE_NOT_PUBLIC" value="false" />
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -706,35 +774,51 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fad2b780-f0de-4d82-a89f-3a89297686bc" name="Default" comment="" />
-      <created>1301869946966</created>
-      <updated>1301869946966</updated>
+      <changelist id="86e9ea16-69dc-4945-ac81-e239edfc3323" name="Default" comment="" />
+      <created>1302104923075</created>
+      <updated>1302104923075</updated>
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="215" y="50" width="1378" height="919" extended-state="0" />
-    <editor active="true" />
+    <frame x="164" y="23" width="1244" height="779" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916147" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24905944" sideWeight="0.67083853" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24937238" sideWeight="0.6707132" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928678" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -760,11 +844,63 @@
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
     <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
     <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
-    <option name="ACTIVE_VCS_NAME" />
+    <option name="ACTIVE_VCS_NAME" value="" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="VssConfiguration">
+    <CheckoutOptions>
+      <option name="COMMENT" value="" />
+      <option name="DO_NOT_GET_LATEST_VERSION" value="false" />
+      <option name="REPLACE_WRITABLE" value="false" />
+      <option name="RECURSIVE" value="false" />
+    </CheckoutOptions>
+    <CheckinOptions>
+      <option name="COMMENT" value="" />
+      <option name="KEEP_CHECKED_OUT" value="false" />
+      <option name="RECURSIVE" value="false" />
+    </CheckinOptions>
+    <AddOptions>
+      <option name="COMMENT" value="" />
+      <option name="STORE_ONLY_LATEST_VERSION" value="false" />
+      <option name="CHECK_OUT_IMMEDIATELY" value="false" />
+      <option name="FILE_TYPE" value="0" />
+    </AddOptions>
+    <UndocheckoutOptions>
+      <option name="MAKE_WRITABLE" value="false" />
+      <option name="REPLACE_LOCAL_COPY" value="0" />
+      <option name="RECURSIVE" value="false" />
+    </UndocheckoutOptions>
+    <DiffOptions>
+      <option name="IGNORE_WHITE_SPACE" value="false" />
+      <option name="IGNORE_CASE" value="false" />
+    </DiffOptions>
+    <GetOptions>
+      <option name="REPLACE_WRITABLE" value="0" />
+      <option name="MAKE_WRITABLE" value="false" />
+      <option name="RECURSIVE" value="false" />
+    </GetOptions>
+    <option name="CLIENT_PATH" value="" />
+    <option name="SRCSAFEINI_PATH" value="" />
+    <option name="USER_NAME" value="" />
+    <option name="PWD" value="" />
+    <option name="SHOW_CHECKOUT_OPTIONS" value="true" />
+    <option name="SHOW_ADD_OPTIONS" value="true" />
+    <option name="SHOW_UNDOCHECKOUT_OPTIONS" value="true" />
+    <option name="SHOW_DIFF_OPTIONS" value="true" />
+    <option name="SHOW_GET_OPTIONS" value="true" />
+    <option name="USE_EXTERNAL_DIFF" value="false" />
+    <option name="EXTERNAL_DIFF_PATH" value="" />
+    <option name="REUSE_LAST_COMMENT" value="false" />
+    <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
+    <option name="SHOW_CHECKIN_OPTIONS" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
+  </component>
+  <component name="WebViewSettings">
+    <webview flattenPackages="false" showMembers="false" autoscrollToSource="false" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -774,9 +910,69 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/taskun-spring-extension.ipr">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringContextTaskunServletInjector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.015852047">
+        <state line="14" column="41" selection-start="425" selection-end="425" vertical-scroll-proportion="0.26666668">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringContextTaskunInjector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="43" selection-start="790" selection-end="790" vertical-scroll-proportion="0.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="23" selection-start="339" selection-end="339" vertical-scroll-proportion="0.15238096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringContextTaskunInjectorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="12" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.6857143">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringServletInjectorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="42" selection-start="723" selection-end="723" vertical-scroll-proportion="0.6101695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServletTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="16" selection-start="415" selection-end="415" vertical-scroll-proportion="0.52300245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="16" selection-start="362" selection-end="362" vertical-scroll-proportion="0.23244552">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="263" selection-end="263" vertical-scroll-proportion="0.17433414">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/snippet_applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="83" selection-start="351" selection-end="351" vertical-scroll-proportion="0.17433414">
           <folding />
         </state>
       </provider>
@@ -788,99 +984,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar!/org/springframework/context/support/ClassPathXmlApplicationContext.class">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServletTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="11" selection-start="563" selection-end="563" vertical-scroll-proportion="0.20224719">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="734" selection-end="734" vertical-scroll-proportion="0.2961039">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringServletInjector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="237" selection-end="237" vertical-scroll-proportion="0.10909091">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/inject/SpringInjector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="373" selection-end="373" vertical-scroll-proportion="0.18701299">
+        <state line="21" column="23" selection-start="562" selection-end="562" vertical-scroll-proportion="0.6101695">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="0" selection-start="6274" selection-end="6274" vertical-scroll-proportion="0.76623374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="79" selection-start="448" selection-end="448" vertical-scroll-proportion="0.14025974">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringServletInjectorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="669" selection-end="669" vertical-scroll-proportion="0.3272727">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServletTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/servlet/snippet/SnippetSpringSchedulerServletTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="754" selection-end="754" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/github/seratch/taskun/inject/SpringInjectorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/seratch/taskun/servlet/impl/SpringSchedulerServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="35" selection-start="193" selection-end="215" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/snippet_applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="34" selection-start="0" selection-end="382" vertical-scroll-proportion="0.19712526">
-          <folding />
-        </state>
-      </provider>
-    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Android</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>taskun-spring-extension</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

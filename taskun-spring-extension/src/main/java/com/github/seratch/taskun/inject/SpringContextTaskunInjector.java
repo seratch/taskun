@@ -1,28 +1,29 @@
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class SpringInjector implements Injector {
+public class SpringContextTaskunInjector implements TaskunInjector {
 
 
     protected ApplicationContext context = null;
 
-    public SpringInjector() {
-        if ( context == null ) {
+    public SpringContextTaskunInjector() {
+        if (context == null) {
             context = new ClassPathXmlApplicationContext("applicationContext.xml");
         }
     }
 
-    public SpringInjector(String applicationContextXML) {
+    public SpringContextTaskunInjector(String applicationContextXML) {
         context = new ClassPathXmlApplicationContext(applicationContextXML);
     }
 
     @Override
-    public SchedulerConfig getSchedulerConfig() {
-        return context.getBean(SchedulerConfig.class);
+    public TaskunConfig getTaskunConfig() {
+        return context.getBean(TaskunConfig.class);
     }
+
 
     @Override
     public <T> T inject(Class<?> clazz) {

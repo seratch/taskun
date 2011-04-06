@@ -1,11 +1,7 @@
 package com.github.seratch.taskun.servlet.impl;
 
-import com.github.seratch.taskun.servlet.impl.SpringSchedulerServlet.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
-import com.github.seratch.taskun.inject.SpringServletInjector;
-import com.github.seratch.taskun.servlet.AbstractSchedulerServlet;
 
 public class SpringSchedulerServletTest {
 

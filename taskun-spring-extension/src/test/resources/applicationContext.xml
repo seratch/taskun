@@ -2,8 +2,8 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean id="schedulerConfig" class="com.github.seratch.taskun.scheduler.config.SchedulerConfig">
+    <bean id="config" class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
     </bean>
-    <bean id="scheduler" class="com.github.seratch.taskun.scheduler.impl.TaskunScheduler">
+    <bean id="taskun" class="com.github.seratch.taskun.scheduler.impl.TaskunImpl">
     </bean>
 </beans>
