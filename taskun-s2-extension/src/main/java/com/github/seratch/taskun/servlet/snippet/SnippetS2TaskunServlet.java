@@ -2,9 +2,9 @@ package com.github.seratch.taskun.servlet.snippet;
 
 import com.github.seratch.taskun.inject.S2TaskunServletInjector;
 import com.github.seratch.taskun.scheduler.Taskun;
-import com.github.seratch.taskun.servlet.impl.S2SchedulerServlet;
+import com.github.seratch.taskun.servlet.impl.S2TaskunServlet;
 
-public class SnippetS2SchedulerServlet extends S2SchedulerServlet {
+public class SnippetS2TaskunServlet extends S2TaskunServlet {
 
     @Override
     protected void prepareToInit() {

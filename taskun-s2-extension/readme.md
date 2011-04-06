@@ -7,7 +7,7 @@ http://s2container.seasar.org/2.4/ja/DIContainer.html
 
 ### Download jar file
 
-    /download/taskun-s2-extension-1.*.jar
+    /download/taskun-s2-extension-1.4.*.jar
 
 ### Maven
 
@@ -29,7 +29,7 @@ http://s2container.seasar.org/2.4/ja/DIContainer.html
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-s2-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       ...
     </dependencies>
@@ -42,11 +42,11 @@ http://s2container.seasar.org/2.4/ja/DIContainer.html
     <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
         "http://www.seasar.org/dtd/components24.dtd">
     <components>
-      <component name="scheduler"
-        class="com.github.seratch.taskun.scheduler.impl.TaskunScheduler">
+      <component name="taskun"
+        class="com.github.seratch.taskun.scheduler.impl.TaskunImpl">
       </component>
-      <component name="schedulerConfig"
-        class="com.github.seratch.taskun.scheduler.config.SchedulerConfig">
+      <component name="taskunConfig"
+        class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
       </component>
     </components>
 
@@ -59,7 +59,7 @@ http://s2container.seasar.org/2.4/ja/DIContainer.html
 
     <servlet>
       <servlet-name>s2SchedulerServlet</servlet-name>
-      <servlet-class>com.github.seratch.taskun.servlet.impl.S2SchedulerServlet</servlet-class>
+      <servlet-class>com.github.seratch.taskun.servlet.impl.S2TaskunServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
     </servlet>
 
