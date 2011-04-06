@@ -7,7 +7,7 @@ public class SampleTaskunInjector implements TaskunInjector {
     public TaskunConfig config = new TaskunConfig();
 
     @Override
-    public TaskunConfig getSchedulerConfig() {
+    public TaskunConfig getTaskunConfig() {
         TaskunConfig config = new TaskunConfig();
         return config;
     }

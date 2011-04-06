@@ -19,7 +19,7 @@ import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 
 public interface TaskunInjector {
 
-    TaskunConfig getSchedulerConfig();
+    TaskunConfig getTaskunConfig();
 
     <T> T inject(Class<?> clazz);
 

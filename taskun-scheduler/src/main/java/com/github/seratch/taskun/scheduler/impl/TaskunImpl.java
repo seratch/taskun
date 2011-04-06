@@ -43,7 +43,7 @@ public class TaskunImpl implements Taskun {
         final TaskunConfig config_ = config;
         initialize(new TaskunInjector() {
             @Override
-            public TaskunConfig getSchedulerConfig() {
+            public TaskunConfig getTaskunConfig() {
                 return config_;
             }
 

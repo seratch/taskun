@@ -164,7 +164,7 @@ public class CronDaemon implements Runnable {
 
         this.taskunInjector = taskunInjector;
 
-        TaskunConfig config = taskunInjector.getSchedulerConfig();
+        TaskunConfig config = taskunInjector.getTaskunConfig();
         if (config != null) {
             this.logImplClass = config.getLogImplClass();
             this.taskunLog = getTaskunLog();
@@ -190,7 +190,7 @@ public class CronDaemon implements Runnable {
             }
             // working server config
             thisServerHostname = CurrentServer.getHostname();
-            thisServerNameIfGiven = CurrentServer.getServerName(taskunInjector.getSchedulerConfig());
+            thisServerNameIfGiven = CurrentServer.getServerName(taskunInjector.getTaskunConfig());
             if (StringUtil.isEmpty(thisServerNameIfGiven)) {
                 thisServerNameIfGiven = thisServerHostname;
             }
@@ -265,7 +265,7 @@ public class CronDaemon implements Runnable {
     }
 
     void loggingAtEachInvocation(String message) {
-        boolean isEnabled = taskunInjector.getSchedulerConfig().enableLoggingForEachCrondInvocation;
+        boolean isEnabled = taskunInjector.getTaskunConfig().enableLoggingForEachCrondInvocation;
         if (isEnabled) {
             taskunLog.info(message);
         }
@@ -274,7 +274,7 @@ public class CronDaemon implements Runnable {
     public List<RawCrontabLine> getCurrentRawCrontabLines() {
         String serverName = null;
         try {
-            serverName = CurrentServer.getServerName(taskunInjector.getSchedulerConfig());
+            serverName = CurrentServer.getServerName(taskunInjector.getTaskunConfig());
         } catch (Exception e) {
             taskunLog.error("Cannot get working server", e);
         }
