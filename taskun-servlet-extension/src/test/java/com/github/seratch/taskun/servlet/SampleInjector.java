@@ -1,28 +1,25 @@
 package com.github.seratch.taskun.servlet;
 
-import com.github.seratch.taskun.inject.ServletInjector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.TaskunFactory;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 
-public class SampleInjector implements ServletInjector {
-
-    public SchedulerConfig config = new SchedulerConfig();
+public class SampleInjector implements TaskunServletInjector {
 
     @Override
-    public Scheduler getScheduler() {
-        return new TaskunScheduler();
+    public Taskun getTaskun() {
+        return TaskunFactory.getInstance();
     }
 
     @Override
-    public SchedulerConfig getSchedulerConfig() {
-        SchedulerConfig config = new SchedulerConfig();
+    public TaskunConfig getTaskunConfig() {
+        TaskunConfig config = new TaskunConfig();
         return config;
     }
 
     @Override
     public <T> T inject(Class<?> arg0) {
-        // TODO Auto-generated method stub
         return null;
     }
 

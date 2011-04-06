@@ -1,21 +1,21 @@
 package com.github.seratch.taskun.servlet;
 
-import com.github.seratch.taskun.inject.ServletInjector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.TaskunFactory;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class GuiceServletInjector implements ServletInjector {
+public class GuiceServletInjector implements TaskunServletInjector {
 
     Injector injector = Guice.createInjector(new AbstractModule() {
         @Override
         protected void configure() {
-            Scheduler scheduler = new TaskunScheduler();
-            scheduler.replaceCrontabFile("snippet_crontab.txt");
-            bind(Scheduler.class).toInstance(scheduler);
+            Taskun taskun = TaskunFactory.getInstance();
+            taskun.replaceCrontabFile("snippet_crontab.txt");
+            bind(Taskun.class).toInstance(taskun);
         }
     });
 
@@ -26,13 +26,13 @@ public class GuiceServletInjector implements ServletInjector {
     }
 
     @Override
-    public Scheduler getScheduler() {
-        return injector.getInstance(Scheduler.class);
+    public Taskun getTaskun() {
+        return injector.getInstance(Taskun.class);
     }
 
     @Override
-    public SchedulerConfig getSchedulerConfig() {
-        return injector.getInstance(SchedulerConfig.class);
+    public TaskunConfig getTaskunConfig() {
+        return injector.getInstance(TaskunConfig.class);
     }
 
 }

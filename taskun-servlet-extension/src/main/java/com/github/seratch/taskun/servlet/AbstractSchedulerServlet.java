@@ -1,8 +1,8 @@
 package com.github.seratch.taskun.servlet;
 
-import com.github.seratch.taskun.inject.ServletInjector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Abstract Http servlet class that invokes taskun-scheduler.<br>
- * The web applications which uses taskun-scheduler needs to have an
+ * Abstract Http servlet class that invokes taskun-taskun.<br>
+ * The web applications which uses taskun-taskun needs to have an
  * implementation class.
  *
  * @author Kazuhiro Sera
@@ -24,15 +24,15 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
 
     /**
      * Prepare to init<br>
-     * Need to set injector adaptor
+     * Need to set taskunInjector adaptor
      */
     protected abstract void prepareToInit();
 
-    protected Scheduler scheduler;
+    protected Taskun taskun;
 
-    protected SchedulerConfig schedulerConfig;
+    protected TaskunConfig taskunConfig;
 
-    protected ServletInjector injector;
+    protected TaskunServletInjector taskunInjector;
 
     public AbstractSchedulerServlet() {
     }
@@ -41,29 +41,29 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         prepareToInit();
-        if (injector == null) {
+        if (taskunInjector == null) {
             throw new IllegalStateException(
-                    "injector required before init!");
+                    "taskunInjector required before init!");
         }
-        schedulerConfig = injector.getSchedulerConfig();
+        taskunConfig = taskunInjector.getTaskunConfig();
         StringBuilder sb = new StringBuilder();
-        if (schedulerConfig.enableInvokingScheduler) {
-            scheduler = injector.getScheduler();
-            scheduler.initialize(injector);
-            scheduler.start();
-            sb.append("Taskun-scheduler has started!\n");
-            if (schedulerConfig.namedServers != null) {
+        if (taskunConfig.enableInvokingScheduler) {
+            taskun = taskunInjector.getTaskun();
+            taskun.initialize(taskunInjector);
+            taskun.start();
+            sb.append("Taskun-taskun has started!\n");
+            if (taskunConfig.namedServers != null) {
                 sb.append("[NamedServers:");
-                for (String key : schedulerConfig.namedServers.keySet()) {
+                for (String key : taskunConfig.namedServers.keySet()) {
                     sb.append(key);
                     sb.append("->");
-                    sb.append(schedulerConfig.namedServers.get(key));
+                    sb.append(taskunConfig.namedServers.get(key));
                     sb.append(",");
                 }
                 sb.append("]");
             }
         } else {
-            sb.append("Taskun-scheduler is not running... ");
+            sb.append("Taskun-taskun is not running... ");
         }
         log.logp(Level.INFO, this.getClass().getCanonicalName(), "init",
                 sb.toString());
@@ -72,9 +72,9 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
     @Override
     public void destroy() {
         try {
-            if (schedulerConfig != null
-                    && schedulerConfig.enableInvokingScheduler) {
-                this.scheduler.shutdown();
+            if (taskunConfig != null
+                    && taskunConfig.enableInvokingScheduler) {
+                this.taskun.shutdown();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,12 +83,12 @@ public abstract class AbstractSchedulerServlet extends HttpServlet {
         }
     }
 
-    public ServletInjector getInjector() {
-        return injector;
+    public TaskunServletInjector getTaskunInjector() {
+        return taskunInjector;
     }
 
-    public void setInjector(ServletInjector injector) {
-        this.injector = injector;
+    public void setTaskunInjector(TaskunServletInjector taskunInjector) {
+        this.taskunInjector = taskunInjector;
     }
 
 }

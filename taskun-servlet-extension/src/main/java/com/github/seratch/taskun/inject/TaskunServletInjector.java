@@ -1,9 +1,9 @@
 package com.github.seratch.taskun.inject;
 
-import com.github.seratch.taskun.scheduler.Scheduler;
+import com.github.seratch.taskun.scheduler.Taskun;
 
-public interface TaskunServletInjector extends Injector {
+public interface TaskunServletInjector extends TaskunInjector {
 
-    Scheduler getScheduler();
+    Taskun getTaskun();
 
 }

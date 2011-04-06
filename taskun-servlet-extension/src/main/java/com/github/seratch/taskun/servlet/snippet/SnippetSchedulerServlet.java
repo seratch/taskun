@@ -13,7 +13,7 @@ public class SnippetSchedulerServlet extends DefaultSchedulerServlet {
 
     @Override
     protected void prepareToInit() {
-        setInjector(new SnippetServletInjector());
+        setTaskunInjector(new SnippetServletInjector());
     }
 
     @Override

@@ -1,24 +1,24 @@
 package com.github.seratch.taskun.servlet.snippet;
 
-import com.github.seratch.taskun.inject.ServletInjector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.TaskunFactory;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 
-public class SnippetServletInjector implements ServletInjector {
+public class SnippetServletInjector implements TaskunServletInjector {
 
-    public SchedulerConfig config = new SchedulerConfig();
+    public TaskunConfig config = new TaskunConfig();
 
     @Override
-    public Scheduler getScheduler() {
-        Scheduler scheduler = new TaskunScheduler();
-        scheduler.replaceCrontabFile("snippet_crontab.txt");
-        return scheduler;
+    public Taskun getTaskun() {
+        Taskun taskun = TaskunFactory.getInstance();
+        taskun.replaceCrontabFile("snippet_crontab.txt");
+        return taskun;
     }
 
     @Override
-    public SchedulerConfig getSchedulerConfig() {
-        SchedulerConfig config = new SchedulerConfig();
+    public TaskunConfig getTaskunConfig() {
+        TaskunConfig config = new TaskunConfig();
         return config;
     }
 

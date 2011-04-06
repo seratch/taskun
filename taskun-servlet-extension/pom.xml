@@ -4,7 +4,7 @@
 
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-servlet-extension</artifactId>
-    <version>1.3</version>
+    <version>1.4.0</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -84,7 +84,6 @@
                     <minmemory>128m</minmemory>
                     <maxmemory>256m</maxmemory>
                     <quiet>true</quiet>
-                    <locales>en</locales>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -95,9 +94,7 @@
         <dependency>
             <groupId>com.github.seratch.taskun</groupId>
             <artifactId>taskun-scheduler</artifactId>
-            <scope>system</scope>
-            <version>1.0</version>
-            <systemPath>${basedir}/lib/taskun-scheduler-interface.jar</systemPath>
+            <version>[1.4,)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>

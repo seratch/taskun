@@ -1,6 +1,6 @@
 package com.github.seratch.taskun.servlet;
 
-import com.github.seratch.taskun.inject.ServletInjector;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
 import com.github.seratch.taskun.servlet.impl.DefaultSchedulerServlet;
 import junit.framework.TestCase;
 
@@ -14,28 +14,28 @@ public class AbstractSchedulerServletTest extends TestCase {
         super.setUp();
         target = new DefaultSchedulerServlet();
         injector = new SampleInjector();
-        target.injector = injector;
+        target.taskunInjector = injector;
     }
 
     public void test_init_A$_start() throws Exception {
-        injector.config.enableInvokingScheduler = true;
+        injector.getTaskunConfig().enableInvokingScheduler = true;
         target.init();
     }
 
     public void test_init_A$_notstart() throws Exception {
-        injector.config.enableInvokingScheduler = false;
+        injector.getTaskunConfig().enableInvokingScheduler = false;
         target.init();
     }
 
-    public void test_getInjector_A$() throws Exception {
-        ServletInjector actual = target.getInjector();
+    public void test_getTaskunInjector_A$() throws Exception {
+        TaskunServletInjector actual = target.getTaskunInjector();
         assertNotNull(actual);
     }
 
-    public void test_setInjector_A$ServletInjector()
+    public void test_setTaskunInjector_A$TaskunServletInjector()
             throws Exception {
-        ServletInjector arg0 = new SampleInjector();
-        target.setInjector(arg0);
+        TaskunServletInjector arg0 = new SampleInjector();
+        target.setTaskunInjector(arg0);
     }
 
 }

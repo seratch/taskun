@@ -1,9 +1,9 @@
 package com.github.seratch.taskun.servlet.impl;
 
-import com.github.seratch.taskun.inject.ServletInjector;
-import com.github.seratch.taskun.scheduler.Scheduler;
-import com.github.seratch.taskun.scheduler.config.SchedulerConfig;
-import com.github.seratch.taskun.scheduler.impl.TaskunScheduler;
+import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.scheduler.Taskun;
+import com.github.seratch.taskun.scheduler.TaskunFactory;
+import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import com.github.seratch.taskun.servlet.AbstractSchedulerServlet;
 import com.github.seratch.taskun.util.StringUtil;
 
@@ -17,10 +17,10 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
     @Override
     protected void prepareToInit() {
 
-        ServletInjector injector = new ServletInjector() {
+        TaskunServletInjector taskunInjector = new TaskunServletInjector() {
 
             @Override
-            public SchedulerConfig getSchedulerConfig() {
+            public TaskunConfig getTaskunConfig() {
 
                 Properties props = new Properties();
                 try {
@@ -30,7 +30,7 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
                     throw new IllegalStateException("taskun.properties not found!");
                 }
 
-                SchedulerConfig config = new SchedulerConfig();
+                TaskunConfig config = new TaskunConfig();
                 config.enableInvokingScheduler
                         = Boolean.valueOf((String) props.get("enableInvokingScheduler"));
                 config.enableLoggingForEachCrondInvocation
@@ -46,8 +46,8 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
             }
 
             @Override
-            public Scheduler getScheduler() {
-                return new TaskunScheduler();
+            public Taskun getTaskun() {
+                return TaskunFactory.getInstance();
             }
 
             @Override
@@ -62,7 +62,7 @@ public class DefaultSchedulerServlet extends AbstractSchedulerServlet {
 
         };
 
-        super.setInjector(injector);
+        super.setTaskunInjector(taskunInjector);
 
     }
 
