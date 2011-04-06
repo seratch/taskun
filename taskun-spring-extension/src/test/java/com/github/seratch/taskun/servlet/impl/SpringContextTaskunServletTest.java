@@ -3,22 +3,22 @@ package com.github.seratch.taskun.servlet.impl;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class SpringSchedulerServletTest {
+public class SpringContextTaskunServletTest {
 
 	@Test
 	public void type() throws Exception {
-		assertNotNull(SpringSchedulerServlet.class);
+		assertNotNull(SpringContextTaskunServlet.class);
 	}
 
 	@Test
 	public void instantiation() throws Exception {
-		SpringSchedulerServlet target = new SpringSchedulerServlet();
+		SpringContextTaskunServlet target = new SpringContextTaskunServlet();
 		assertNotNull(target);
 	}
 
 	@Test
 	public void prepareToInit_A$() throws Exception {
-		SpringSchedulerServlet target = new SpringSchedulerServlet();
+		SpringContextTaskunServlet target = new SpringContextTaskunServlet();
 		target.prepareToInit();
 	}
 

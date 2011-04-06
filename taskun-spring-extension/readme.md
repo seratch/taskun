@@ -7,7 +7,7 @@ http://www.springsource.com/developer/spring
 
 ### Download jar file
 
-    /download/taskun-spring-extension-1.*.jar
+    /download/taskun-spring-extension-1.4.*.jar
 
 ### Maven
 
@@ -29,7 +29,7 @@ http://www.springsource.com/developer/spring
       <dependency>
         <groupId>com.github.seratch.taskun</groupId>
         <artifactId>taskun-spring-extension</artifactId>
-        <version>[1,)</version>
+        <version>[1.4,)</version>
       </dependency>
       ...
     </dependencies>
@@ -42,9 +42,9 @@ http://www.springsource.com/developer/spring
     <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
       "http://www.springframework.org/dtd/spring-beans.dtd">
     <beans>
-      <bean id="schedulerConfig" class="com.github.seratch.taskun.scheduler.config.SchedulerConfig">
+      <bean id="taskunConfig" class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
       </bean>
-      <bean id="scheduler" class="com.github.seratch.taskun.scheduler.impl.TaskunScheduler">
+      <bean id="taskun" class="com.github.seratch.taskun.scheduler.impl.TaskunImpl">
       </bean>
     </beans>
 
@@ -56,8 +56,8 @@ http://www.springsource.com/developer/spring
 ### src/main/webapp/WEB-INF/web.xml
 
     <servlet>
-      <servlet-name>springSchedulerServlet</servlet-name>
-      <servlet-class>com.github.seratch.taskun.servlet.impl.SpringSchedulerServlet</servlet-class>
+      <servlet-name>springTaskunServlet</servlet-name>
+      <servlet-class>com.github.seratch.taskun.servlet.impl.SpringContextTaskunServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
     </servlet>
 

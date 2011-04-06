@@ -2,9 +2,9 @@ package com.github.seratch.taskun.servlet.snippet;
 
 import com.github.seratch.taskun.inject.SpringContextTaskunServletInjector;
 import com.github.seratch.taskun.scheduler.Taskun;
-import com.github.seratch.taskun.servlet.impl.SpringSchedulerServlet;
+import com.github.seratch.taskun.servlet.impl.SpringContextTaskunServlet;
 
-public class SnippetSpringSchedulerServlet extends SpringSchedulerServlet {
+public class SnippetSpringContextTaskunServlet extends SpringContextTaskunServlet {
 
     @Override
     protected void prepareToInit() {
