@@ -133,7 +133,7 @@ Zero dependency, no additional jars required.
 
     <servlet>
       <servlet-name>taskunServlet</servlet-name>
-      <servlet-class>com.github.seratch.taskun.servlet.impl.DefaultTaskunServlet</servlet-class>
+      <servlet-class>com.github.seratch.taskun.servlet.impl.SimpleTaskunServlet</servlet-class>
       <load-on-startup>3</load-on-startup>
     </servlet>
 
