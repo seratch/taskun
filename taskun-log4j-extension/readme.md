@@ -42,7 +42,7 @@ It is required to set Log4JLogImpl.class to TaskunConfig.
     public void using() throws Exception {
         Taskun taskun = TaskunFactory.getInstance();
         TaskunConfig config = new TaskunConfig();
-        config.setLogImplClass(Log4jLogImpl.class);
+        config.setLogImplClass(TaskunLogLog4jImpl.class);
         taskun.initialize(config);
         taskun.start();
         Thread.sleep(2000L);

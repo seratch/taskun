@@ -110,7 +110,7 @@ Zero dependency, no additional jars required.
     [INFO] Started Jetty Server
     [INFO] Starting scanner at interval of 3 seconds.
     2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
-    INFO: ----- Taskun-taskun initialized -----
+    INFO: ----- Taskun scheduler initialized -----
     2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: Working at seratch-imac(seratch-imac)
     2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
@@ -120,7 +120,7 @@ Zero dependency, no additional jars required.
     2011/04/02 0:00:53 com.github.seratch.taskun.taskun.crond.CronDaemon initialize
     INFO: ----------------------------------------
     2011/04/02 0:00:53 com.github.seratch.taskun.servlet.snippet.SnippetTaskunServlet init
-    INFO: Taskun-taskun has started!
+    INFO: Taskun scheduler has started!
     [NamedServers:]
     Hello, World! (Thread:20,Sat Apr 02 00:00:58 JST 2011)
     Hello, World! (Thread:21,Sat Apr 02 00:01:00 JST 2011)
@@ -185,12 +185,12 @@ It is reuirqed to set LogImplClass to config.
 
     package snippet;
      
-    import com.github.seratch.taskun.logging.Log4jLogImpl;
+    import com.github.seratch.taskun.logging.TaskunLogLog4jImpl;
      
     public static void main(String[] args) throws Exception {
       Taskun taskun = TaskunFactory.getInstance();
       TaskunConfig config = new TaskunConfig();
-      config.setLogImplClass(Log4jLogImpl.class); 
+      config.setLogImplClass(TaskunLogLog4jImpl.class); 
       taskun.initialize(config);
       taskun.start();
       Thread.sleep(20000L);

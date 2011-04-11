@@ -41,7 +41,6 @@ public class CronDaemon implements Runnable {
 
     static final String LOG_PREFIX = "[Crond] ";
 
-
     private boolean isInitialized = false;
 
     private ScheduledExecutorService executorService;
@@ -196,7 +195,7 @@ public class CronDaemon implements Runnable {
             }
             // start interval invocations
             List<Crontab> newList = new ArrayList<Crontab>();
-            taskunLog.info("----- Taskun-scheduler initialized -----");
+            taskunLog.info("----- Taskun scheduler initialized -----");
             taskunLog.info("Working at " + thisServerNameIfGiven
                     + "(" + thisServerHostname + ")");
             for (Crontab crontab : crontabRepos.getCrontabLines()) {
