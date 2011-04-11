@@ -97,6 +97,11 @@
             <version>[1.4,)</version>
         </dependency>
         <dependency>
+            <groupId>com.github.seratch.taskun</groupId>
+            <artifactId>taskun-log4j-extension</artifactId>
+            <version>[1.4,)</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-servlet_2.4_spec</artifactId>
             <version>1.0</version>

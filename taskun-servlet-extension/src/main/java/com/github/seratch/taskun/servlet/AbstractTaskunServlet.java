@@ -20,10 +20,10 @@ public abstract class AbstractTaskunServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private TaskunLog log = getLog(AbstractTaskunServlet.class.getCanonicalName());
+    private TaskunLog log;
 
     TaskunLog getLog() {
-        return getLog(AbstractTaskunServlet.class.getCanonicalName());
+        return getLog(this.getClass().getCanonicalName());
     }
 
     TaskunLog getLog(String name) {
@@ -58,12 +58,13 @@ public abstract class AbstractTaskunServlet extends HttpServlet {
                     "injector required before init!");
         }
         config = injector.getTaskunConfig();
+        log = getLog();
         StringBuilder sb = new StringBuilder();
         if (config.enableInvokingScheduler) {
             taskun = injector.getTaskun();
             taskun.initialize(injector);
             taskun.start();
-            sb.append("Taskun-taskun has started!\n");
+            sb.append("Taskun scheduler has started!\n");
             if (config.namedServers != null) {
                 sb.append("[NamedServers:");
                 for (String key : config.namedServers.keySet()) {
@@ -75,7 +76,7 @@ public abstract class AbstractTaskunServlet extends HttpServlet {
                 sb.append("]");
             }
         } else {
-            sb.append("Taskun-taskun is not running... ");
+            sb.append("Taskun scheduler is not running... ");
         }
         log.info(sb.toString());
     }

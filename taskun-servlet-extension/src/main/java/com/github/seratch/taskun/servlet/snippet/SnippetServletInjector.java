@@ -1,6 +1,7 @@
 package com.github.seratch.taskun.servlet.snippet;
 
 import com.github.seratch.taskun.inject.TaskunServletInjector;
+import com.github.seratch.taskun.logging.TaskunLog;
 import com.github.seratch.taskun.scheduler.Taskun;
 import com.github.seratch.taskun.scheduler.TaskunFactory;
 import com.github.seratch.taskun.scheduler.config.TaskunConfig;
@@ -19,6 +20,13 @@ public class SnippetServletInjector implements TaskunServletInjector {
     @Override
     public TaskunConfig getTaskunConfig() {
         TaskunConfig config = new TaskunConfig();
+        try {
+            Class<? extends TaskunLog> logImplClass
+                    = (Class<? extends TaskunLog>) Class.forName("com.github.seratch.taskun.logging.TaskunLogLog4jImpl");
+            config.setLogImplClass(logImplClass);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return config;
     }
 
