@@ -4,7 +4,9 @@ import com.github.seratch.taskun.scheduler.Taskun;
 import com.github.seratch.taskun.scheduler.config.TaskunConfig;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 public class SpringContextTaskunInjectorTest {
 
@@ -23,8 +25,9 @@ public class SpringContextTaskunInjectorTest {
     public void getSchedulerConfig_A$() throws Exception {
         SpringContextTaskunInjector target = new SpringContextTaskunInjector();
         TaskunConfig actual = target.getTaskunConfig();
-        TaskunConfig expected = null;
         assertNotNull(actual);
+        assertNotNull(actual.namedServers);
+        assertThat(actual.namedServers.get("frontend"), is(equalTo("(dev.example.com|www.example.com)")));
     }
 
     @Test

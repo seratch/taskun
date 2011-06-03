@@ -3,6 +3,12 @@
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
     <bean id="config" class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
+        <property name="namedServers">
+            <map>
+                <entry key="frontend" value="(dev.example.com|www.example.com)"/>
+                <entry key="backend" value="(develop02|production02)"/>
+            </map>
+        </property>
     </bean>
     <bean id="taskun" class="com.github.seratch.taskun.scheduler.impl.TaskunImpl">
     </bean>
