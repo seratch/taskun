@@ -2,18 +2,35 @@ package com.github.seratch.taskun.scheduler.config;
 
 import com.github.seratch.taskun.logging.TaskunLog;
 import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import com.github.seratch.taskun.scheduler.config.TaskunConfig.*;
+
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
 public class TaskunConfigTest {
 
-    @Test 
-	public void putNamedServer_A$String$String() throws Exception {
+    @Test
+    public void setNamedServers_A$Map() throws Exception {
+        // given
+        Map<String, String> namedServers = new HashMap<String, String>();
+        namedServers.put("hoge", "hogehoge");
+        // when
+        TaskunConfig target = new TaskunConfig();
+        assertFalse(target.namedServers.containsKey("hoge"));
+        target.setNamedServers(namedServers);
+        // then
+        assertTrue(target.namedServers.containsKey("hoge"));
+    }
+
+    @Test
+    public void putNamedServer_A$String$String() throws Exception {
         // given
         String name = "hoge";
         String hostname = "hosthost";
@@ -25,8 +42,8 @@ public class TaskunConfigTest {
         assertTrue(target.namedServers.containsKey(name));
     }
 
-    @Test 
-	public void removeNamedServer_A$String() throws Exception {
+    @Test
+    public void removeNamedServer_A$String() throws Exception {
         // given
         String name = "hoge";
         String hostname = "hosthost";
@@ -40,8 +57,8 @@ public class TaskunConfigTest {
         assertFalse(target.namedServers.containsKey(name));
     }
 
-    @Test 
-	public void getNamedServerHostname_A$String() throws Exception {
+    @Test
+    public void getNamedServerHostname_A$String() throws Exception {
         // given
         String name = "hoge";
         String hostname = "hosthost";
@@ -55,29 +72,29 @@ public class TaskunConfigTest {
         assertEquals(hostname, actual);
     }
 
-	@Test
-	public void type() throws Exception {
-		assertNotNull(TaskunConfig.class);
-	}
+    @Test
+    public void type() throws Exception {
+        assertNotNull(TaskunConfig.class);
+    }
 
-	@Test
-	public void instantiation() throws Exception {
-		TaskunConfig target = new TaskunConfig();
-		assertNotNull(target);
-	}
+    @Test
+    public void instantiation() throws Exception {
+        TaskunConfig target = new TaskunConfig();
+        assertNotNull(target);
+    }
 
-	@Test
-	public void setLogImplClass_A$Class() throws Exception {
-		TaskunConfig target = new TaskunConfig();
-		Class<TaskunLog> logImplClass = null;
-		target.setLogImplClass(logImplClass);
-	}
+    @Test
+    public void setLogImplClass_A$Class() throws Exception {
+        TaskunConfig target = new TaskunConfig();
+        Class<TaskunLog> logImplClass = null;
+        target.setLogImplClass(logImplClass);
+    }
 
-	@Test
-	public void getLogImplClass_A$() throws Exception {
-		TaskunConfig target = new TaskunConfig();
-		Object actual = target.getLogImplClass();
+    @Test
+    public void getLogImplClass_A$() throws Exception {
+        TaskunConfig target = new TaskunConfig();
+        Object actual = target.getLogImplClass();
         assertNotNull(actual);
-	}
+    }
 
 }

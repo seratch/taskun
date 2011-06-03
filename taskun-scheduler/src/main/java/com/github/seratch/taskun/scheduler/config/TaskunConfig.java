@@ -31,6 +31,10 @@ public class TaskunConfig {
 
     public Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
+    public void setNamedServers(Map<String, String> namedServers) {
+        this.namedServers = namedServers;
+    }
+
     public void putNamedServer(String name, String hostname) {
         namedServers.put(name, hostname);
     }
