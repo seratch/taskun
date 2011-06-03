@@ -31,6 +31,14 @@ public class TaskunConfig {
 
     public Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
+    public void setEnableInvokingScheduler(boolean enableInvokingScheduler) {
+         this.enableInvokingScheduler = enableInvokingScheduler;
+    }
+
+    public void setEnableLoggingForEachCrondInvocation(boolean enableLoggingForEachCrondInvocation) {
+         this.enableLoggingForEachCrondInvocation = enableLoggingForEachCrondInvocation;
+    }
+
     public void setNamedServers(Map<String, String> namedServers) {
         this.namedServers = namedServers;
     }
