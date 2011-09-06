@@ -1,5 +1,7 @@
 package com.github.seratch.taskun.scheduler.crond;
 
+import static org.hamcrest.CoreMatchers.*;
+
 import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 import com.github.seratch.taskun.scheduler.CurrentServer;
 import com.github.seratch.taskun.scheduler.config.TaskunConfig;
@@ -104,5 +106,12 @@ public class CronDaemonTest {
         List<RawCrontabLine> actual = crond.getCurrentRawCrontabLines();
         assertNotNull(actual);
     }
+
+	@Test
+	public void getLog_A$() throws Exception {
+		CronDaemon target = new CronDaemon();
+		TaskunLog actual = target.getLog();
+		assertNotNull(actual);
+	}
 
 }

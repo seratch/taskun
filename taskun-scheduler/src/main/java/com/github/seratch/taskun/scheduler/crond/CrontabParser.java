@@ -50,7 +50,7 @@ public class CrontabParser {
         Crontab crontab = new Crontab();
         String lineString = line.toString();
         if (lineString.equals("") || lineString.startsWith("#")) {
-            return null;
+            return crontab;
         }
         crontab.rawLine = new RawCrontabLine(lineString);
         try {

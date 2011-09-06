@@ -41,10 +41,12 @@ class CrontabRepository {
 
     public void add(Crontab crontab) {
         // excludes commented or empty line
-        RawCrontabLine line = crontab.rawLine;
-        if (!line.toString().startsWith("#") && !line.toString().equals("")
-                && !isAlreadyRegistered(crontab)) {
-            crontabLines.add(crontab);
+        if (crontab != null) {
+            RawCrontabLine line = crontab.rawLine;
+            if (line != null && !line.toString().startsWith("#") && !line.toString().equals("")
+                    && !isAlreadyRegistered(crontab)) {
+                crontabLines.add(crontab);
+            }
         }
     }
 

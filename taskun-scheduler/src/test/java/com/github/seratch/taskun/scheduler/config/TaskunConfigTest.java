@@ -1,18 +1,12 @@
 package com.github.seratch.taskun.scheduler.config;
 
 import com.github.seratch.taskun.logging.TaskunLog;
-import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.seratch.taskun.scheduler.config.TaskunConfig.*;
-
 import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import junit.framework.TestCase;
 
 public class TaskunConfigTest {
 
