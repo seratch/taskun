@@ -10,6 +10,17 @@
     <name>${project.artifactId}</name>
     <description>taskun scheduler servlet extension</description>
 
+    <repositories>
+        <repository>
+            <id>taskun-releases</id>
+            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/releases</url>
+        </repository>
+        <repository>
+            <id>taskun-snapshots</id>
+            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/snapshots</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>repo</id>
