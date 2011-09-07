@@ -631,6 +631,26 @@ public class CrontabParserTest {
     }
 
     @Test
+    public void getNextInvocationTime_A$Calendar$Crontab_MillisecondBug()
+            throws Exception {
+        Crontab crontab = new Crontab();
+        crontab.minuteElement = new CrontabElement("1,11,21,31,41,51");
+        crontab.minuteFixedInvocations = parser.getFixedInvocations(59, crontab.minuteElement);
+        crontab.hourElement = new CrontabElement("*");
+        crontab.dayElement = new CrontabElement("*");
+        crontab.monthElement = new CrontabElement("*");
+        crontab.dayOfWeekElement = new CrontabElement("*");
+        Calendar cal = CalendarUtil.getCalendar("2010", "5", "1", "20", "51", "00");
+        cal.add(Calendar.MILLISECOND, 10);
+        String label = CalendarUtil.toYYYYMMDDHHMISS(
+                CalendarUtil.getCalendar(parser.getNextInvocationTime(cal, crontab))
+        );
+        long expected = CalendarUtil.getCalendar("2010", "5", "1", "21", "01", "00").getTimeInMillis();
+        assertTrue(label, expected == parser.getNextInvocationTime(cal, crontab)
+        );
+    }
+
+    @Test
     public void getFixedNextInvocationValue_A$int$List() throws Exception {
         int arg0 = 0;
         final List<Integer> arg1 = new ArrayList<Integer>();

@@ -108,6 +108,11 @@ public class CrontabParser {
     }
 
     public long getNextInvocationTime(Calendar currentTime, Crontab crontab) {
+        int millisecond = CalendarUtil.getMillisecond(currentTime);
+        if (millisecond > 0) {
+            currentTime.set(Calendar.MILLISECOND, 0);
+            currentTime.add(Calendar.SECOND, 1);
+        }
         int second = CalendarUtil.getSecond(currentTime);
         int minute = CalendarUtil.getMinute(currentTime);
         if (second > 0) {
