@@ -4,26 +4,35 @@
 
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-log4j-extension</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.1</version>
     <packaging>jar</packaging>
 
     <name>taskun-log4j-extension</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/seratch/taskun</url>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>taskun-releases</id>
-            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/releases</url>
-        </repository>
-        <repository>
-            <id>taskun-snapshots</id>
-            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/snapshots</url>
-        </repository>
-    </repositories>
+    <scm>
+        <connection>scm:git:git@github.com:seratch/taskun.git</connection>
+        <developerConnection>scm:git:git@github.com:seratch/taskun.git</developerConnection>
+        <url>git@github.com:seratch/taskun.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>seratch</id>
+            <name>Kazuhiro Sera</name>
+            <email>seratch@gmail.com</email>
+        </developer>
+    </developers>
 
     <pluginRepositories>
         <pluginRepository>
@@ -31,17 +40,6 @@
             <url>http://junithelper.googlecode.com/svn/trunk/mvn-repo/releases</url>
         </pluginRepository>
     </pluginRepositories>
-
-    <distributionManagement>
-        <repository>
-            <id>repo</id>
-            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/seratch/taskun/raw/master/mvn-repo/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -63,6 +61,20 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -75,13 +87,6 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
             <plugin>
@@ -111,9 +116,11 @@
                     <maxmemory>256m</maxmemory>
                     <quiet>true</quiet>
                     <encoding>UTF-8</encoding>
-                    <bottom>Copyright &amp;copy; 2011 Kazuhiro Sera All Rights Reserved.</bottom>
+                    <bottom>Copyright &amp;copy; 2010 Kazuhiro Sera All Rights Reserved.</bottom>
                 </configuration>
             </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -136,7 +143,7 @@
         <dependency>
             <groupId>com.github.seratch.taskun</groupId>
             <artifactId>taskun-scheduler</artifactId>
-            <version>[1.4,)</version>
+            <version>[1.5,)</version>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
@@ -151,7 +158,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <version>4.10</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

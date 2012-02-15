@@ -9,48 +9,39 @@
 ### Maven
 
 ```xml
-<repositories>
-  <repository>
-    <id>seratch.github.com releases</id>
-    <url>http://seratch.github.com/mvn-repo/releases</url>
-  </repository>
-</repositories>
-
 <dependencies>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-taskun</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-servlet-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
   
   <!-- OPTIONAL EXTENSIONS -->
-  <!--
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-log4j-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-guice-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-spring-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-s2-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
-  -->
 </dependencies>
 ```
 

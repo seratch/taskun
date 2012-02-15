@@ -8,18 +8,11 @@ http://www.springsource.com/developer/spring
 ### Maven
 
 ```xml
-<repositories>
-  <repository>
-    <id>seratch.github.com releases</id>
-    <url>http://seratch.github.com/mvn-repo/releases</url>
-  </repository>
-</repositories>
-
 <dependencies>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-spring-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
 </dependencies>
 ```
