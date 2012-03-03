@@ -1,4 +1,4 @@
-# taskun - A simple cron daemon thread on JVM
+# taskun - A simple cron daemon thread on the JVM
 
 ## What's this
 
