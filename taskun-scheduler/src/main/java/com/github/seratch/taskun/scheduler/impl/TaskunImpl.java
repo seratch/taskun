@@ -61,20 +61,17 @@ public class TaskunImpl implements Taskun {
 
     public void initialize(TaskunInjector taskunInjector) {
         this.taskunInjector = taskunInjector;
-        executorService = Executors.newScheduledThreadPool(3,
-                new ThreadFactory() {
-                    private ThreadGroup threadGroup = new ThreadGroup(
-                            "taskun-scheduler");
+        executorService = Executors.newScheduledThreadPool(3, new ThreadFactory() {
+            private ThreadGroup threadGroup = new ThreadGroup("taskun-scheduler");
 
-                    @Override
-                    public Thread newThread(Runnable r) {
-                        Thread t = new Thread(threadGroup, r);
-                        t.setDaemon(true);
-                        t.setName(t.getThreadGroup().getName() + "-worker-"
-                                + t.getId());
-                        return t;
-                    }
-                });
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread t = new Thread(threadGroup, r);
+                t.setDaemon(true);
+                t.setName(t.getThreadGroup().getName() + "-worker-" + t.getId());
+                return t;
+            }
+        });
     }
 
     @Override
@@ -88,11 +85,9 @@ public class TaskunImpl implements Taskun {
     }
 
     @Override
-    public void scheduleIntervalExecute(
-            Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit) {
+    public void scheduleIntervalExecute(Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit) {
         long initialDelay = getDelayValue(initialScheduledDate, timeUnit);
-        executorService.scheduleAtFixedRate(
-                runnable, initialDelay, interval, timeUnit);
+        executorService.scheduleAtFixedRate(runnable, initialDelay, interval, timeUnit);
     }
 
     @Override
@@ -124,8 +119,7 @@ public class TaskunImpl implements Taskun {
 
     void invokeCronDaemon(TaskunInjector taskunInjector, ScheduledExecutorService executorService) {
         if (taskunInjector == null) {
-            throw new IllegalStateException(
-                    "Not initialized scheduler - the taskunInjector is null");
+            throw new IllegalStateException("Not initialized scheduler - the taskunInjector is null");
         }
         if (crontabFilepath != null) {
             crond.initialize(taskunInjector, executorService, crontabFilepath);
@@ -143,8 +137,7 @@ public class TaskunImpl implements Taskun {
 
     long getDelayValue(Calendar executeDate, TimeUnit timeUnit) {
         Calendar current = CalendarUtil.getCurrentTime();
-        long delayMillisecs = executeDate.getTimeInMillis()
-                - current.getTimeInMillis();
+        long delayMillisecs = executeDate.getTimeInMillis() - current.getTimeInMillis();
         if (timeUnit.equals(TimeUnit.DAYS)) {
             return delayMillisecs / 1000 / 60 / 60 / 24;
         } else if (timeUnit.equals(TimeUnit.HOURS)) {

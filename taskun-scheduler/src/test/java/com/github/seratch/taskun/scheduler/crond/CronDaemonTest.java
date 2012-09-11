@@ -1,24 +1,5 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import static org.hamcrest.CoreMatchers.*;
-
-import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
-import com.github.seratch.taskun.scheduler.CurrentServer;
-import com.github.seratch.taskun.scheduler.config.TaskunConfig;
-import com.github.seratch.taskun.util.CalendarUtil;
-import com.github.seratch.taskun.util.IOCloser;
-import com.github.seratch.taskun.util.StringUtil;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import com.github.seratch.taskun.scheduler.crond.CronDaemon.*;
-import static org.junit.Assert.*;
-
 import com.github.seratch.taskun.inject.SampleTaskunInjector;
 import com.github.seratch.taskun.inject.TaskunInjector;
 import com.github.seratch.taskun.logging.TaskunLog;
@@ -68,8 +49,7 @@ public class CronDaemonTest {
     @Test
     public void getCommandWorker_A$Crontab() throws Exception {
         Crontab crontabLine = new Crontab();
-        crontabLine.commandClassName = new CrontabCommandClassNameElement(
-                "com.github.seratch.taskun.scheduler.impl.SampleWorker");
+        crontabLine.commandClassName = new CrontabCommandClassNameElement("com.github.seratch.taskun.scheduler.impl.SampleWorker");
         Runnable actual = crond.getCommandWorker(crontabLine);
         assertNotNull(actual);
     }
@@ -107,11 +87,11 @@ public class CronDaemonTest {
         assertNotNull(actual);
     }
 
-	@Test
-	public void getLog_A$() throws Exception {
-		CronDaemon target = new CronDaemon();
-		TaskunLog actual = target.getLog();
-		assertNotNull(actual);
-	}
+    @Test
+    public void getLog_A$() throws Exception {
+        CronDaemon target = new CronDaemon();
+        TaskunLog actual = target.getLog();
+        assertNotNull(actual);
+    }
 
 }

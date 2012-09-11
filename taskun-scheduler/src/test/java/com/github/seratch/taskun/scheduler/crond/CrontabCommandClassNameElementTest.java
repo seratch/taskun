@@ -1,8 +1,5 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.scheduler.crond.CrontabCommandClassNameElement.*;
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

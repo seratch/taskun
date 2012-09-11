@@ -32,8 +32,7 @@ public class AbstractTaskunServletTest extends TestCase {
         assertNotNull(actual);
     }
 
-    public void test_setTaskunInjector_A$TaskunServletInjector()
-            throws Exception {
+    public void test_setTaskunInjector_A$TaskunServletInjector() throws Exception {
         TaskunServletInjector arg0 = new SampleInjector();
         target.setTaskunInjector(arg0);
     }

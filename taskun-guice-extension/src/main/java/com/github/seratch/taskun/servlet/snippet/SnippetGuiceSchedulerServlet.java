@@ -10,7 +10,7 @@ public class SnippetGuiceSchedulerServlet extends AbstractGuiceSchedulerServlet 
 
     @Override
     public Module[] getPreparedModules() {
-        return new Module[] {new AbstractModule() {
+        return new Module[]{new AbstractModule() {
             @Override
             protected void configure() {
                 Taskun taskun = TaskunFactory.getInstance();

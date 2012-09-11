@@ -21,8 +21,7 @@ public class SnippetServletInjector implements TaskunServletInjector {
     public TaskunConfig getTaskunConfig() {
         TaskunConfig config = new TaskunConfig();
         try {
-            Class<? extends TaskunLog> logImplClass
-                    = (Class<? extends TaskunLog>) Class.forName("com.github.seratch.taskun.logging.TaskunLogLog4jImpl");
+            Class<? extends TaskunLog> logImplClass = (Class<? extends TaskunLog>) Class.forName("com.github.seratch.taskun.logging.TaskunLogLog4jImpl");
             config.setLogImplClass(logImplClass);
         } catch (Exception e) {
             e.printStackTrace();

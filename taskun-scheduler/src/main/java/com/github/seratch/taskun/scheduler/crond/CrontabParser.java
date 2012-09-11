@@ -170,8 +170,7 @@ public class CrontabParser {
             while (nextInvocationTime.getTimeInMillis() <= currentTime.getTimeInMillis()
                     || (isDayOfWeekPrior && isDayOfWeekNotCameAt(crontab, nextInvocationTime, dayOfWeek))) {
                 if (loopCounter >= 100) {
-                    throw new IllegalStateException(
-                            "Cannot get next invocation time of crontab scheduled task...");
+                    throw new IllegalStateException("Cannot get next invocation time of crontab scheduled task...");
                 }
                 if (isMinuteModified || crontab.minuteElement.isWildcard()) {
                     if (isHourModified || crontab.hourElement.isNotWildcard()) {
@@ -182,9 +181,7 @@ public class CrontabParser {
                                         // cannot specify year at crontab
                                         nextInvocationTime.add(Calendar.YEAR, 1);
                                     } else {
-                                        nextInvocationTime.set(Calendar.MONTH,
-                                                getFixedNextInvocationValue(
-                                                        month, 12, crontab.monthElement));
+                                        nextInvocationTime.set(Calendar.MONTH, getFixedNextInvocationValue(month, 12, crontab.monthElement));
                                         isMonthModified = true;
                                     }
                                 } else {
@@ -192,24 +189,19 @@ public class CrontabParser {
                                     isMonthModified = true;
                                 }
                             } else {
-                                boolean isDayOfWeekNotContainedInCrontab =
-                                        !isInvocationValueContainedInCrontabValue(
-                                                dayOfWeek, 6, crontab.dayOfWeekElement);
-                                boolean isNextInvocationNotInThisDate =
-                                        currentTime.getTimeInMillis() > nextInvocationTime.getTimeInMillis();
+                                boolean isDayOfWeekNotContainedInCrontab = !isInvocationValueContainedInCrontabValue(dayOfWeek, 6, crontab.dayOfWeekElement);
+                                boolean isNextInvocationNotInThisDate = currentTime.getTimeInMillis() > nextInvocationTime.getTimeInMillis();
                                 if (isDayOfWeekNotContainedInCrontab || isNextInvocationNotInThisDate) {
                                     // add days until next dayElement of week
                                     int addDays = 0;
-                                    int nextDayOfWeek = getFixedNextInvocationValue(
-                                            dayOfWeek, 6, crontab.dayOfWeekElement);
+                                    int nextDayOfWeek = getFixedNextInvocationValue(dayOfWeek, 6, crontab.dayOfWeekElement);
                                     if (nextDayOfWeek > dayOfWeek) {
                                         addDays = nextDayOfWeek - dayOfWeek;
                                     } else {
                                         addDays = nextDayOfWeek - dayOfWeek + 7;
                                     }
                                     // day element
-                                    int addDaysByDayElement = getFixedNextInvocationValue(day,
-                                            crontab.dayFixedInvocations) - day;
+                                    int addDaysByDayElement = getFixedNextInvocationValue(day, crontab.dayFixedInvocations) - day;
                                     if (addDaysByDayElement > 0 && addDaysByDayElement < addDays) {
                                         addDays = addDaysByDayElement;
                                         isDayOfWeekPrior = false;
@@ -219,8 +211,7 @@ public class CrontabParser {
                                 isDayModified = true;
                             }
                         } else {
-                            nextInvocationTime.set(Calendar.HOUR_OF_DAY,
-                                    getFixedNextInvocationValue(hour, 23, crontab.hourElement));
+                            nextInvocationTime.set(Calendar.HOUR_OF_DAY, getFixedNextInvocationValue(hour, 23, crontab.hourElement));
                             isHourModified = true;
                         }
                     } else {
@@ -229,11 +220,9 @@ public class CrontabParser {
                     }
                 } else {
                     if (!isDayModified && hour >= CalendarUtil.get24Hour(currentTime)) {
-                        nextInvocationTime.set(Calendar.MINUTE,
-                                getFixedSameOrNextInvocationValue(minute, crontab.minuteFixedInvocations));
+                        nextInvocationTime.set(Calendar.MINUTE, getFixedSameOrNextInvocationValue(minute, crontab.minuteFixedInvocations));
                     } else {
-                        nextInvocationTime.set(Calendar.MINUTE,
-                                getFixedMinimumInvocationValue(crontab.minuteFixedInvocations));
+                        nextInvocationTime.set(Calendar.MINUTE, getFixedMinimumInvocationValue(crontab.minuteFixedInvocations));
                     }
                     isMinuteModified = true;
                 }
@@ -242,11 +231,9 @@ public class CrontabParser {
         } else {
             // check next invocation timestamp
             while ((isMonthModified && (!isDayModified || !isHourModified))
-                    || nextInvocationTime.getTimeInMillis() < currentTime
-                    .getTimeInMillis()) {
+                    || nextInvocationTime.getTimeInMillis() < currentTime.getTimeInMillis()) {
                 if (loopCounter >= 100) {
-                    throw new IllegalStateException(
-                            "Cannot get next invocation time of crontab scheduled task...");
+                    throw new IllegalStateException("Cannot get next invocation time of crontab scheduled task...");
                 }
                 if (isHourModified || crontab.hourElement.isNotWildcard()) {
                     if (isHourModified || crontab.hourElement.isFixedValue()) {
@@ -257,9 +244,7 @@ public class CrontabParser {
                                         // cannot specify year at crontab
                                         nextInvocationTime.add(Calendar.YEAR, 1);
                                     } else {
-                                        nextInvocationTime.set(Calendar.MONTH,
-                                                getFixedNextInvocationValue(
-                                                        month, 12, crontab.monthElement));
+                                        nextInvocationTime.set(Calendar.MONTH, getFixedNextInvocationValue(month, 12, crontab.monthElement));
                                         isHourModified = true;
                                         isDayModified = true;
                                         isMonthModified = true;
@@ -279,19 +264,16 @@ public class CrontabParser {
                                     minute = 0;
                                     int newMinuteValue = 0;
                                     if (crontab.minuteElement.isFixedValue()) {
-                                        newMinuteValue = getFixedNextInvocationValue(
-                                                minute, 59, crontab.minuteElement);
+                                        newMinuteValue = getFixedNextInvocationValue(minute, 59, crontab.minuteElement);
                                     } else {
-                                        newMinuteValue = getFixedNextInvocationValue(
-                                                minute, crontab.minuteFixedInvocations);
+                                        newMinuteValue = getFixedNextInvocationValue(minute, crontab.minuteFixedInvocations);
                                     }
                                     nextInvocationTime.set(Calendar.MINUTE, newMinuteValue);
                                     // renew second
                                     nextInvocationTime.set(Calendar.SECOND, 0);
                                 }
                             } else {
-                                nextInvocationTime.set(Calendar.DATE,
-                                        getFixedNextInvocationValue(day, 31, crontab.dayElement));
+                                nextInvocationTime.set(Calendar.DATE, getFixedNextInvocationValue(day, 31, crontab.dayElement));
                                 isHourModified = true;
                                 isDayModified = true;
                             }
@@ -301,8 +283,7 @@ public class CrontabParser {
                             isDayModified = true;
                         }
                     } else {
-                        nextInvocationTime.set(Calendar.HOUR_OF_DAY,
-                                getFixedNextInvocationValue(hour, 23, crontab.hourElement));
+                        nextInvocationTime.set(Calendar.HOUR_OF_DAY, getFixedNextInvocationValue(hour, 23, crontab.hourElement));
                         isHourModified = true;
                     }
                 } else {
@@ -324,8 +305,7 @@ public class CrontabParser {
                 sb.append(i);
             }
             crontab.minuteElement = new CrontabElement(sb.toString());
-            crontab.minuteFixedInvocations = getFixedInvocations(59,
-                    crontab.minuteElement);
+            crontab.minuteFixedInvocations = getFixedInvocations(59, crontab.minuteElement);
         }
         if (crontab.hourElement.isWildcard()) {
             StringBuilder sb = new StringBuilder();
@@ -350,8 +330,9 @@ public class CrontabParser {
             return 0;
         }
         for (int each : fixedInvocations) {
-            if (dest > each)
+            if (dest > each) {
                 dest = each;
+            }
         }
         return dest;
     }
@@ -392,10 +373,8 @@ public class CrontabParser {
         String elementValue = element.toString();
         if (elementValue.matches("^\\d+$")) {
             return Integer.valueOf(elementValue);
-        } else if (elementValue.contains("/")
-                || elementValue.matches("^[\\d,]+$")) {
-            List<Integer> fixedInvocations = getFixedInvocations(maxValue,
-                    element);
+        } else if (elementValue.contains("/") || elementValue.matches("^[\\d,]+$")) {
+            List<Integer> fixedInvocations = getFixedInvocations(maxValue, element);
             for (int fixed : fixedInvocations) {
                 if (fixed > currentValue) {
                     return fixed;
@@ -403,8 +382,7 @@ public class CrontabParser {
             }
             return fixedInvocations.get(0);
         } else {
-            throw new IllegalArgumentException(
-                    "Invalid crontab configuration value:" + elementValue);
+            throw new IllegalArgumentException("Invalid crontab configuration value:" + elementValue);
         }
     }
 
@@ -413,10 +391,8 @@ public class CrontabParser {
         String elementValue = element.toString();
         if (elementValue.matches("^\\d+$")) {
             return invocationValue == Integer.valueOf(elementValue);
-        } else if (elementValue.contains("/")
-                || elementValue.matches("^[\\d,]+$")) {
-            List<Integer> fixedInvocations = getFixedInvocations(maxValue,
-                    element);
+        } else if (elementValue.contains("/") || elementValue.matches("^[\\d,]+$")) {
+            List<Integer> fixedInvocations = getFixedInvocations(maxValue, element);
             for (int fixed : fixedInvocations) {
                 if (invocationValue == fixed) {
                     return true;
@@ -474,13 +450,11 @@ public class CrontabParser {
         }
         crontab.monthElement = new CrontabElement(elements[3]);
         if (crontab.monthElement.isNotWildcard()) {
-            crontab.monthFixedInvocations = getFixedInvocations(12,
-                    crontab.monthElement);
+            crontab.monthFixedInvocations = getFixedInvocations(12, crontab.monthElement);
         }
         crontab.dayOfWeekElement = new CrontabElement(elements[4]);
         if (crontab.dayOfWeekElement.isNotWildcard()) {
-            crontab.dayOfWeekFixedInvocations = getFixedInvocations(7,
-                    crontab.dayOfWeekElement);
+            crontab.dayOfWeekFixedInvocations = getFixedInvocations(7, crontab.dayOfWeekElement);
         }
         crontab.commandClassName = getCommandClassNameElement(elements[5]);
         crontab.multiplicity = getMultiplicityOfCommandWorkers(elements[5]);
@@ -499,11 +473,8 @@ public class CrontabParser {
     }
 
     boolean isDayOfWeekNotCameAt(Crontab crontab, Calendar nextInvocationTime, int dayOfWeek) {
-        return getCrontabDayOfWeekNumber(nextInvocationTime)
-                != getFixedNextInvocationValue(dayOfWeek, 6, crontab.dayOfWeekElement)
-                &&
-                !isInvocationValueContainedInCrontabValue(
-                        getCrontabDayOfWeekNumber(nextInvocationTime), 6, crontab.dayOfWeekElement);
+        return getCrontabDayOfWeekNumber(nextInvocationTime) != getFixedNextInvocationValue(dayOfWeek, 6, crontab.dayOfWeekElement)
+                && !isInvocationValueContainedInCrontabValue(getCrontabDayOfWeekNumber(nextInvocationTime), 6, crontab.dayOfWeekElement);
     }
 
 

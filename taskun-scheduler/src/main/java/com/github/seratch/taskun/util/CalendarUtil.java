@@ -20,8 +20,7 @@ import java.util.logging.Logger;
 
 public final class CalendarUtil {
 
-    protected static Logger log = Logger.getLogger(CalendarUtil.class
-            .getCanonicalName());
+    protected static Logger log = Logger.getLogger(CalendarUtil.class.getCanonicalName());
 
     public static Calendar testData;
 
@@ -103,8 +102,7 @@ public final class CalendarUtil {
         return cal;
     }
 
-    public static Calendar getCalendar(String yyyy, String mm, String dd,
-                                       String hh, String mi, String ss) {
+    public static Calendar getCalendar(String yyyy, String mm, String dd, String hh, String mi, String ss) {
         Calendar cal = getCalendar(yyyy, mm, dd);
         cal.set(Calendar.HOUR_OF_DAY, Integer.valueOf(hh));
         cal.set(Calendar.MINUTE, Integer.valueOf(mi));
@@ -112,8 +110,7 @@ public final class CalendarUtil {
         return cal;
     }
 
-    public static Calendar getCalendar(int yyyy, int mm, int dd, int hh,
-                                       int mi, int ss) {
+    public static Calendar getCalendar(int yyyy, int mm, int dd, int hh, int mi, int ss) {
         Calendar cal = getCalendar(yyyy, mm, dd);
         cal.set(Calendar.HOUR_OF_DAY, hh);
         cal.set(Calendar.MINUTE, mi);

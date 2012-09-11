@@ -3,8 +3,8 @@
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
     <bean id="config" class="com.github.seratch.taskun.scheduler.config.TaskunConfig">
-        <property name="enableInvokingScheduler" value="true" />
-        <property name="enableLoggingForEachCrondInvocation" value="false" />
+        <property name="enableInvokingScheduler" value="true"/>
+        <property name="enableLoggingForEachCrondInvocation" value="false"/>
         <property name="logImplClass" value="com.github.seratch.taskun.logging.TaskunLogLog4jImpl">
         </property>
         <property name="namedServers">

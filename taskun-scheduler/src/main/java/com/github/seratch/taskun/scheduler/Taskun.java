@@ -43,8 +43,7 @@ public interface Taskun {
 
     void scheduleCronExecute(Runnable runnable, RawCrontabLine crontabLine);
 
-    void scheduleIntervalExecute(
-            Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit);
+    void scheduleIntervalExecute(Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit);
 
 
 }

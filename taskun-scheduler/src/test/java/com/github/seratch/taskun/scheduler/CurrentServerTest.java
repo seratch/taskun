@@ -11,8 +11,7 @@ import static org.junit.Assert.assertNotNull;
 public class CurrentServerTest {
 
     @Test
-    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_completelyMatched()
-            throws Exception {
+    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_completelyMatched() throws Exception {
         String arg0 = "test2";
         TaskunConfig config = new TaskunConfig();
         config.putNamedServer("test2", InetAddress.getLocalHost()
@@ -23,8 +22,7 @@ public class CurrentServerTest {
     }
 
     @Test
-    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_prefixMatched()
-            throws Exception {
+    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_prefixMatched() throws Exception {
         String arg0 = "test2";
         TaskunConfig config = new TaskunConfig();
         String hostname = InetAddress.getLocalHost().getCanonicalHostName();
@@ -35,8 +33,7 @@ public class CurrentServerTest {
     }
 
     @Test
-    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_false()
-            throws Exception {
+    public void isWorkingOnNamedServerHost_A$SchedulerConfig$String_false() throws Exception {
         String arg0 = "test3";
         TaskunConfig config = new TaskunConfig();
         boolean actual = CurrentServer.isWorkingOnNamedServerHost(config, arg0);
@@ -45,8 +42,7 @@ public class CurrentServerTest {
     }
 
     @Test
-    public void getWorkingServerName_A$SchedulerConfig$String()
-            throws Exception {
+    public void getWorkingServerName_A$SchedulerConfig$String() throws Exception {
         TaskunConfig config = new TaskunConfig();
         String actual = CurrentServer.getServerName(config);
         assertNotNull(actual);

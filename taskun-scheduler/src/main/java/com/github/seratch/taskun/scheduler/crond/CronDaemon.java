@@ -146,8 +146,7 @@ public class CronDaemon implements Runnable {
         try {
             instance = taskunInjector.inject(clazz);
         } catch (Exception e) {
-            taskunLog.debug("Command class load failed! class name : "
-                    + clazz.getCanonicalName());
+            taskunLog.debug("Command class load failed! class name : " + clazz.getCanonicalName());
         }
         if (instance == null) {
             instance = (Runnable) clazz.newInstance();
@@ -229,8 +228,7 @@ public class CronDaemon implements Runnable {
                                 + crontab.commandClassName + ","
                                 + crontab.multiplicity);
                     } catch (Exception e) {
-                        taskunLog.error(this.getClass().getCanonicalName()
-                                + " failed to execute scheduled task : " + crontab.commandClassName);
+                        taskunLog.error(this.getClass().getCanonicalName() + " failed to execute scheduled task : " + crontab.commandClassName);
                         e.printStackTrace();
                     }
                 } else {
@@ -243,8 +241,7 @@ public class CronDaemon implements Runnable {
                     Class.forName(crontab.commandClassName.toString());
                 } catch (ClassNotFoundException e) {
                     throw new IllegalStateException(
-                            "Crontab file load error! (cannot load command class : "
-                                    + crontab.commandClassName + ")");
+                            "Crontab file load error! (cannot load command class : " + crontab.commandClassName + ")");
                 }
                 taskunLog.info("Crontab invocation : " + crontab.rawLine);
             }

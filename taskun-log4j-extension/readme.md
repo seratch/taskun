@@ -19,7 +19,7 @@ http://logging.apache.org/log4j/
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
     <artifactId>taskun-log4j-extension</artifactId>
-    <version>[1.4,)</version>
+    <version>[1.5,)</version>
   </dependency>
 </dependencies>
 ```

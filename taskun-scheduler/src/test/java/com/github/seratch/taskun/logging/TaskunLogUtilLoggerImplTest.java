@@ -1,10 +1,5 @@
 package com.github.seratch.taskun.logging;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl.*;
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,8 +22,7 @@ public class TaskunLogUtilLoggerImplTest {
 
     @Test
     public void getClassNameAndMethodName_A$() throws Exception {
-        TaskunLogUtilLoggerImpl.ClassNameAndMethodName actual
-                = new TaskunLogUtilLoggerImpl().getClassNameAndMethodName();
+        TaskunLogUtilLoggerImpl.ClassNameAndMethodName actual = new TaskunLogUtilLoggerImpl().getClassNameAndMethodName();
         assertEquals("", actual.className);
         assertEquals("", actual.methodName);
     }

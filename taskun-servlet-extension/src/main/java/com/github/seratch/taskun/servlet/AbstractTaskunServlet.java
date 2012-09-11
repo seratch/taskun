@@ -54,8 +54,7 @@ public abstract class AbstractTaskunServlet extends HttpServlet {
         super.init();
         prepareToInit();
         if (injector == null) {
-            throw new IllegalStateException(
-                    "injector required before init!");
+            throw new IllegalStateException("injector required before init!");
         }
         config = injector.getTaskunConfig();
         log = getLog();
@@ -84,8 +83,7 @@ public abstract class AbstractTaskunServlet extends HttpServlet {
     @Override
     public void destroy() {
         try {
-            if (config != null
-                    && config.enableInvokingScheduler) {
+            if (config != null && config.enableInvokingScheduler) {
                 this.taskun.shutdown();
             }
         } catch (Exception e) {

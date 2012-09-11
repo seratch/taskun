@@ -1,15 +1,12 @@
 package com.github.seratch.taskun.scheduler.crond;
 
-import com.github.seratch.taskun.scheduler.crond.CrontabRepository.*;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import com.github.seratch.taskun.logging.TaskunLogUtilLoggerImpl;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class CrontabRepositoryTest {
 
@@ -39,8 +36,7 @@ public class CrontabRepositoryTest {
 
     @Test
     public void find_A$Crontab() throws Exception {
-        Crontab arg0 = parser.parseLine(new RawCrontabLine(
-                "0 1 * * * hoge.foo.Var server1"));
+        Crontab arg0 = parser.parseLine(new RawCrontabLine("0 1 * * * hoge.foo.Var server1"));
         Object actual1 = repos.find(arg0);
         Crontab expected1 = null;
         assertEquals(expected1, actual1);

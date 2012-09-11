@@ -15,7 +15,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class TaskunImplTest {
 
@@ -135,8 +135,7 @@ public class TaskunImplTest {
     }
 
     @Test
-    public void getDelayValue_A$Calendar$TimeUnit_second()
-            throws Exception {
+    public void getDelayValue_A$Calendar$TimeUnit_second() throws Exception {
         TaskunImpl target = new TaskunImpl();
         Calendar arg0 = CalendarUtil.getCurrentTime();
         arg0 = CalendarUtil.addSeconds(arg0, 1);

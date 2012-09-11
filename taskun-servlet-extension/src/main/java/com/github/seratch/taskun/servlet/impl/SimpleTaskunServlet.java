@@ -16,7 +16,6 @@ public class SimpleTaskunServlet extends AbstractTaskunServlet {
 
     @Override
     protected void prepareToInit() {
-
         TaskunServletInjector taskunInjector = new TaskunServletInjector() {
 
             @Override
@@ -24,24 +23,21 @@ public class SimpleTaskunServlet extends AbstractTaskunServlet {
 
                 Properties props = new Properties();
                 try {
-                    props.load(SimpleTaskunServlet.class.getClassLoader()
-                            .getResourceAsStream("taskun.properties"));
+                    props.load(SimpleTaskunServlet.class.getClassLoader().getResourceAsStream("taskun.properties"));
                 } catch (IOException e) {
                     throw new IllegalStateException("taskun.properties not found!");
                 }
 
                 TaskunConfig config = new TaskunConfig();
-                config.enableInvokingScheduler
-                        = Boolean.valueOf((String) props.get("enableInvokingScheduler"));
-                config.enableLoggingForEachCrondInvocation
-                        = Boolean.valueOf((String) props.get("enableLoggingForEachCrondInvocation"));
+                config.enableInvokingScheduler = Boolean.valueOf((String) props.get("enableInvokingScheduler"));
+                config.enableLoggingForEachCrondInvocation = Boolean.valueOf((String) props.get("enableLoggingForEachCrondInvocation"));
 
                 for (int i = 0; i < 10; i++) {
                     String namedServerN = (String) props.get("namedServer" + i);
-                    if (!StringUtil.isEmpty(namedServerN))
+                    if (!StringUtil.isEmpty(namedServerN)) {
                         config.namedServers.put("namedServer" + i, namedServerN);
+                    }
                 }
-
                 return config;
             }
 
@@ -61,9 +57,7 @@ public class SimpleTaskunServlet extends AbstractTaskunServlet {
             }
 
         };
-
         super.setTaskunInjector(taskunInjector);
-
     }
 
 }

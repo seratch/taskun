@@ -22,6 +22,7 @@ public class SpringServletInjectorTest {
     public void getScheduler_A$() throws Exception {
         SpringContextTaskunServletInjector target = new SpringContextTaskunServletInjector();
         Taskun actual = target.getTaskun();
+        assertNotNull(actual);
     }
 
 }

@@ -6,9 +6,7 @@ public class EchoWorker implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Hello, World! (Thread:"
-                + Thread.currentThread().getId() + "," + new Date().toString()
-                + ")");
+        System.out.println("Hello, World! (Thread:" + Thread.currentThread().getId() + "," + new Date().toString() + ")");
     }
 
 }
