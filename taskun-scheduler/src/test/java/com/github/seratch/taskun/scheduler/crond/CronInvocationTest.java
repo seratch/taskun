@@ -12,21 +12,21 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import static junit.framework.Assert.assertNotNull;
 
-public class CronDaemonTest {
+public class CronInvocationTest {
 
 
     @Test
     public void type() throws Exception {
-        assertNotNull(CronDaemon.class);
+        assertNotNull(CronInvocation.class);
     }
 
     @Test
     public void instantiation() throws Exception {
-        CronDaemon target = new CronDaemon();
+        CronInvocation target = new CronInvocation();
         assertNotNull(target);
     }
 
-    CronDaemon crond = new CronDaemon();
+    CronInvocation crond = new CronInvocation();
 
     @Before
     public void setup() {
@@ -89,7 +89,7 @@ public class CronDaemonTest {
 
     @Test
     public void getLog_A$() throws Exception {
-        CronDaemon target = new CronDaemon();
+        CronInvocation target = new CronInvocation();
         TaskunLog actual = target.getLog();
         assertNotNull(actual);
     }

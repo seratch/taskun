@@ -18,7 +18,7 @@ package com.github.seratch.taskun.scheduler.impl;
 import com.github.seratch.taskun.inject.TaskunInjector;
 import com.github.seratch.taskun.scheduler.Taskun;
 import com.github.seratch.taskun.scheduler.config.TaskunConfig;
-import com.github.seratch.taskun.scheduler.crond.CronDaemon;
+import com.github.seratch.taskun.scheduler.crond.CronInvocation;
 import com.github.seratch.taskun.scheduler.crond.RawCrontabLine;
 import com.github.seratch.taskun.util.CalendarUtil;
 
@@ -35,7 +35,7 @@ public class TaskunImpl implements Taskun {
 
     private TaskunInjector taskunInjector;
 
-    private CronDaemon crond = new CronDaemon();
+    private CronInvocation cronInvocation = new CronInvocation();
 
     private String crontabFilepath;
 
@@ -81,7 +81,7 @@ public class TaskunImpl implements Taskun {
 
     @Override
     public void scheduleCronExecute(Runnable runnable, RawCrontabLine crontabLine) {
-        crond.addCrontabLine(crontabLine);
+        cronInvocation.addCrontabLine(crontabLine);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class TaskunImpl implements Taskun {
 
     @Override
     public List<RawCrontabLine> getCurrentRawCrontabLines() {
-        return crond.getCurrentRawCrontabLines();
+        return cronInvocation.getCurrentRawCrontabLines();
     }
 
     void invokeCronDaemon(TaskunInjector taskunInjector, ScheduledExecutorService executorService) {
@@ -122,9 +122,9 @@ public class TaskunImpl implements Taskun {
             throw new IllegalStateException("Not initialized scheduler - the taskunInjector is null");
         }
         if (crontabFilepath != null) {
-            crond.initialize(taskunInjector, executorService, crontabFilepath);
+            cronInvocation.initialize(taskunInjector, executorService, crontabFilepath);
         } else {
-            crond.initialize(taskunInjector, executorService);
+            cronInvocation.initialize(taskunInjector, executorService);
         }
         Calendar cal = CalendarUtil.getCurrentTime();
         long currentTime = cal.getTimeInMillis();
@@ -132,26 +132,26 @@ public class TaskunImpl implements Taskun {
         cal.set(Calendar.SECOND, 0);
         long initialInvocation = cal.getTimeInMillis();
         long initialDelay = initialInvocation - currentTime;
-        executorService.scheduleAtFixedRate(crond, initialDelay, 60000L, TimeUnit.MILLISECONDS);
+        executorService.scheduleAtFixedRate(cronInvocation, initialDelay, 60000L, TimeUnit.MILLISECONDS);
     }
 
     long getDelayValue(Calendar executeDate, TimeUnit timeUnit) {
         Calendar current = CalendarUtil.getCurrentTime();
-        long delayMillisecs = executeDate.getTimeInMillis() - current.getTimeInMillis();
+        long delayMillis = executeDate.getTimeInMillis() - current.getTimeInMillis();
         if (timeUnit.equals(TimeUnit.DAYS)) {
-            return delayMillisecs / 1000 / 60 / 60 / 24;
+            return delayMillis / 1000 / 60 / 60 / 24;
         } else if (timeUnit.equals(TimeUnit.HOURS)) {
-            return delayMillisecs / 1000 / 60 / 60;
+            return delayMillis / 1000 / 60 / 60;
         } else if (timeUnit.equals(TimeUnit.MICROSECONDS)) {
-            return delayMillisecs * 1000;
+            return delayMillis * 1000;
         } else if (timeUnit.equals(TimeUnit.MILLISECONDS)) {
-            return delayMillisecs;
+            return delayMillis;
         } else if (timeUnit.equals(TimeUnit.MINUTES)) {
-            return delayMillisecs / 1000 / 60;
+            return delayMillis / 1000 / 60;
         } else if (timeUnit.equals(TimeUnit.NANOSECONDS)) {
-            return delayMillisecs * 1000 * 1000;
+            return delayMillis * 1000 * 1000;
         } else if (timeUnit.equals(TimeUnit.SECONDS)) {
-            return delayMillisecs / 1000;
+            return delayMillis / 1000;
         } else {
             throw new UnsupportedOperationException("unexpected TimeUnit value");
         }

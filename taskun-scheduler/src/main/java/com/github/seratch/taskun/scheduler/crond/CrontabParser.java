@@ -32,10 +32,10 @@ public class CrontabParser {
 
     private Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
-    private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
+    private TaskunLog taskunLog = getLog(CronInvocation.class.getCanonicalName());
 
     TaskunLog getLog() {
-        return getLog(CronDaemon.class.getCanonicalName());
+        return getLog(CronInvocation.class.getCanonicalName());
     }
 
     TaskunLog getLog(String name) {
@@ -96,8 +96,7 @@ public class CrontabParser {
             }
             period = Integer.valueOf(slashDelimited[1]);
         } else {
-            throw new IllegalArgumentException(
-                    "Invalid crontab configuration value:" + element);
+            throw new IllegalArgumentException("Invalid crontab configuration value:" + element);
         }
         int invocation = begin;
         while (invocation <= end) {

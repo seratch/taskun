@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class CronDaemon implements Runnable {
+public class CronInvocation implements Runnable {
 
     static final String DEFAULT_CRONTAB_FILENAME = "crontab.txt";
 
@@ -47,8 +47,7 @@ public class CronDaemon implements Runnable {
 
     private TaskunInjector taskunInjector;
 
-    private CrontabRepository crontabRepos = new CrontabRepository(
-            new ArrayList<Crontab>());
+    private CrontabRepository crontabRepos = new CrontabRepository(new ArrayList<Crontab>());
 
     private long previousCheckedTimeMillis = 0L;
 
@@ -56,15 +55,14 @@ public class CronDaemon implements Runnable {
 
     private String thisServerHostname;
 
-
     private CrontabParser parser;
 
     private Class<? extends TaskunLog> logImplClass = TaskunLogUtilLoggerImpl.class;
 
-    private TaskunLog taskunLog = getLog(CronDaemon.class.getCanonicalName());
+    private TaskunLog taskunLog = getLog(CronInvocation.class.getCanonicalName());
 
     TaskunLog getLog() {
-        return getLog(CronDaemon.class.getCanonicalName());
+        return getLog(CronInvocation.class.getCanonicalName());
     }
 
     TaskunLog getLog(String name) {
@@ -78,16 +76,17 @@ public class CronDaemon implements Runnable {
 
     @Override
     public void run() {
-        loggingAtEachInvocation(LOG_PREFIX + "Previous : "
-                + new Date(previousCheckedTimeMillis).toString() + " ("
-                + previousCheckedTimeMillis + ")");
+
+        loggingAtEachInvocation(LOG_PREFIX + "Previous : " + new Date(previousCheckedTimeMillis).toString() + " (" + previousCheckedTimeMillis + ")");
+
         if (!isInitialized) {
-            throw new IllegalStateException("Need to initialize CronDaemon!");
+            throw new IllegalStateException("Need to initialize CronInvocation!");
         }
+
         Calendar current = CalendarUtil.getCurrentTime();
-        loggingAtEachInvocation(LOG_PREFIX + "Current  : "
-                + current.getTime().toString() + " ("
-                + current.getTimeInMillis() + ")");
+
+        loggingAtEachInvocation(LOG_PREFIX + "Current  : " + current.getTime().toString() + " (" + current.getTimeInMillis() + ")");
+
         long currentCheckTime = current.getTimeInMillis();
         for (Crontab crontab : crontabRepos.getCrontabLines()) {
             if (crontab.isIntervalInvocation) {
@@ -106,34 +105,27 @@ public class CronDaemon implements Runnable {
                     continue;
                 }
             }
-            loggingAtEachInvocation(LOG_PREFIX + "Scheduled : "
-                    + crontab.rawLine + " (Next:"
-                    + new Date(crontab.nextInvocationTime).toString() + ")");
+
+            loggingAtEachInvocation(LOG_PREFIX + "Scheduled : " + crontab.rawLine + " (Next:" + new Date(crontab.nextInvocationTime).toString() + ")");
+
             // check invocation timestamp
-            if (crontab.nextInvocationTime > previousCheckedTimeMillis
-                    && crontab.nextInvocationTime <= currentCheckTime) {
+            if (crontab.nextInvocationTime > previousCheckedTimeMillis && crontab.nextInvocationTime <= currentCheckTime) {
                 try {
                     Runnable instance = getCommandWorker(crontab);
                     long multiplicity = crontab.multiplicity;
                     long initialDelay = crontab.initialIntervalSeconds * 1000;
                     for (int i = 0; i < multiplicity; i++) {
                         initialDelay += 100L; // distribute threads
-                        executorService.schedule(instance, initialDelay,
-                                TimeUnit.MILLISECONDS);
-                        loggingAtEachInvocation(LOG_PREFIX + ">> Invoked : "
-                                + crontab.commandClassName);
+                        executorService.schedule(instance, initialDelay, TimeUnit.MILLISECONDS);
+                        loggingAtEachInvocation(LOG_PREFIX + ">> Invoked : " + crontab.commandClassName);
                     }
-                    crontab.nextInvocationTime = parser.getNextInvocationTime(
-                            current, crontab);
-                    loggingAtEachInvocation(LOG_PREFIX + ">> Renewed : "
-                            + crontab.rawLine + "(Next:"
-                            + new Date(crontab.nextInvocationTime).toString()
-                            + ")");
+                    crontab.nextInvocationTime = parser.getNextInvocationTime(current, crontab);
+
+                    loggingAtEachInvocation(LOG_PREFIX + ">> Renewed : " + crontab.rawLine + "(Next:" + new Date(crontab.nextInvocationTime).toString() + ")");
                 } catch (Exception e) {
-                    taskunLog.error(this.getClass().getCanonicalName()
-                            + " failed to execute scheduled task : "
-                            + crontab.commandClassName);
-                    e.printStackTrace();
+
+                    taskunLog.error(this.getClass().getCanonicalName() + " failed to execute scheduled task : " + crontab.commandClassName);
+                    taskunLog.debug(this.getClass().getCanonicalName() + " failed to execute scheduled task : " + crontab.commandClassName, e);
                 }
             }
         }
@@ -175,8 +167,7 @@ public class CronDaemon implements Runnable {
         BufferedReader br = null;
         try {
             // read crontab.txt
-            is = this.getClass().getClassLoader()
-                    .getResourceAsStream(crontabFilepath);
+            is = this.getClass().getClassLoader().getResourceAsStream(crontabFilepath);
             if (is == null) {
                 taskunLog.info("Skipped the crontab scheduing" + " because " + crontabFilepath + " did not found.");
                 return;
@@ -195,8 +186,7 @@ public class CronDaemon implements Runnable {
             // start interval invocations
             List<Crontab> newList = new ArrayList<Crontab>();
             taskunLog.info("----- Taskun scheduler initialized -----");
-            taskunLog.info("Working at " + thisServerNameIfGiven
-                    + "(" + thisServerHostname + ")");
+            taskunLog.info("Working at " + thisServerNameIfGiven + "(" + thisServerHostname + ")");
             for (Crontab crontab : crontabRepos.getCrontabLines()) {
                 if (crontab.isIntervalInvocation) {
                     try {
@@ -220,16 +210,12 @@ public class CronDaemon implements Runnable {
                         long delay = crontab.intervalSeconds * 1000;
                         for (int i = 0; i < multiplicity; i++) {
                             initialDelay += 100L; // distribute threads
-                            executorService.scheduleAtFixedRate(
-                                    command, initialDelay, delay, TimeUnit.MILLISECONDS);
+                            executorService.scheduleAtFixedRate(command, initialDelay, delay, TimeUnit.MILLISECONDS);
                         }
-                        taskunLog.info("Interval invocation : "
-                                + crontab.intervalSeconds + "sec,"
-                                + crontab.commandClassName + ","
-                                + crontab.multiplicity);
+                        taskunLog.info("Interval invocation : " + crontab.intervalSeconds + "sec," + crontab.commandClassName + "," + crontab.multiplicity);
                     } catch (Exception e) {
                         taskunLog.error(this.getClass().getCanonicalName() + " failed to execute scheduled task : " + crontab.commandClassName);
-                        e.printStackTrace();
+                        taskunLog.debug(this.getClass().getCanonicalName() + " failed to execute scheduled task : " + crontab.commandClassName, e);
                     }
                 } else {
                     newList.add(crontab);
@@ -240,14 +226,13 @@ public class CronDaemon implements Runnable {
                 try {
                     Class.forName(crontab.commandClassName.toString());
                 } catch (ClassNotFoundException e) {
-                    throw new IllegalStateException(
-                            "Crontab file load error! (cannot load command class : " + crontab.commandClassName + ")");
+                    throw new IllegalStateException("Crontab file load error! (cannot load command class : " + crontab.commandClassName + ")");
                 }
                 taskunLog.info("Crontab invocation : " + crontab.rawLine);
             }
         } catch (IOException e) {
             taskunLog.error("Cannot read crontab.txt because of " + e.getLocalizedMessage());
-            e.printStackTrace();
+            taskunLog.debug("Cannot read crontab.txt because of " + e.getLocalizedMessage(), e);
         } finally {
             IOCloser.close(is);
             IOCloser.close(br);
@@ -286,8 +271,7 @@ public class CronDaemon implements Runnable {
                     sb.append("sec");
                 } else {
                     sb.append("next:");
-                    sb.append(CalendarUtil.toYYYYMMDDHHMISS(
-                            CalendarUtil.getCalendar(crontab.nextInvocationTime)));
+                    sb.append(CalendarUtil.toYYYYMMDDHHMISS(CalendarUtil.getCalendar(crontab.nextInvocationTime)));
                 }
                 currentRawContabLines.add(new RawCrontabLine(sb.toString()));
             }
