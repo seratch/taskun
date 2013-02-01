@@ -12,7 +12,7 @@
 <dependencies>
   <dependency>
     <groupId>com.github.seratch.taskun</groupId>
-    <artifactId>taskun-taskun</artifactId>
+    <artifactId>taskun-scheduler</artifactId>
     <version>[1.5,)</version>
   </dependency>
   <dependency>
