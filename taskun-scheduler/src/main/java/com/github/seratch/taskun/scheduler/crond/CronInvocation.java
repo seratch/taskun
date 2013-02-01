@@ -133,15 +133,49 @@ public class CronInvocation implements Runnable {
     }
 
     Runnable getCommandWorker(Crontab crontabLine) throws Exception {
-        Class<?> clazz = Class.forName(crontabLine.commandClassName.toString());
+        final Class<?> clazz = Class.forName(crontabLine.commandClassName.toString());
         Runnable instance = null;
         try {
-            instance = taskunInjector.inject(clazz);
+            instance = new Runnable() {
+                @Override
+                public void run() {
+                    Runnable runnable = null;
+                    try {
+                        runnable = taskunInjector.inject(clazz);
+                    } catch (Exception e) {
+                        getLog().error("Failed to create " + clazz.getCanonicalName() + " instance because " + e.getMessage(), e);
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        runnable.run();
+                    } catch (Exception e) {
+                        getLog().error("Failed to invoke " + clazz.getCanonicalName() + " because " + e.getMessage(), e);
+                        // ExecutorService terminates execution of scheduler if Exception thrown, so skip this Exception.
+                    }
+                }
+            };
         } catch (Exception e) {
             taskunLog.debug("Command class load failed! class name : " + clazz.getCanonicalName());
         }
         if (instance == null) {
-            instance = (Runnable) clazz.newInstance();
+            instance = new Runnable() {
+                @Override
+                public void run() {
+                    Runnable runnable = null;
+                    try {
+                        runnable = (Runnable) clazz.newInstance();
+                    } catch (Exception e) {
+                        getLog().error("Failed to create " + clazz.getCanonicalName() + " instance because " + e.getMessage(), e);
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        runnable.run();
+                    } catch (Exception e) {
+                        getLog().error("Failed to invoke " + clazz.getCanonicalName() + " because " + e.getMessage(), e);
+                        // ExecutorService terminates execution of scheduler if Exception thrown, so skip this Exception.
+                    }
+                }
+            };
         }
         return instance;
     }
