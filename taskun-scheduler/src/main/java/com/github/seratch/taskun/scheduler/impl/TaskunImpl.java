@@ -117,6 +117,11 @@ public class TaskunImpl implements Taskun {
         return cronInvocation.getCurrentRawCrontabLines();
     }
 
+    @Override
+    public long getLastCronInvocationTimeMillis() {
+        return cronInvocation.getPreviousCheckedTimeMillis();
+    }
+
     void invokeCronDaemon(TaskunInjector taskunInjector, ScheduledExecutorService executorService) {
         if (taskunInjector == null) {
             throw new IllegalStateException("Not initialized scheduler - the taskunInjector is null");

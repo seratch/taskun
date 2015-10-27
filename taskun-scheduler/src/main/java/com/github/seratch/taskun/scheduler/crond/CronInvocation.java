@@ -313,4 +313,8 @@ public class CronInvocation implements Runnable {
         return currentRawContabLines;
     }
 
+    public long getPreviousCheckedTimeMillis() {
+        return previousCheckedTimeMillis;
+    }
+
 }

@@ -100,6 +100,12 @@ public class TaskunImplTest {
     }
 
     @Test
+    public void getLastCronInvocationTimeMillis_A$() throws Exception {
+        long actual = taskun.getLastCronInvocationTimeMillis();
+        assertNotNull(actual);
+    }
+
+    @Test
     public void invokeCronDaemon_A$DIContainerAdaptor$ScheduledExecutorService()
             throws Exception {
         TaskunImpl target = new TaskunImpl();

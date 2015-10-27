@@ -45,5 +45,6 @@ public interface Taskun {
 
     void scheduleIntervalExecute(Runnable runnable, Calendar initialScheduledDate, long interval, TimeUnit timeUnit);
 
+    long getLastCronInvocationTimeMillis();
 
 }
