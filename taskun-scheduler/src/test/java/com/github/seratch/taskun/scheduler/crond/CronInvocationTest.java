@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
 import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 public class CronInvocationTest {
 
@@ -85,6 +86,13 @@ public class CronInvocationTest {
     public void getCurrentRawCrontabLines_A$() throws Exception {
         List<RawCrontabLine> actual = crond.getCurrentRawCrontabLines();
         assertNotNull(actual);
+    }
+
+    @Test
+    public void getPreviousCheckedTimeMillis_A$() throws Exception {
+        long actual = crond.getPreviousCheckedTimeMillis();
+        long expected = 0L;
+        assertEquals(expected, actual);
     }
 
     @Test
