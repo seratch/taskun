@@ -1,5 +1,7 @@
 # taskun - A simple cron daemon thread on the JVM
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch.taskun/taskun-scheduler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch.taskun/taskun-scheduler)
+
 ## What's this
 
 "taskun" is an implementation of UNIX "crond" on the JVM, and it also has some extended notations.
